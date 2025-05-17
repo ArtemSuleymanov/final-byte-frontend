@@ -1,6 +1,8 @@
+import styles from "./HomeTab.module.css";
+
 const HomeTab = () => {
   return (
-    <div>HomeTab</div>
+    <div className={styles.back}>HomeTab</div>
   )
 }
 

@@ -1,7 +1,9 @@
+import styles from "./LoginPage.module.css";
+
 const LoginPage = () => {
   return (
-    <div>LoginPage</div>
-  )
-}
+    <div className={styles.back}>LoginPage</div>
+  );
+};
 
-export default LoginPage
+export default LoginPage;

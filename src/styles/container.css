@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  max-width: var(--mob-container);
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+/* Styles for Tablet devices */
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: var(--tablet-container);
+    padding: 0 32px;
+  }
+}
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1280px) {
+  .container {
+    max-width: var(--desktop-container);
+    padding: 0 32px;
+  }
+}
