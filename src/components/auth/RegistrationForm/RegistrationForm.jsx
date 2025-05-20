@@ -3,13 +3,14 @@ import * as Yup from 'yup';
 import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const registrationFields = [
-  { name: 'name', placeholder: 'Name' },
-  { name: 'email', type: 'email', placeholder: 'Email' },
-  { name: 'password', type: 'password', placeholder: 'Password' },
+  { name: 'name', placeholder: 'Name', icon: 'icon-user-02' },
+  { name: 'email', type: 'email', placeholder: 'Email', icon: 'icon-email' },
+  { name: 'password', type: 'password', placeholder: 'Password', icon: 'icon-lock' },
   {
     name: 'confirmPassword',
     type: 'password',
     placeholder: 'Confirm Password',
+    icon: 'icon-lock',
   },
 ];
 
