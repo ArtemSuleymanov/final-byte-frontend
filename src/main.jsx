@@ -4,11 +4,11 @@ import 'modern-normalize';
 import './index.css';
 import App from './App.jsx';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.js';
 
-import "./styles/base.css"
+import './styles/base.css';
 import './styles/reset.css';
 import './styles/variables.css';
 import './styles/container.css';
