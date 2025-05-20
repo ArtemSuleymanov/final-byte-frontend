@@ -1,7 +1,7 @@
-const RegistrationPage = () => {
-  return (
-    <div>RegistrationPage</div>
-  )
-}
+import RegistrationForm from '../../components/auth/RegistrationForm/RegistrationForm.jsx';
 
-export default RegistrationPage
+const RegistrationPage = () => {
+  return <RegistrationForm />;
+};
+
+export default RegistrationPage;
