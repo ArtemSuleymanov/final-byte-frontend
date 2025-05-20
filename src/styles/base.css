@@ -2,26 +2,12 @@
   box-sizing: border-box;
 }
 
-:root {
-  --font-family-base: 'Inter', sans-serif;
-  --button-delete-bg-color: #B20202;
-  --button-toggle-expense-bg-color: #B20202;
-  --button-toggle-income-bg-color: #DFAD3F;
-  --main-background-color: linear-gradient(to bottom, #294045, #1E2F33);
-  --modal-background: #508F8C;
-  --hover-color: linear-gradient(to bottom, #355359, #3B5D63);
-  --hover-text-color: #FCFCFC;
-  --mob-container: 320px;
-  --tablet-container: 768px;
-  --desktop-container: 1280px;
-}
-
 body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
-  background-color: var(--primary-background-color);
+  background-color: var(--main-background-color);
   min-width: 100vw;
   min-height: 100vh;
   margin: 0;
