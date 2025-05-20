@@ -1,0 +1,13 @@
+:root {
+  --font-family-base: 'Inter', sans-serif;
+  --button-delete-bg-color: #B20202;
+  --button-toggle-expense-bg-color: #B20202;
+  --button-toggle-income-bg-color: #DFAD3F;
+  --main-background-color: linear-gradient(to bottom, #294045, #1E2F33);
+  --modal-background: #508F8C;
+  --hover-color: linear-gradient(to bottom, #355359, #3B5D63);
+  --hover-text-color: #FCFCFC;
+  --mob-container: 320px;
+  --tablet-container: 768px;
+  --desktop-container: 1280px;
+}
