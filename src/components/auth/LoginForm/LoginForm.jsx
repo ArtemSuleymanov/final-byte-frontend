@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const loginFields = [
-  { name: 'email', type: 'email', placeholder: 'Email' },
-  { name: 'password', type: 'password', placeholder: 'Password' },
+  { name: 'email', type: 'email', placeholder: 'Email', icon: 'icon-email' },
+  { name: 'password', type: 'password', placeholder: 'Password', icon: 'icon-lock' },
 ];
 
 const loginInitialValues = {

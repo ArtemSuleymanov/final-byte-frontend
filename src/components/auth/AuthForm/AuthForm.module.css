@@ -16,7 +16,8 @@
 }
 
 .input {
-  padding: 11px 12px;
+  width: 100%;
+  padding: 11px 14px 11px 50px;
   border-radius: 8px;
   border: 1px solid #081222;
   outline: none;
@@ -30,6 +31,7 @@
 
 .span {
   color: red;
+  font-size: 10px;
 }
 
 .button {
@@ -70,3 +72,17 @@
 /* .barWrap {
   color: wheat;
 } */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  left: 14px;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
