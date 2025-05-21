@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
+    "axios": "^1.9.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.5.0",
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.1",
     "react": "^19.0.0",

@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 import AuthForm from '../AuthForm/AuthForm.jsx';
+import { useDispatch } from 'react-redux';
+import { loginThunk } from '../../../redux/auth/authOperations.js';
 
 const loginFields = [
   { name: 'email', type: 'email', placeholder: 'Email', icon: 'icon-email' },
@@ -23,8 +25,10 @@ const loginValidationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+ const dispatch = useDispatch()
   const handleSubmit = (values, actions) => {
     console.log('Login form submitted:', values);
+    dispatch(loginThunk(values))
     actions.resetForm();
   };
 

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import * as Yup from 'yup';
 import AuthForm from '../AuthForm/AuthForm.jsx';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from '../../../redux/auth/authOperations.js';
 
 const registrationFields = [
   { name: 'name', placeholder: 'Name', icon: 'icon-user-02' },
@@ -41,11 +43,14 @@ const registrationValidationSchema = Yup.object({
 });
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch()
   const [passwordValue, setPasswordValue] = useState('');
   const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
 
   const handleSubmit = (values, actions) => {
-    console.log('Register values:', values);
+    const { name, email, password } = values;
+    console.log('Register values:', {name, email, password});
+    dispatch(registerThunk({name, email, password}))
     actions.resetForm();
     // Тут буде логіка реєстрації
   };
