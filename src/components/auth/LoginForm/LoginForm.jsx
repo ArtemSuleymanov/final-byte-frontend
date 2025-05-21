@@ -1,7 +1,9 @@
-import * as Yup from 'yup';
-import AuthForm from '../AuthForm/AuthForm.jsx';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 import { loginThunk } from '../../../redux/auth/authOperations.js';
+import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const loginFields = [
   { name: 'email', type: 'email', placeholder: 'Email', icon: 'icon-email' },
@@ -25,11 +27,18 @@ const loginValidationSchema = Yup.object({
 });
 
 const LoginForm = () => {
- const dispatch = useDispatch()
-  const handleSubmit = (values, actions) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, actions) => {
     console.log('Login form submitted:', values);
-    dispatch(loginThunk(values))
-    actions.resetForm();
+    try {
+      await dispatch(loginThunk(values)).unwrap();
+      navigate('/home');
+      actions.resetForm();
+    } catch (error) {
+      return toast.error(error || 'Login failed');
+    }
   };
 
   return (

@@ -56,7 +56,7 @@ const AuthForm = ({
           </button>
 
           {link && (
-            <p className={s.text}>
+            <p className={s.linkName}>
               <Link to={link.to}>{link.text}</Link>
             </p>
           )}
