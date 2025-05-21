@@ -16,6 +16,6 @@
 @media only screen and (min-width: 1280px) {
   .container {
     max-width: var(--desktop-container);
-    padding: 0 32px;
+    padding: 0 24px;
   }
 }

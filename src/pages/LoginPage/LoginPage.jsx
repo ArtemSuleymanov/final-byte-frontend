@@ -1,11 +1,7 @@
-import styles from "./LoginPage.module.css";
+import LoginForm from '../../components/auth/LoginForm/LoginForm.jsx';
 
 const LoginPage = () => {
-  return (
-    <div className={styles.back}>
-      LoginPage
-    </div>
-  );
+  return <LoginForm />;
 };
 
 export default LoginPage;
