@@ -7,7 +7,7 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
-  background-color: var(--main-background-color);
+  background: var(--main-background-color);
   min-width: 100vw;
   min-height: 100vh;
   margin: 0;
