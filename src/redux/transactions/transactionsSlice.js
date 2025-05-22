@@ -5,25 +5,25 @@ const initialState = {
   items: [
     {
       id: '101',
-      date: '2025-05-21',
+      date: '22.05.25',
       type: '+',
-      category: 'Freelance',
+      category: 'Incomes',
       comment: 'Project for client',
       sum: 1500,
     },
     {
       id: '102',
-      date: '2025-05-20',
+      date: '24.05.25',
       type: '-',
-      category: 'Car',
+      category: 'Products',
       comment: 'Dinner ',
       sum: 250,
     },
     {
       id: '103',
-      date: '2025-05-19',
+      date: '25.05.25',
       type: '-',
-      category: 'Books',
+      category: 'Education',
       comment: 'React handbook',
       sum: 120,
     },
@@ -53,4 +53,4 @@ const transactionsSlice = createSlice({
   },
 });
 
-export default transactionsSlice.reducer;
+export const transactionsReducer = transactionsSlice.reducer;

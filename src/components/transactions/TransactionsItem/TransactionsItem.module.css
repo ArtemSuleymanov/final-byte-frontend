@@ -1,11 +1,11 @@
-.itemWrapper {
+.wrapper {
   background-color: transparent;
   border-radius: 16px;
 }
 
-button {
+/* button {
   padding: 0;
-}
+} */
 
 .card {
   background: var(--hover-color);
@@ -27,7 +27,7 @@ button {
   border-left: 5px solid var(--button-toggle-income-bg-color);
 }
 
-.row {
+.div {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--hover-text-color);
@@ -35,7 +35,7 @@ button {
   padding: 12px 21px 17px 21px;
 }
 
-.row:last-child {
+.div:last-child {
   border-bottom: none;
 }
 
@@ -53,7 +53,7 @@ button {
   color: var(--button-toggle-income-bg-color);
 }
 
-.actions {
+.btn {
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
@@ -110,7 +110,7 @@ button {
     background: var(--main-background-color);
   }
 
-  .row {
+  .div {
     display: block;
     border-bottom: none;
     padding: 0;
@@ -120,7 +120,7 @@ button {
     display: none;
   }
 
-  .typeCell {
+  .type {
     display: block;
     text-align: center;
   }
@@ -129,7 +129,7 @@ button {
     display: none;
   }
 
-  .actions {
+  .btn {
     justify-content: start;
     flex-direction: row;
     gap: 24px;
