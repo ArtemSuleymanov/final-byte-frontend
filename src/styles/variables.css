@@ -1,5 +1,7 @@
 :root {
   --font-family-base: 'Inter', sans-serif;
+  --main-white: #fcfcfc;
+  --main-black: #081222;
   --button-delete-bg-color: #B20202;
   --button-toggle-expense-bg-color: #B20202;
   --button-toggle-income-bg-color: #DFAD3F;
