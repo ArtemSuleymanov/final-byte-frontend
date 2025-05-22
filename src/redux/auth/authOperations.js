@@ -29,6 +29,7 @@ export const loginThunk = createAsyncThunk('auth/login', async (body, thunkAPI) 
   try {
     const { data } = await axios.post('auth/login', body);
     setAuthHeader(data.accessToken);
+    localStorage.setItem('accessToken', data.accessToken);
     console.log(data);
     return data;
   } catch (error) {
@@ -51,7 +52,7 @@ export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) =
 export const refreshSessionThunk = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken = state.auth.accessToken;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
