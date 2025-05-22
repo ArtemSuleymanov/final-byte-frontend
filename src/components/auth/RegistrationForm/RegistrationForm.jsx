@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import * as Yup from 'yup';
-import AuthForm from '../AuthForm/AuthForm.jsx';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { registerThunk } from '../../../redux/auth/authOperations.js';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+import { loginThunk, registerThunk } from '../../../redux/auth/authOperations.js';
+import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const registrationFields = [
   { name: 'name', placeholder: 'Name', icon: 'icon-user-02' },
@@ -43,16 +45,26 @@ const registrationValidationSchema = Yup.object({
 });
 
 const RegistrationForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [passwordValue, setPasswordValue] = useState('');
   const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const { name, email, password } = values;
-    console.log('Register values:', {name, email, password});
-    dispatch(registerThunk({name, email, password}))
-    actions.resetForm();
-    // Тут буде логіка реєстрації
+    console.log('Register values:', { name, email, password });
+
+    try {
+      await dispatch(registerThunk({ name, email, password })).unwrap();
+
+      await dispatch(loginThunk({ email, password })).unwrap();
+
+      actions.resetForm();
+      navigate('/home');
+    } catch (error) {
+      toast.error(error || 'Registration failed. Please try again.');
+    }
   };
 
   return (

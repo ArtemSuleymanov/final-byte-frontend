@@ -20,8 +20,14 @@ const AuthForm = ({
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       {({ handleChange }) => (
         <Form className={s.form} autoComplete="off">
-          {/* <img className={s.logo} src="/images/logo.svg" alt="logo" /> */}
+          <div className={s.logoWrapper}>
+            <svg className={s.logo} role="img" aria-hidden="true">
+              <use href={`${sprite}#icon-wallet`} />
+            </svg>
+            <p className={s.logoText}>Spendy</p>
+          </div>
 
+          {/* <img className={s.logo} src="/images/logo.svg" alt="logo" /> */}
           {fields.map(({ name, type = 'text', placeholder, icon }) => (
             <label key={name} className={s.labelWraper}>
               <div className={s.inputWrapper}>
@@ -56,7 +62,7 @@ const AuthForm = ({
           </button>
 
           {link && (
-            <p className={s.text}>
+            <p className={s.linkName}>
               <Link to={link.to}>{link.text}</Link>
             </p>
           )}

@@ -4,7 +4,7 @@
   margin: 0 auto;
   flex-direction: column;
   gap: 24px;
-  padding: 62px;
+  padding: 16px;
   border-radius: 8px;
   background-color: #508f8c;
 }
@@ -40,7 +40,7 @@
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   margin: 0 auto;
   margin-top: 10px;
-  width: 409px;
+  width: 248px;
   padding: 11px 79px;
   border-radius: 8px;
   color: #fcfcfc;
@@ -53,20 +53,31 @@
   }
 }
 
-.text {
+.linkName {
   height: 44px;
   margin: 0 auto;
-  border: 1px solid black;
+  border: 1px solid #081222;
   border-radius: 8px;
   padding: 11px 79px;
-  width: 409px;
+  width: 248px;
   text-align: center;
 }
 
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logo {
-  width: 182px;
-  height: 94px;
-  margin: 0 auto;
+  width: 54px;
+  height: 54px;
+}
+
+.logoText {
+  font-weight: 700;
+  font-size: 30px;
+  color: #081222;
 }
 
 /* .barWrap {
@@ -85,4 +96,17 @@
   width: 24px;
   height: 24px;
   fill: currentColor;
+}
+
+/* Styles for Tablet  and Desktop devices */
+@media only screen and (min-width: 768px) {
+  .form {
+    padding: 62px;
+  }
+  .button {
+    width: 409px;
+  }
+  .linkName {
+    width: 409px;
+  }
 }

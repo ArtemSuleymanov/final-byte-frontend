@@ -1,7 +1,11 @@
 import RegistrationForm from '../../components/auth/RegistrationForm/RegistrationForm.jsx';
 
 const RegistrationPage = () => {
-  return <RegistrationForm />;
+  return (
+    <div className="container">
+      <RegistrationForm />
+    </div>
+  );
 };
 
 export default RegistrationPage;
