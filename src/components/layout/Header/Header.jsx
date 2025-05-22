@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './Header.module.css';
+import s from './Header.module.css';
 import LogoutModal from './LogoutModal';
 
 import sprite from '../../../assets/sprite.svg';
@@ -9,22 +9,22 @@ export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useSelector((state) => state.auth.user);
 
-  const userName = user?.name || 'Guest';
+  const userName = user?.name || 'User';
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <svg className={styles.icon} width="32" height="32">
+    <header className={s.header}>
+      <div className={s.container}>
+        <div className={s.logo}>
+          <svg className={s.icon} width="32" height="32">
             <use href={`${sprite}#icon-wallet`} />
           </svg>
-          <p className={styles.text}>Spendy</p>
+          <p className={s.text}>Spendy</p>
         </div>
-        <div className={styles.userInfo}>
-          <span className={styles.userName}>{userName}</span>
-          <div className={styles.divider}></div>
-          <button className={styles.exitBtn} onClick={() => setIsModalOpen(true)}>
-            <svg className={styles.exitIcon} width="18" height="18">
+        <div className={s.userInfo}>
+          <span className={s.userName}>{userName}</span>
+          <div className={s.divider}></div>
+          <button className={s.exitBtn} onClick={() => setIsModalOpen(true)}>
+            <svg className={s.exitIcon} width="18" height="18">
               <use href={`${sprite}#icon-exit-1`} />
             </svg>
             Exit
