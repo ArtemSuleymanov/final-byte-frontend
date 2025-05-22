@@ -1,7 +1,38 @@
-const Header = () => {
-  return (
-    <div>Header</div>
-  )
-}
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import s from './Header.module.css';
+import LogoutModal from './LogoutModal';
 
-export default Header
+import sprite from '../../../assets/sprite.svg';
+
+export default function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
+
+  const userName = user?.name || 'User';
+
+  return (
+    <header className={s.header}>
+      <div className={s.container}>
+        <div className={s.logo}>
+          <svg className={s.icon} width="32" height="32">
+            <use href={`${sprite}#icon-wallet`} />
+          </svg>
+          <p className={s.text}>Spendy</p>
+        </div>
+        <div className={s.userInfo}>
+          <span className={s.userName}>{userName}</span>
+          <div className={s.divider}></div>
+          <button className={s.exitBtn} onClick={() => setIsModalOpen(true)}>
+            <svg className={s.exitIcon} width="18" height="18">
+              <use href={`${sprite}#icon-exit-1`} />
+            </svg>
+            Exit
+          </button>
+        </div>
+      </div>
+
+      <LogoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </header>
+  );
+}
