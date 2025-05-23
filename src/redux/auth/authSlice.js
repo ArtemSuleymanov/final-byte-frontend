@@ -23,7 +23,8 @@ const slice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload.data.user ?? {};
+        console.log('Login payload:', action.payload);
+        state.user = action.payload.user ?? {};
         state.accessToken = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })

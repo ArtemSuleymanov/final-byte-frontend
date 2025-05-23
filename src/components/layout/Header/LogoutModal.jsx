@@ -1,10 +1,25 @@
 import s from './LogoutModal.module.css';
 import Modal from 'react-modal';
 import sprite from '../../../assets/sprite.svg';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logoutThunk } from '../../../redux/auth/authOperations';
+import { toast } from 'react-hot-toast';
 
 export default function LogoutModal({ isOpen, onClose }) {
-  const handleLogout = () => {
-    onClose();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutThunk()).unwrap();
+    } catch (error) {
+      toast.error(`Logout failed: ${error}`);
+    } finally {
+      localStorage.clear();
+      onClose();
+      navigate('/login', { replace: true });
+    }
   };
 
   return (
