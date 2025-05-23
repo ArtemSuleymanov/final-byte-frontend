@@ -14,7 +14,7 @@ const TransactionsList = () => {
   return (
     <div>
       <ul className={s.list}>
-        <ul className={s.header}>
+        <div className={s.header}>
           <li>
             <div className={s.date}>Date</div>
           </li>
@@ -22,7 +22,7 @@ const TransactionsList = () => {
           <li>Category</li>
           <li>Comment</li>
           <li>Sum</li>
-        </ul>
+        </div>
         {data.map((item, index) => (
           <TransactionsItem key={item.id} {...item} isEven={index % 2 === 1} />
         ))}
