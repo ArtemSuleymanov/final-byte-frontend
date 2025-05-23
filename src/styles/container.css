@@ -1,4 +1,4 @@
-.container {
+main {
   width: 100%;
   max-width: var(--mob-container);
   min-width: 0;
@@ -7,14 +7,14 @@
 }
 /* Styles for Tablet devices */
 @media only screen and (min-width: 768px) {
-  .container {
+  main {
     max-width: var(--tablet-container);
     padding: 0 32px;
   }
 }
 /* Styles for Desktop devices */
 @media only screen and (min-width: 1280px) {
-  .container {
+  main {
     max-width: var(--desktop-container);
     padding: 0 24px;
   }
