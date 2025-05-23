@@ -1,10 +1,13 @@
 import LoginForm from '../../components/auth/LoginForm/LoginForm.jsx';
+import s from './LoginPage.module.css';
 
 const LoginPage = () => {
   return (
-    <div className="container">
-      <LoginForm />
-    </div>
+    <main>
+      <section className={s.container}>
+        <LoginForm />
+      </section>
+    </main>
   );
 };
 

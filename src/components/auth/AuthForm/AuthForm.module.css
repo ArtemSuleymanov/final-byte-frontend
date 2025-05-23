@@ -25,9 +25,17 @@
   background-color: inherit;
 }
 
+.input {
+  border-color: #3b5d63;
+}
+
 .input::placeholder {
   font-size: 18px;
   color: inherit;
+}
+
+.input:focus::placeholder {
+  color: #3b5d63;
 }
 
 .inputError {
@@ -42,7 +50,6 @@
   left: 14px;
   width: 24px;
   height: 24px;
-  fill: currentColor;
 }
 
 .iconError {
@@ -123,10 +130,16 @@
   align-items: center;
 }
 
+.inputWrapper:focus-within .icon {
+  fill: #3b5d63;
+}
+
 /* Styles for Tablet  and Desktop devices */
 @media only screen and (min-width: 768px) {
   .form {
     padding: 62px;
+    padding-top: 53px;
+    padding-bottom: 82px;
   }
   .button {
     width: 409px;
