@@ -1,0 +1,19 @@
+.wrapper {
+  padding: 20px;
+}
+
+/* Styles for Tablet devices */
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 125px;
+  }
+}
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1280px) {
+  .wrapper {
+    padding-top: 48px;
+  }
+}

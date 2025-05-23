@@ -59,7 +59,6 @@ const AuthForm = ({
                   />
                 </div>
                 <ErrorMessage className={s.span} name={name} component="span" />
-
                 {name === 'confirmPassword' && confirmPasswordValue && <ProgressBar value={confirmPasswordValue} />}
               </label>
             );

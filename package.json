@@ -21,6 +21,7 @@
     "react-hot-toast": "^2.5.2",
     "react-modal": "^3.16.3",
     "react-password-strength-bar": "^0.4.1",
+    "react-password-strength-bar-with-style-item": "^0.5.3",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.29.0",
     "react-spinners": "^0.15.0",
