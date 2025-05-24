@@ -8,11 +8,6 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { store, persistor } from './redux/store.js';
-
-import './styles/base.css';
-import './styles/container.css';
-import './styles/reset.css';
-import './styles/variables.css';
 import { PersistGate } from 'redux-persist/integration/react';
 
 createRoot(document.getElementById('root')).render(
