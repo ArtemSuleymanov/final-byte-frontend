@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrencyIfNeeded } from '../../../redux/currency/currencySlice';
 import { formatValue } from '../../../utils/helpers';
 
-import s from './Currency.module.css';
 import Loader from '../../common/Loader/Loader';
+import s from './Currency.module.css';
 
 const Currency = () => {
   const dispatch = useDispatch();
