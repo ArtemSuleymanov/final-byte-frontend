@@ -1,0 +1,39 @@
+.balanceWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--modal-background);
+  border-radius: 16px;
+  padding: 24px 16px;
+  width: 288px;
+  height: 115px;
+  /* margin-bottom: 24px; */
+}
+
+.balanceText {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--main-white);
+  opacity: 0.4;
+}
+
+.balanceValue {
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--main-white);
+}
+
+@media (min-width: 768px) {
+  .balanceWrapper {
+    padding: 16px;
+    width: 338px;
+    height: 143px;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* стилі для десктопа */
+}
