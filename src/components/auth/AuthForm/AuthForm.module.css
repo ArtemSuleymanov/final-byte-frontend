@@ -1,3 +1,50 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    padding: 0;
+  }
+
+  .container {
+    padding: 0;
+    /* padding-top: 125px; */
+    padding-bottom: 278px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .imageBg {
+    position: absolute;
+    bottom: 38px;
+    right: 1px;
+    width: 320px;
+    height: 239px;
+    background-image: image-set(url('/img/wallet_hand_like_1x.webp') 1x, url('/img/wallet_hand_like_2x.webp') 2x);
+    /* background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    z-index: 0;
+    pointer-events: none; */
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  main {
+    padding: 0;
+  }
+
+  .container {
+    padding: 0;
+  }
+}
+
 .form {
   max-width: 533px;
   display: flex;
@@ -7,6 +54,8 @@
   padding: 16px;
   border-radius: 8px;
   background-color: var(--modal-background);
+  position: relative;
+  z-index: 1;
 }
 
 .labelWraper {
