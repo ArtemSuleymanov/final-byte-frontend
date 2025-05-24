@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import s from './Header.module.css';
-import LogoutModal from './LogoutModal';
 
 import sprite from '../../../assets/sprite.svg';
+import Modal from '../../common/Modal/Modal';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +34,7 @@ export default function Header() {
         </div>
       </div>
 
-      <LogoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>
   );
 }

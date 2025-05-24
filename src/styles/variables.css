@@ -11,6 +11,8 @@
   --modal-background: #508f8c;
   --hover-color: linear-gradient(to bottom, #355359, #3b5d63);
   --hover-text-color: #fcfcfc;
+  --transition-opacity-transform: opacity 0.3s ease, transform 0.3s ease;
+  --transition-base: all 0.3s ease;
   --mob-container: 320px;
   --tablet-container: 768px;
   --desktop-container: 1280px;
