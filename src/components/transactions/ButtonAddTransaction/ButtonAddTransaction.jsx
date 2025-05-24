@@ -1,7 +1,16 @@
-const ButtonAddTransaction = () => {
-  return (
-    <div>ButtonAddTransaction</div>
-  )
-}
+import s from './ButtonAddTransaction.module.css';
+import sprite from '../../../assets/sprite.svg';
 
-export default ButtonAddTransaction
+const ButtonAddTransaction = ({ onClick }) => {
+  return (
+    <div>
+      <button onClick={onClick} className={s.btn}>
+        <svg className={s.icon}>
+          <use href={`${sprite}#icon-plus`} />
+        </svg>
+      </button>
+    </div>
+  );
+};
+
+export default ButtonAddTransaction;

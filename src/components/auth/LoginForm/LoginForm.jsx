@@ -1,4 +1,8 @@
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { loginThunk } from '../../../redux/auth/authOperations.js';
 import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const loginFields = [
@@ -23,13 +27,22 @@ const loginValidationSchema = Yup.object({
 });
 
 const LoginForm = () => {
-  const handleSubmit = (values, actions) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, actions) => {
     console.log('Login form submitted:', values);
-    actions.resetForm();
+    try {
+      await dispatch(loginThunk(values)).unwrap();
+      navigate('/home');
+      actions.resetForm();
+    } catch (error) {
+      return toast.error(error || 'Login failed');
+    }
   };
 
   return (
-    <div>
+    <>
       <AuthForm
         fields={loginFields}
         initialValues={loginInitialValues}
@@ -38,7 +51,7 @@ const LoginForm = () => {
         buttonText="Login"
         link={{ to: '/register', text: 'Register' }}
       />
-    </div>
+    </>
   );
 };
 

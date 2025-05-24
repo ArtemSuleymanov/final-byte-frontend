@@ -1,0 +1,209 @@
+.wrapper {
+  background-color: transparent;
+  border-radius: 16px;
+}
+
+.comment {
+  max-width: 136px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.expanded {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-break: break-word;
+}
+
+.card {
+  background: var(--hover-color);
+  border-radius: 12px;
+  color: var(--hover-text-color);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.4s ease forwards;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.income {
+  border-left: 5px solid #4caf50;
+}
+
+.expense {
+  border-left: 5px solid var(--button-toggle-income-bg-color);
+}
+
+.div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--hover-text-color);
+  padding-bottom: 6px;
+  padding: 12px 21px 17px 21px;
+}
+
+.div:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  font-weight: 400;
+  text-align: left;
+  color: #fcfcfc;
+}
+
+.negative {
+  font-weight: 600;
+  color: var(--button-toggle-income-bg-color);
+}
+
+.positive {
+  font-weight: 600;
+  color: #24cca7;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 14px 21px;
+}
+
+.deleteBtn {
+  background-color: transparent;
+  border: 1px solid white;
+  color: var(--hover-text-color);
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 400px;
+}
+
+.editBtn {
+  display: flex;
+  gap: 4px;
+  border: none;
+  border-radius: 18px;
+  background: transparent;
+  color: var(--hover-text-color);
+  cursor: pointer;
+}
+
+.editBtn:hover,
+.deleteBtn:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.editBtn:active,
+.deleteBtn:active {
+  transform: scale(0.98);
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: var(--hover-color);
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .div {
+    display: block;
+    border-bottom: none;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 65px 112px 117px 142px 118px 105px;
+    align-items: center;
+    background: transparent;
+    border-left: none;
+    border-radius: 16px;
+    box-shadow: none;
+    padding: 11px 10px 11px 4px;
+  }
+
+  .even {
+    background: var(--main-background-color);
+  }
+
+  .label {
+    display: none;
+  }
+
+  .type {
+    display: block;
+    text-align: center;
+  }
+
+  .editSpan {
+    display: none;
+  }
+
+  .btn {
+    justify-content: start;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .deleteBtn {
+    transition: background-color 0.2s ease;
+    border: 1px solid #fcfcfc;
+    border-radius: 8px;
+    width: 67px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .positive {
+    color: #fcfcfc;
+  }
+
+  .negative {
+    color: #fcfcfc;
+  }
+
+  .editBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .card {
+    grid-template-columns: 64px 147px 124px 142px 100px 105px;
+  }
+}

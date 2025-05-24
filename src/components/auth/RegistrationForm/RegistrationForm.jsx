@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { loginThunk, registerThunk } from '../../../redux/auth/authOperations.js';
 import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const registrationFields = [
@@ -41,13 +45,26 @@ const registrationValidationSchema = Yup.object({
 });
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [passwordValue, setPasswordValue] = useState('');
   const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
 
-  const handleSubmit = (values, actions) => {
-    console.log('Register values:', values);
-    actions.resetForm();
-    // Тут буде логіка реєстрації
+  const handleSubmit = async (values, actions) => {
+    const { name, email, password } = values;
+    console.log('Register values:', { name, email, password });
+
+    try {
+      await dispatch(registerThunk({ name, email, password })).unwrap();
+
+      await dispatch(loginThunk({ email, password })).unwrap();
+
+      actions.resetForm();
+      navigate('/home');
+    } catch (error) {
+      toast.error(error || 'Registration failed. Please try again.');
+    }
   };
 
   return (

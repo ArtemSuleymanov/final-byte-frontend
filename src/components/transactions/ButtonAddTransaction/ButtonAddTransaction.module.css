@@ -1,0 +1,60 @@
+.btn {
+  width: 56px;
+  height: 56px;
+  background-color: var(--modal-background);
+  border: 1px solid var(--modal-background);
+  border-radius: 50%;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: transparent;
+  border-color: #081212;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.icon {
+  stroke: #081212;
+  width: 25px;
+  height: 25px;
+}
+
+@media only screen and (min-width: 768px) {
+  .btn {
+    width: 64px;
+    height: 64px;
+    bottom: 48px;
+    right: 48px;
+  }
+
+  .icon {
+    width: 29px;
+    height: 29px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .btn {
+    width: 56px;
+    height: 56px;
+    bottom: 24px;
+    right: 24px;
+  }
+
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
