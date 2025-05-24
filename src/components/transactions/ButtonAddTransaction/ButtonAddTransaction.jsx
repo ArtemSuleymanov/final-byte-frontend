@@ -1,11 +1,12 @@
 import s from './ButtonAddTransaction.module.css';
+import sprite from '../../../assets/sprite.svg';
 
 const ButtonAddTransaction = ({ onClick }) => {
   return (
     <div>
       <button onClick={onClick} className={s.btn}>
         <svg className={s.icon}>
-          <use href="/src/assets/sprite.svg#icon-plus" />
+          <use href={`${sprite}#icon-plus`} />
         </svg>
       </button>
     </div>
