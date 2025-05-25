@@ -10,19 +10,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: var(--transition-opacity-transform);
 }
 
 .btn:hover,
 .btn:focus {
-  background-color: transparent;
-  border-color: #081212;
+  background: var(--hover-color);
+  border-color: --main-background-color;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.btn:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
+.btn:hover .icon,
+.btn:focus .icon {
+  stroke: var(--main-white);
 }
 
 .icon {
