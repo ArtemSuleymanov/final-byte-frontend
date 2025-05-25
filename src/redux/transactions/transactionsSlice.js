@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTransactions } from './transactionsOperations';
+import { addTransaction, deleteTransaction, getTransactions, updateTransaction } from './transactionsOperations';
 
 const initialState = {
   items: [
@@ -112,25 +112,51 @@ const initialState = {
   error: null,
 };
 
-const transactionsSlice = createSlice({
+const handlePending = (state) => {
+  state.loading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.loading = false;
+  state.error = action.payload;
+};
+
+const slice = createSlice({
   name: 'transactions',
-  initialState,
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTransactions.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchTransactions.fulfilled, (state, action) => {
-        state.isLoading = false;
+      .addCase(getTransactions.fulfilled, (state, action) => {
         state.items = action.payload;
-      })
-      .addCase(fetchTransactions.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
-      });
+      })
+      .addCase(getTransactions.pending, handlePending)
+      .addCase(getTransactions.rejected, handleRejected)
+
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items.unshift(action.payload);
+      })
+      .addCase(addTransaction.pending, handlePending)
+      .addCase(addTransaction.rejected, handleRejected)
+      .addCase(updateTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const index = state.items.findIndex((t) => t.id === action.payload.id);
+        state.items.splice(index, 1, action.payload);
+      })
+      .addCase(updateTransaction.pending, handlePending)
+      .addCase(updateTransaction.rejected, handleRejected)
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        if (!payload?.id) return;
+        state.isLoading = false;
+        state.error = null;
+        state.items = state.items.filter((item) => item.id !== payload.id);
+      })
+      .addCase(deleteTransaction.pending, handlePending)
+      .addCase(deleteTransaction.rejected, handleRejected);
   },
 });
 
-export const transactionsReducer = transactionsSlice.reducer;
+export const transactionsReducer = slice.reducer;

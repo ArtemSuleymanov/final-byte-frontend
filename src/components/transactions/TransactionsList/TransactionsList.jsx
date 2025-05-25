@@ -1,11 +1,22 @@
 import TransactionsItem from '../TransactionsItem/TransactionsItem';
+import { getTransactions } from '../../../redux/transactions/transactionsOperations';
 import s from './TransactionsList.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectIsLoading, selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import { useEffect } from 'react';
 
 const TransactionsList = () => {
   const data = useSelector(selectTransactions);
   const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    dispatch(getTransactions({ signal: abortController.signal }));
+    return () => {
+      abortController.abort();
+    };
+  }, [dispatch]);
 
   if (isLoading) return <p className={s.placeholder}>Loading...</p>;
   if (!data.length) {
@@ -23,8 +34,8 @@ const TransactionsList = () => {
           <li>Comment</li>
           <li>Sum</li>
         </div>
-        {data.map((item, index) => (
-          <TransactionsItem key={item.id} {...item} isEven={index % 2 === 1} />
+        {data?.map((item, index) => (
+          <TransactionsItem key={index} {...item} isEven={index % 2 === 1} />
         ))}
       </ul>
     </div>
