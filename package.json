@@ -25,6 +25,7 @@
     "react-password-strength-bar": "^0.4.1",
     "react-password-strength-bar-with-style-item": "^0.5.3",
     "react-redux": "^9.2.0",
+    "react-responsive": "^10.0.1",
     "react-router-dom": "^6.29.0",
     "react-select": "^5.10.1",
     "react-spinners": "^0.15.0",

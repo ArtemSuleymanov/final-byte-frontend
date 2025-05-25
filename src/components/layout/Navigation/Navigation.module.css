@@ -1,0 +1,94 @@
+.list {
+  display: flex;
+  gap: 32px;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  fill: currentColor;
+  transition: fill 0.3s ease;
+}
+
+.icon:active {
+  fill-opacity: unset;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--main-white);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+  opacity: 0.6;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.link:hover,
+.link.active {
+  font-weight: 700;
+  opacity: 1;
+  color: white;
+}
+
+.iconActive {
+  fill: #ffffff;
+}
+
+.label {
+  display: none;
+}
+
+.currencyItem {
+  display: list-item;
+}
+
+@media (min-width: 768px) {
+  .list {
+    border-radius: 16px;
+    padding: 16px;
+    margin: 0;
+    min-width: 338px;
+    height: 143px;
+    background: var(--hover-color);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .label {
+    display: inline;
+  }
+
+  .currencyItem {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .nav {
+    min-width: 451px;
+  }
+
+  .list {
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 16px 32px;
+    height: 92px;
+  }
+}

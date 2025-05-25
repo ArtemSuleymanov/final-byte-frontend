@@ -1,15 +1,39 @@
-.container {
-  padding: 16px;
-  background: var(--hover-color);
-  color: var(--main-white);
-
+.balanceCurrencyWrapper {
   border-radius: 16px;
+  height: 469px;
+  background: var(--hover-color);
+  padding: 24px;
+}
+
+.balanceWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 23px;
+}
+
+.balanceText {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #fcfcfc;
+  opacity: 0.7;
+}
+
+.balanceValue {
+  font-weight: 700;
+  font-size: 30px;
+  color: #fcfcfc;
+}
+
+.container {
+  color: var(--main-white);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 21px;
 
   & table {
     border-collapse: collapse;
@@ -45,20 +69,7 @@
   }
 
   & .walletImg {
-    max-width: 234px;
-    max-height: 174px;
+    max-width: 222px;
+    max-height: 166px;
   }
 }
-
-/* проводив тести з сайдбаром */
-/* @media (min-width: 768px) {
-  .container {
-    gap: 9px;
-    min-width: 336px;
-  }
-
-  .walletImg {
-    width: 181px;
-    height: 135px;
-  }
-} */
