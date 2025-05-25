@@ -24,12 +24,17 @@ const persistedCurrencyReducer = persistReducer(persistConfig.currencyConfig, cu
 
 const dummyReducer = (state = {}, action) => state;
 
+const transactionsPersistConfig = {
+  key: 'transactions',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     dummy: dummyReducer,
     loader: loaderReducer,
     auth: persistedAuthReducer,
-    transactions: transactionsReducer,
+    transactions: persistReducer(transactionsPersistConfig, transactionsReducer),
     currency: persistedCurrencyReducer,
   },
   middleware: (getDefaultMiddleware) =>

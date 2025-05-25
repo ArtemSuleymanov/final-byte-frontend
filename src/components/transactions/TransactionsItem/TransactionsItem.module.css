@@ -11,7 +11,7 @@
   display: inline-block;
   cursor: pointer;
   vertical-align: middle;
-  transition: all 0.3s ease;
+  transition: --transition-base;
   text-align: left;
 }
 
@@ -66,7 +66,8 @@
 .value {
   font-weight: 400;
   text-align: left;
-  color: #fcfcfc;
+  font-size: 16px;
+  color: var(--hover-text-color);
 }
 
 .negative {
@@ -89,7 +90,7 @@
 
 .deleteBtn {
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid var(--main-white);
   color: var(--hover-text-color);
   padding: 4px 12px;
   border-radius: 8px;
@@ -111,7 +112,7 @@
 .deleteBtn:hover {
   opacity: 0.8;
   transform: scale(1.02);
-  transition: all 0.2s ease;
+  transition: var(--transition-base);
 }
 
 .editBtn:active,
@@ -143,7 +144,7 @@
 
   .card {
     display: grid;
-    grid-template-columns: 65px 112px 117px 142px 118px 105px;
+    grid-template-columns: 64px 112px 117px 142px 118px 105px;
     align-items: center;
     background: transparent;
     border-left: none;
@@ -158,6 +159,11 @@
 
   .label {
     display: none;
+  }
+
+  .data {
+    text-align: center;
+    display: block;
   }
 
   .type {
@@ -199,6 +205,10 @@
     align-items: center;
     justify-content: center;
     margin-right: 24px;
+  }
+
+  .value {
+    font-size: 14px;
   }
 }
 
