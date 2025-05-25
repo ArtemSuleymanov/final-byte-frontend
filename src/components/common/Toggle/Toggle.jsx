@@ -22,7 +22,7 @@ export default function Toggle({ style }) {
         uncheckedIcon={false}
         checkedHandleIcon={
           <svg className={s.icon}>
-            <use href={`${sprite}#${'icon-plus'}`} />
+            <use href={`${sprite}#${'icon-minus'}`} />
           </svg>
         }
         uncheckedHandleIcon={

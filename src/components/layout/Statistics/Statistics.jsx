@@ -6,6 +6,7 @@ import css from './Statistics.module.css'
 import Chart from "./Chart"
 import Dropdown from "./DropDown"
 import Table from "./Table";
+import Toggle from "../../common/Toggle/Toggle";
 
 const MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const YEARS = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
@@ -51,7 +52,10 @@ const Statistics = () => {
   }
   return (
     <div className={css.container}>
-      <Chart data={data} total={total} />
+      <div>
+        <Toggle/>
+        <Chart data={data} total={total} />
+        </div>
       <div>
       <div className={css.dropdown}>
         <Dropdown title="Years" items={YEARS} set={setYear} />
