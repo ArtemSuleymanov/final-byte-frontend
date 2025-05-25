@@ -1,7 +1,7 @@
-const CurrencyTab = () => {
-  return (
-    <div>CurrencyTab</div>
-  )
-}
+import Currency from '../../../components/layout/Currency/Currency';
 
-export default CurrencyTab
+const CurrencyTab = () => {
+  return <Currency />;
+};
+
+export default CurrencyTab;

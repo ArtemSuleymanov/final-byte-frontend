@@ -1,13 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axiosInstance from '../../api/axios';
+import axios from 'axios';
 
-export const fetchTransactions = createAsyncThunk('transactions/fetchAll', async (_, thunkAPI) => {
+export const api = axios.create({
+  baseURL: 'https://final-byte-backend.onrender.com',
+});
+
+export const fetchTransactions = createAsyncThunk('transactions/fetchAll', async (data, thunkAPI) => {
   try {
-    const { data } = await axiosInstance.get('/transactions', {
-      withCredentials: true,
-    });
-    return data;
+    const response = await api.get('/transactions');
+    return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    const message = error?.response?.data?.message || error.message;
+    return thunkAPI.rejectWithValue(message);
   }
 });

@@ -3,9 +3,24 @@
   border-radius: 16px;
 }
 
-/* button {
-  padding: 0;
-} */
+.comment {
+  max-width: 136px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.expanded {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-break: break-word;
+}
 
 .card {
   background: var(--hover-color);
@@ -17,6 +32,11 @@
   opacity: 0;
   transform: translateY(10px);
   animation: fadeSlideIn 0.4s ease forwards;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
 }
 
 .income {
@@ -45,12 +65,18 @@
 
 .value {
   font-weight: 400;
-  text-align: right;
+  text-align: left;
+  color: #fcfcfc;
 }
 
-.sum {
+.negative {
   font-weight: 600;
   color: var(--button-toggle-income-bg-color);
+}
+
+.positive {
+  font-weight: 600;
+  color: #24cca7;
 }
 
 .btn {
@@ -68,6 +94,7 @@
   padding: 4px 12px;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 400px;
 }
 
 .editBtn {
@@ -78,6 +105,18 @@
   background: transparent;
   color: var(--hover-text-color);
   cursor: pointer;
+}
+
+.editBtn:hover,
+.deleteBtn:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.editBtn:active,
+.deleteBtn:active {
+  transform: scale(0.98);
 }
 
 .icon {
@@ -95,9 +134,16 @@
 }
 
 @media (min-width: 768px) {
+  .div {
+    display: block;
+    border-bottom: none;
+    padding: 0;
+    overflow: hidden;
+  }
+
   .card {
     display: grid;
-    grid-template-columns: 64px 112px 117px 142px 118px 105px;
+    grid-template-columns: 65px 112px 117px 142px 118px 105px;
     align-items: center;
     background: transparent;
     border-left: none;
@@ -108,12 +154,6 @@
 
   .even {
     background: var(--main-background-color);
-  }
-
-  .div {
-    display: block;
-    border-bottom: none;
-    padding: 0;
   }
 
   .label {
@@ -132,13 +172,38 @@
   .btn {
     justify-content: start;
     flex-direction: row;
-    gap: 24px;
     padding: 0;
+  }
+
+  .deleteBtn {
+    transition: background-color 0.2s ease;
+    border: 1px solid #fcfcfc;
+    border-radius: 8px;
+    width: 67px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .positive {
+    color: #fcfcfc;
+  }
+
+  .negative {
+    color: #fcfcfc;
+  }
+
+  .editBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
   }
 }
 
 @media (min-width: 1280px) {
   .card {
-    grid-template-columns: 1fr 0.5fr 1fr 2fr 1fr 1fr;
+    grid-template-columns: 64px 147px 124px 142px 100px 105px;
   }
 }
