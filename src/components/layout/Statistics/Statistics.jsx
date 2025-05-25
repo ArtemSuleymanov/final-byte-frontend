@@ -4,7 +4,7 @@ import css from './Statistics.module.css'
 
 
 import Chart from "./Chart"
-import Dropdown from "./DropDown"
+import Dropdown from "./Dropdown"
 import Table from "./Table";
 import Toggle from "../../common/Toggle/Toggle";
 
