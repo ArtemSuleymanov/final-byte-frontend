@@ -16,7 +16,7 @@ const HomeTab = () => {
 
   return (
     <>
-      <Balance />
+      {/* <Balance /> */}
       <TransactionsList />
       <ButtonAddTransaction onClick={() => setIsOpen(true)} />
     </>

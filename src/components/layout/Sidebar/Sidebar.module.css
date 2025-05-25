@@ -1,0 +1,33 @@
+.sidebar {
+  margin: 24px 0;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    border-radius: 16px;
+    height: fit-content;
+    gap: 32px;
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 0;
+  }
+
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .rightColumn {
+    max-height: 310px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sidebar {
+    width: 410px;
+    padding: 24px;
+    gap: 40px;
+    margin: 0;
+  }
+}

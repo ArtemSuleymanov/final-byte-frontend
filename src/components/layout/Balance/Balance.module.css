@@ -4,12 +4,11 @@
   justify-content: center;
   flex-direction: column;
   gap: 18px;
-  background: var(--modal-background);
+  background: var(--hover-color);
   border-radius: 16px;
   padding: 24px 16px;
-  width: 288px;
+  width: 100%;
   height: 115px;
-  /* margin-bottom: 24px; */
 }
 
 .balanceText {
@@ -29,11 +28,7 @@
 @media (min-width: 768px) {
   .balanceWrapper {
     padding: 16px;
-    width: 338px;
+    /* min-width: 338px; */
     height: 143px;
   }
-}
-
-@media (min-width: 1280px) {
-  /* стилі для десктопа */
 }
