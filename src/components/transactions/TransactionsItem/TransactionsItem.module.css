@@ -1,0 +1,144 @@
+.wrapper {
+  background-color: transparent;
+  border-radius: 16px;
+}
+
+/* button {
+  padding: 0;
+} */
+
+.card {
+  background: var(--hover-color);
+  border-radius: 12px;
+  color: var(--hover-text-color);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.4s ease forwards;
+}
+
+.income {
+  border-left: 5px solid #4caf50;
+}
+
+.expense {
+  border-left: 5px solid var(--button-toggle-income-bg-color);
+}
+
+.div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--hover-text-color);
+  padding-bottom: 6px;
+  padding: 12px 21px 17px 21px;
+}
+
+.div:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  font-weight: 400;
+  text-align: right;
+}
+
+.sum {
+  font-weight: 600;
+  color: var(--button-toggle-income-bg-color);
+}
+
+.btn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 14px 21px;
+}
+
+.deleteBtn {
+  background-color: transparent;
+  border: 1px solid white;
+  color: var(--hover-text-color);
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editBtn {
+  display: flex;
+  gap: 4px;
+  border: none;
+  border-radius: 18px;
+  background: transparent;
+  color: var(--hover-text-color);
+  cursor: pointer;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: var(--hover-color);
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    display: grid;
+    grid-template-columns: 64px 112px 117px 142px 118px 105px;
+    align-items: center;
+    background: transparent;
+    border-left: none;
+    border-radius: 16px;
+    box-shadow: none;
+    padding: 11px 10px 11px 4px;
+  }
+
+  .even {
+    background: var(--main-background-color);
+  }
+
+  .div {
+    display: block;
+    border-bottom: none;
+    padding: 0;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .type {
+    display: block;
+    text-align: center;
+  }
+
+  .editSpan {
+    display: none;
+  }
+
+  .btn {
+    justify-content: start;
+    flex-direction: row;
+    gap: 24px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .card {
+    grid-template-columns: 1fr 0.5fr 1fr 2fr 1fr 1fr;
+  }
+}

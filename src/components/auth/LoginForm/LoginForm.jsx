@@ -42,7 +42,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <>
       <AuthForm
         fields={loginFields}
         initialValues={loginInitialValues}
@@ -51,7 +51,7 @@ const LoginForm = () => {
         buttonText="Login"
         link={{ to: '/register', text: 'Register' }}
       />
-    </div>
+    </>
   );
 };
 

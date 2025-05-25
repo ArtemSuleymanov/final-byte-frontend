@@ -1,0 +1,51 @@
+.container {
+  padding: 16px;
+  background: var(--hover-color);
+  color: var(--main-white);
+
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  & table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    width: 100%;
+    text-align: center;
+
+    & thead tr {
+      background: var(--main-background-color);
+      border-radius: 12px;
+    }
+
+    & thead th:first-child {
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+
+    & thead th:last-child {
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    & th {
+      font-weight: 600;
+    }
+
+    & th,
+    td {
+      width: calc(100% / 3);
+      padding: 16px 12px;
+    }
+  }
+
+  & .walletImg {
+    max-width: 234px;
+    max-height: 174px;
+  }
+}

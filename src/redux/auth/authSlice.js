@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { loginThunk, registerThunk } from './authOperations';
+import { loginThunk, logoutThunk, refreshSessionThunk, registerThunk } from './authOperations';
 
 const initialState = {
   user: {
@@ -9,6 +9,7 @@ const initialState = {
   },
   accessToken: '',
   isLoggedIn: false,
+  isRefreshing: false,
 };
 
 const slice = createSlice({
@@ -22,9 +23,26 @@ const slice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload.data.user ?? {};
+        console.log('Login payload:', action.payload);
+        state.user = action.payload.user ?? {};
         state.accessToken = action.payload.data.accessToken;
         state.isLoggedIn = true;
+      })
+      .addCase(logoutThunk.fulfilled, (state) => {
+        state.user = { name: '', email: '' };
+        state.accessToken = '';
+        state.isLoggedIn = false;
+      })
+      .addCase(refreshSessionThunk.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshSessionThunk.fulfilled, (state, action) => {
+        state.user = action.payload.user ?? {};
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshSessionThunk.rejected, (state) => {
+        state.isRefreshing = false;
       });
   },
 });

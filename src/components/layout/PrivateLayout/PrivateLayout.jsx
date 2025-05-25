@@ -1,31 +1,22 @@
 import Header from '../Header/Header.jsx';
 import { Outlet } from 'react-router-dom';
+// <<<<<<< HEAD
 import UserAccountLayout from '../UserAccountLayout/UserAccountLayout.jsx';
 
 
 export default function PrivateLayout() {
   return <UserAccountLayout />
 }
+// import Navigation from '../Navigation/Navigation.jsx';
+
 // export default function PrivateLayout() {
 //   return (
 //     <>
 //       <Header />
-//       <Outlet />
+//       <main>
+//         <Navigation />
+//         <Outlet />
+//       </main>
 //     </>
-//   );
-// }
-
-
-// export default function PrivateLayout() {
-//   return (
-//     <div className="private-layout">
-//       <Header />
-//       <div className="content-wrapper">
-//         <Sidebar />
-//         <main className="main-content">
-//           <Outlet />
-//         </main>
-//       </div>
-//     </div>
 //   );
 // }
