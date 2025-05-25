@@ -18,6 +18,7 @@
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.1",
     "react": "^19.0.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-modal": "^3.16.3",
@@ -25,7 +26,9 @@
     "react-password-strength-bar-with-style-item": "^0.5.3",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.29.0",
+    "react-select": "^5.10.1",
     "react-spinners": "^0.15.0",
+    "react-switch": "^7.1.0",
     "redux-persist": "^6.0.0",
     "yup": "^1.6.1"
   },

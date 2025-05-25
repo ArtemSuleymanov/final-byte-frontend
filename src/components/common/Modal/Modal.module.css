@@ -7,11 +7,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--modal-background);
-  border-radius: 16px;
+  border-radius: 8px;
   outline: none;
-  width: 280px;     
-  height: 312px;  
+  width: 280px;
   text-align: center;
+  padding: 40px 8px 24px;
 
   opacity: 0;
   pointer-events: none;
@@ -50,7 +50,26 @@
 .modal {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  & .icon {
+    stroke: var(--main-black);
+    transition: var(--transition-base);
+  }
+}
+
+.closeBtn:hover {
+  & .icon {
+    stroke: var(--main-white);
+  }
 }
 
 .title {
@@ -67,18 +86,18 @@
   font-size: 18px;
   text-align: center;
   color: var(--main-black);
-  margin-top: 16px;   
-  width: 196px;       
+  margin-top: 16px;
+  width: 196px;
 }
 
 .logoutBtn {
   border: none;
   border-radius: 8px;
   padding: 11px 79px;
-  width: 248px;       
+  width: 248px;
   height: 44px;
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
-  margin-top: 16px;  
+  margin-top: 16px;
   transition: var(--transition-base);
 }
 
@@ -99,10 +118,10 @@
   background-color: transparent;
   border: 1px solid var(--main-black);
   border-radius: 8px;
-  width: 248px;     
+  width: 248px;
   height: 44px;
   cursor: pointer;
-  margin-top: 16px;   
+  margin-top: 16px;
   transition: var(--transition-base);
 }
 
@@ -112,6 +131,7 @@
   font-size: 18px;
   text-align: center;
   color: var(--main-black);
+  transition: color 0.3s ease;
 }
 
 .cancelBtn:hover,
@@ -126,12 +146,12 @@
 
 @media only screen and (min-width: 768px) {
   .modalContent {
-    width: 533px;
-    height: 387px;
+    width: 540px;
+    /* height: 387px; */
   }
 
   .text {
-    width: auto;  
+    width: auto;
     margin-top: 38px;
   }
 

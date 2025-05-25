@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import s from './Header.module.css';
 
 import sprite from '../../../assets/sprite.svg';
-import Modal from '../../common/Modal/Modal';
+import LogoutModal from '../LogoutModal/LogoutModal';
+import ModalEditTransaction from '../../transactions/ModalEditTransaction/ModalEditTransaction';
+import ModalAddTransaction from '../../transactions/ModalAddTransaction/ModalAddTransaction';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,7 +13,6 @@ export default function Header() {
 
   const userName = user?.name || 'User';
   console.log('user from Redux:', user);
-
 
   return (
     <header className={s.header}>
@@ -24,7 +25,7 @@ export default function Header() {
         </div>
         <div className={s.userInfo}>
           <span className={s.userName}>{userName}</span>
-          <div className={s.divider}></div>
+          <div className={s.divider} />
           <button className={s.exitBtn} onClick={() => setIsModalOpen(true)}>
             <svg className={s.exitIcon} width="18" height="18">
               <use href={`${sprite}#icon-exit-1`} />
@@ -34,7 +35,7 @@ export default function Header() {
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <LogoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>
   );
 }
