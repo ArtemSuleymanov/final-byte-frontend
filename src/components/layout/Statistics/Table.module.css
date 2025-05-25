@@ -1,0 +1,77 @@
+.table{
+    max-height: 583px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 8px;
+    padding: 16px;
+    height: 43px;
+    background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: right;
+    color: #fcfcfc;
+}
+
+.cell {
+    padding: 19px 2px 16px 2px;
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+}
+
+.color {
+    border-radius: 2px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+
+}
+
+.cellData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #fcfcfc;
+}
+
+.total {
+    padding: 12px 2px 29.5px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expenses {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fcfcfc;
+}
+
+.expense {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: right;
+    color: #f23a3a;
+}
+
+@media only screen and (min-width: 768px) {
+    .header{
+        padding: 16px 28px;
+    }
+}

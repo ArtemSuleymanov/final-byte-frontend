@@ -1,0 +1,78 @@
+.dropdown button {
+    background-color: transparent;
+    padding: 11px 54px 11px 14px;
+    border-radius: 8px;
+    border: 1px solid white;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #fcfcfc;
+    position: relative;
+}
+
+.dropdown .content {
+    position: absolute;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fcfcfc;
+    background-color: #294045;
+    max-width: 122px;
+    max-height: 196px;
+    z-index: 10;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.dropdown .content {
+    display: flex;
+}
+
+.dropdown .arrow {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    pointer-events: none;
+    transform: rotate(90deg);
+    transition: transform 300ms;
+}
+
+.arrow.open {
+    transform: rotate(-90deg);
+}
+
+.dropdown .content a {
+    display: block;
+    padding: 12px 34px 8px 21px;
+    text-decoration: none;
+    color: #fcfcfc;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fcfcfc;
+}
+
+.dropdown .content a:hover,
+.dropdown .content a:active {
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+}
+
+.dropdownMenus {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .dropdown button {
+            padding: 11px 80px 11px 14px;
+             
+        }
+}

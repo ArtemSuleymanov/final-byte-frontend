@@ -1,6 +1,8 @@
+import Statistics from "../../../components/layout/Statistics/Statistics"
 const StatisticsTab = () => {
+  
   return (
-    <div>StatisticsTab</div>
+    <Statistics/>
   )
 }
 

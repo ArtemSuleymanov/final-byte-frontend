@@ -28,6 +28,7 @@
     "react-router-dom": "^6.29.0",
     "react-select": "^5.10.1",
     "react-spinners": "^0.15.0",
+    "recharts": "^2.15.3",
     "react-switch": "^7.1.0",
     "redux-persist": "^6.0.0",
     "yup": "^1.6.1"
