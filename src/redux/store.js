@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
+import loaderReducer from './loader/loaderSlice';
 import currencyReducer from './currency/currencySlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { transactionsReducer } from './transactions/transactionsSlice';
@@ -26,6 +27,7 @@ const dummyReducer = (state = {}, action) => state;
 export const store = configureStore({
   reducer: {
     dummy: dummyReducer,
+    loader: loaderReducer,
     auth: persistedAuthReducer,
     transactions: transactionsReducer,
     currency: persistedCurrencyReducer,

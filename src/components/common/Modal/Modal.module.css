@@ -1,0 +1,167 @@
+.modalContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--modal-background);
+  border-radius: 8px;
+  outline: none;
+  width: 280px;
+  text-align: center;
+  padding: 40px 8px 24px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-opacity-transform);
+}
+
+.modalContent--after-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modalContent--before-close {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: var(--transition-base);
+}
+
+.backDrop {
+  position: absolute;
+  backdrop-filter: blur(7px);
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  opacity: 0.4;
+  inset: 0;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  & .icon {
+    stroke: var(--main-black);
+    transition: var(--transition-base);
+  }
+}
+
+.closeBtn:hover {
+  & .icon {
+    stroke: var(--main-white);
+  }
+}
+
+.title {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  color: var(--main-black);
+}
+
+.text {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: var(--main-black);
+  margin-top: 16px;
+  width: 196px;
+}
+
+.logoutBtn {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 79px;
+  width: 248px;
+  height: 44px;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  margin-top: 16px;
+  transition: var(--transition-base);
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logoutBtnTxt {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: var(--main-white);
+}
+
+.cancelBtn {
+  background-color: transparent;
+  border: 1px solid var(--main-black);
+  border-radius: 8px;
+  width: 248px;
+  height: 44px;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: var(--transition-base);
+}
+
+.cancelBtnTxt {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: var(--main-black);
+  transition: color 0.3s ease;
+}
+
+.cancelBtn:hover,
+.cancelBtn:focus {
+  border: 1px solid var(--main-white);
+}
+
+.cancelBtn:hover .cancelBtnTxt,
+.cancelBtn:focus .cancelBtnTxt {
+  color: var(--main-white);
+}
+
+@media only screen and (min-width: 768px) {
+  .modalContent {
+    width: 540px;
+    /* height: 387px; */
+  }
+
+  .text {
+    width: auto;
+    margin-top: 38px;
+  }
+
+  .logoutBtn {
+    width: 410px;
+    margin-top: 24px;
+  }
+
+  .cancelBtn {
+    width: 410px;
+    margin-top: 21px;
+  }
+}

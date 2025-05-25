@@ -29,6 +29,9 @@
  <symbol id="icon-plus" viewBox="0 0 32 32">
       <path stroke-width="3.2" d="M16 0v32M0 16h32" />
 </symbol>
+<symbol id="icon-minus" viewBox="0 0 20 2">
+  <path d="M0 1L20 1" stroke="#FCFCFC" stroke-width="2" />
+</symbol>
 <symbol id="icon-edit" viewBox="0 0 32 32">
     <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.743"
     d="m24 13.334-5.333-5.333M3.333 28.667l4.513-.502c.551-.061.827-.092 1.085-.175.229-.074.446-.178.647-.311.226-.149.422-.345.814-.737L28 9.334a3.77 3.77 0 1 0-5.333-5.333L5.059 21.609c-.392.392-.588.588-.737.814a2.68 2.68 0 0 0-.311.647c-.083.258-.114.533-.175 1.085l-.501 4.513z" />

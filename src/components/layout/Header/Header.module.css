@@ -2,12 +2,12 @@
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
 }
 
-.text{
-    font-family: var(--font-family-base);
-font-weight: 700;
-font-size: 17px;
-text-align: center;
-color: var(--main-white);
+.text {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+  color: var(--main-white);
 }
 
 .container {
@@ -15,7 +15,7 @@ color: var(--main-white);
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  padding: 25px 16px;
+  padding: 20px 16px; 
 }
 
 .logo {
@@ -31,13 +31,13 @@ color: var(--main-white);
   align-items: center;
 }
 
-.userName{
-    font-family: var(--font-family-base);
-font-weight: 400;
-font-size: 16px;
-text-align: right;
-color: var(--main-white);
- display: inline-flex;     
+.userName {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 16px;
+  text-align: right;
+  color: var(--main-white);
+  display: inline-flex;
   align-items: center;
 }
 
@@ -51,16 +51,28 @@ color: var(--main-white);
   margin-left: 12px;
 }
 
-.exitIcon{
-    padding-right: 3px;
+.exitIcon {
+  padding-right: 3px;
 }
 
 .exitBtn {
-    display: flex;
+  display: flex;
   padding-left: 12px;
   border: none;
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   color: white;
   border-radius: 4px;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 25px 11px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    padding: 25px 16px;
+  }
 }

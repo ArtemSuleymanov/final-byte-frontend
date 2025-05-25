@@ -1,0 +1,6 @@
+.modalContainer {
+  color: aliceblue;
+  & div {
+    align-items: center;
+  }
+}
