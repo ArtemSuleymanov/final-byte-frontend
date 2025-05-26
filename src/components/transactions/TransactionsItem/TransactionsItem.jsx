@@ -1,5 +1,5 @@
 import s from './TransactionsItem.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import sprite from '../../../assets/sprite.svg';
 import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
 import ModalDeleteTransaction from '../ModalDeleteTransaction/ModalDeleteTransaction';
@@ -10,15 +10,7 @@ const TransactionsItem = ({ date, type, category, comment, sum, isEven, _id }) =
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
-  useEffect(() => {
-    if (isModalEditOpen || isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalEditOpen, isOpen]);
   // const formattedDate = (date) => {
   //   const d = new Date(date);
   //   const day = String(d.getDate()).padStart(2, '0');
@@ -29,7 +21,6 @@ const TransactionsItem = ({ date, type, category, comment, sum, isEven, _id }) =
 
   return (
     <>
-      {' '}
       <li className={`${s.card} ${typeClass} ${evenClass}`}>
         <div className={s.div}>
           <span className={s.label}>Date</span>
@@ -75,20 +66,8 @@ const TransactionsItem = ({ date, type, category, comment, sum, isEven, _id }) =
           </button>
         </div>
       </li>
-      {selectedTransaction && (
-        <div className={s.modalOverlay}>
-          <ModalEditTransaction
-            transactionId={selectedTransaction._id}
-            isOpen={true}
-            onClose={() => setSelectedTransaction(null)}
-          />
-        </div>
-      )}
-      {isOpen && (
-        <div className={s.modalOverlay}>
-          <ModalDeleteTransaction transactionId={_id} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-        </div>
-      )}
+      <ModalEditTransaction transactionId={_id} isOpen={isModalEditOpen} onClose={() => setIsModalEditOpen(false)} />
+      <ModalDeleteTransaction transactionId={_id} isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 };
