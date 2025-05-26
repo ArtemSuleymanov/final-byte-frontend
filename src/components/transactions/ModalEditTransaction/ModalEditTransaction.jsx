@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import CustomModal from '../../common/Modal/Modal';
 import Toggle from '../../common/Toggle/Toggle';
-import EditTransactionForm from '../EditTransactionForm/EditTransactionForm';
+import TransactionForm from '../TransactionForm/TransactionForm';
+import { useSelector } from 'react-redux';
 
 export default function ModalEditTransaction({
   isOpen,
@@ -11,10 +12,11 @@ export default function ModalEditTransaction({
   actionBtn = 'Save',
   categories = [],
   initialValues,
-  transactionType,
   showToast,
 }) {
   const formikRef = useRef();
+
+  const transactionType = useSelector((state) => state.toggle.checked);
 
   const handleConfirm = () => {
     if (formikRef.current) {
@@ -32,7 +34,7 @@ export default function ModalEditTransaction({
       onConfirm={handleConfirm}
     >
       <Toggle />
-      <EditTransactionForm
+      <TransactionForm
         innerRef={formikRef}
         initialValues={initialValues}
         onSubmit={onConfirm}

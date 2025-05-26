@@ -3,15 +3,25 @@ import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import s from './EditTransactionForm.module.css';
+import s from './TransactionForm.module.css';
+import Select from 'react-select';
 
-const EditTransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef }) => {
+const TransactionForm = ({
+  initialValues,
+  onSubmit,
+  categories,
+  transactionType = true,
+  onClose,
+  showToast,
+  innerRef,
+}) => {
   const validationSchema = Yup.object({
     amount: Yup.number()
       .typeError('Amount must be a number')
       .positive('Amount must be greater than zero')
       .required('Required field'),
     date: Yup.date().required('Required field'),
+    category: Yup.string().required('Please select a category'),
     comment: Yup.string().max(50, 'Maximum 50 characters allowed'),
   });
 
@@ -34,6 +44,70 @@ const EditTransactionForm = ({ initialValues, onSubmit, onClose, showToast, inne
     >
       {({ values = {}, setFieldValue, isSubmitting, touched, errors }) => (
         <Form className={s.form} autoComplete="off">
+          {transactionType && (
+            <label className={s.labelWrapper}>
+              <Select
+                name="category"
+                options={categories.map((cat) => ({
+                  value: cat.id,
+                  label: cat.name,
+                }))}
+                value={
+                  categories
+                    .map((cat) => ({ value: cat.id, label: cat.name }))
+                    .find((option) => option.value === values.category) || null
+                }
+                onChange={(selectedOption) => setFieldValue('category', selectedOption?.value || '')}
+                placeholder="Category"
+                classNamePrefix="react-select"
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: '8px',
+                    width: '100%',
+                    height: '44px',
+                    border: `1px solid ${
+                      touched.category && errors.category
+                        ? 'var(--error-red)'
+                        : touched.category
+                        ? 'var(--succes-green)'
+                        : 'var(--main-black)'
+                    }`,
+                    backgroundColor: 'inherit',
+                    fontSize: '18px',
+                    boxShadow: 'none',
+                    '&:hover': {
+                      borderColor: '#3b5d63',
+                    },
+                  }),
+                  valueContainer: (base) => ({
+                    ...base,
+                    justifyContent: 'flex-start',
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: 'var(--main-black)',
+                    fontSize: '18px',
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    color: 'var(--main-black)',
+                    fontSize: '18px',
+                  }),
+                  dropdownIndicator: (base) => ({
+                    ...base,
+                    color: 'var(--main-black)',
+                    paddingRight: '14px',
+                  }),
+                  indicatorSeparator: () => ({
+                    display: 'none',
+                  }),
+                }}
+              />
+              <ErrorMessage name="category" component="span" className={s.span} />
+            </label>
+          )}
+          <div className={s.rowWrapper}>
           <label className={s.labelWrapper}>
             <Field
               name="amount"
@@ -60,7 +134,7 @@ const EditTransactionForm = ({ initialValues, onSubmit, onClose, showToast, inne
             />
             <ErrorMessage name="date" component="span" className={s.span} />
           </label>
-
+          </div>
           <label className={s.labelWrapper}>
             <Field
               as="textarea"
@@ -85,4 +159,4 @@ const EditTransactionForm = ({ initialValues, onSubmit, onClose, showToast, inne
   );
 };
 
-export default EditTransactionForm;
+export default TransactionForm;

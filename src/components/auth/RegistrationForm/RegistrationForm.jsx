@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { loginThunk, registerThunk } from '../../../redux/auth/authOperations.js';
+import { registerThunk } from '../../../redux/auth/authOperations.js';
 import AuthForm from '../AuthForm/AuthForm.jsx';
 
 const registrationFields = [
@@ -51,17 +51,16 @@ const RegistrationForm = () => {
   const [passwordValue, setPasswordValue] = useState('');
   const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
 
-  const handleSubmit = async (values, actions) => {
+  const handleSubmit = async (values) => {
     const { name, email, password } = values;
     console.log('Register values:', { name, email, password });
 
     try {
-      await dispatch(registerThunk({ name, email, password })).unwrap();
+      const result = await dispatch(registerThunk({ name, email, password })).unwrap();
 
-      await dispatch(loginThunk({ email, password })).unwrap();
-
-      actions.resetForm();
-      navigate('/home');
+      if (result?.registered) {
+        navigate('/login', { replace: true });
+      }
     } catch (error) {
       toast.error(error || 'Registration failed. Please try again.');
     }

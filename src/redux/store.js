@@ -4,6 +4,7 @@ import loaderReducer from './loader/loaderSlice';
 import currencyReducer from './currency/currencySlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { transactionsReducer } from './transactions/transactionsSlice';
+import toggleReducer from './toggle/toggleSlice';
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
@@ -36,6 +37,7 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     transactions: persistReducer(transactionsPersistConfig, transactionsReducer),
     currency: persistedCurrencyReducer,
+    toggle: toggleReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
