@@ -95,7 +95,7 @@
   border: none;
   border-radius: 8px;
   padding: 11px 79px;
-  width: 248px;
+
   height: 44px;
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   margin-top: 16px;
@@ -119,7 +119,7 @@
   background-color: transparent;
   border: 1px solid var(--main-black);
   border-radius: 8px;
-  width: 248px;
+
   height: 44px;
   cursor: pointer;
   margin-top: 16px;
@@ -164,5 +164,6 @@
   .cancelBtn {
     width: 410px;
     margin-top: 21px;
+    margin-bottom: 24px;
   }
 }
