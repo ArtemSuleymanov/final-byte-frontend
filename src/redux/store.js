@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
 import loaderReducer from './loader/loaderSlice';
+import loadingMiddleware from './loader/loadingMiddleware';
 import currencyReducer from './currency/currencySlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { transactionsReducer } from './transactions/transactionsSlice';
@@ -44,7 +45,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(loadingMiddleware),
 });
 
 export const persistor = persistStore(store);

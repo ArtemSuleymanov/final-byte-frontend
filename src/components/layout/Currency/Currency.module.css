@@ -50,15 +50,21 @@
   }
 }
 
-/* проводив тести з сайдбаром */
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   .container {
     gap: 9px;
     min-width: 336px;
+
+    & table {
+      & th,
+      td {
+        padding: 13px 12px;
+      }
+    }
   }
 
   .walletImg {
     width: 181px;
     height: 135px;
   }
-} */
+}

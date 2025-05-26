@@ -4,10 +4,11 @@
   justify-content: center;
   flex-direction: column;
   gap: 18px;
+  margin-top: 24px;
   background: var(--hover-color);
   border-radius: 16px;
   padding: 24px 16px;
-  width: 100%;
+  width: 288px;
   height: 115px;
 }
 
@@ -28,7 +29,7 @@
 @media (min-width: 768px) {
   .balanceWrapper {
     padding: 16px;
-    /* min-width: 338px; */
+    min-width: 338px;
     height: 143px;
   }
 }

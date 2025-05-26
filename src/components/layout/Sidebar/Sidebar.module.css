@@ -1,5 +1,9 @@
 .sidebar {
-  margin: 24px 0;
+  margin: 24px 16px;
+}
+.leftColumn{
+  justify-content: center;
+  display: grid;
 }
 
 @media (min-width: 768px) {
@@ -8,7 +12,7 @@
     height: fit-content;
     gap: 32px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 32px 0;
   }
 
@@ -19,7 +23,7 @@
   }
 
   .rightColumn {
-    max-height: 310px;
+    height: fit-content;
   }
 }
 
@@ -28,6 +32,6 @@
     /* width: 410px; */
     padding-top: 24px;
     gap: 40px;
-    margin: 0;
+    margin: 32px 0;
   }
 }
