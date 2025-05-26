@@ -11,17 +11,16 @@
   justify-content: center;
   align-items: center;
   transition: var(--transition-opacity-transform);
+  z-index: 1000;
 }
 
-.btn:hover,
-.btn:focus {
+.btn:hover {
   background: var(--hover-color);
   border-color: --main-background-color;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.btn:hover .icon,
-.btn:focus .icon {
+.btn:hover .icon {
   stroke: var(--main-white);
 }
 
