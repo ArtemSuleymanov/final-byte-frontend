@@ -2,16 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { addTransaction, deleteTransaction, getTransactions, updateTransaction } from './transactionsOperations';
 
 const initialState = {
-  items: [
-    {
-      id: '101',
-      date: '22.05.25',
-      type: '+',
-      category: 'Incomes',
-      comment: 'Project for client  ',
-      sum: 1500,
-    },
-  ],
+  items: [],
   isLoading: false,
   error: null,
 };

@@ -11,7 +11,7 @@ const persistConfig = {
   authConfig: {
     key: 'auth',
     storage,
-    whitelist: ['accessToken', 'isLoggedIn'],
+    whitelist: ['accessToken', 'isLoggedIn', 'user'],
   },
   currencyConfig: {
     key: 'currency',

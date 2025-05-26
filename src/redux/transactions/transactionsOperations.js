@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { setAuthHeader } from '../auth/authOperations';
+import axiosInstance from '../../api/axios';
 
-export const api = axios.create({
-  baseURL: 'https://final-byte-backend.onrender.com',
-});
-
-export const getTransactions = createAsyncThunk('transactions/getAll', async ({ signal }, thunkAPI) => {
+export const getTransactions = createAsyncThunk('transactions/getAll', async (body, thunkAPI) => {
   try {
-    const { data } = await api.get('/transactions', { signal });
+    const state = thunkAPI.getState();
+    const token = state.auth.accessToken;
+
+    if (token) setAuthHeader(token);
+    const { data } = await axiosInstance.get('/transactions', body);
 
     return data.transactions;
   } catch (error) {
@@ -17,8 +18,12 @@ export const getTransactions = createAsyncThunk('transactions/getAll', async ({ 
 
 export const addTransaction = createAsyncThunk('transactions/addTransaction', async (body, thunkAPI) => {
   try {
-    const { data } = await api.post('/transactions', body);
-    await thunkAPI.dispatch(userData());
+    const state = thunkAPI.getState();
+    const token = state.auth.accessToken;
+
+    if (token) setAuthHeader(token);
+    const { data } = await axiosInstance.post('/transactions', body);
+    // await thunkAPI.dispatch(userData());
 
     return data.data;
   } catch (error) {
@@ -30,9 +35,13 @@ export const updateTransaction = createAsyncThunk(
   'transactions/updateTransaction',
   async ({ id, ...body }, thunkAPI) => {
     try {
-      const { data } = await api.patch(`/transactions/${id}`, body);
+      const state = thunkAPI.getState();
+      const token = state.auth.accessToken;
 
-      await thunkAPI.dispatch(userData());
+      if (token) setAuthHeader(token);
+      const { data } = await axiosInstance.patch(`/transactions/${id}`, body);
+
+      // await thunkAPI.dispatch(userData());
 
       return data.data;
     } catch (error) {
@@ -43,9 +52,13 @@ export const updateTransaction = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk('transactions/deleteTransaction', async ({ id }, thunkAPI) => {
   try {
-    await api.delete(`transactions/${id}`);
+    const state = thunkAPI.getState();
+    const token = state.auth.accessToken;
 
-    await thunkAPI.dispatch(userData());
+    if (token) setAuthHeader(token);
+    await axiosInstance.delete(`transactions/${id}`);
+
+    // await thunkAPI.dispatch(userData());
     return { id };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

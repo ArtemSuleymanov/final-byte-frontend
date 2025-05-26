@@ -13,7 +13,7 @@ export const fetchCurrencyIfNeeded = createAsyncThunk('currency/fetchIfNeeded', 
     return null;
   }
 
-  const response = await axios.get(currencyApi);
+  const response = await axiosInstance.get(currencyApi);
   const data = currencyCodeConversion(response.data);
   return { data, timestamp: now };
 });

@@ -8,6 +8,7 @@ import { refreshSessionThunk } from './redux/auth/authOperations.js';
 import { selectIsRefreshing } from './redux/auth/authSelectors.js';
 import PrivateRoute from './routes/PrivateRoute.jsx';
 import PublicRoute from './routes/PublicRoute.jsx';
+import { setAuthHeader } from './redux/auth/authOperations.js';
 
 const Login = lazy(() => import('./pages/LoginPage/LoginPage.jsx'));
 const Register = lazy(() => import('./pages/RegistrationPage/RegistrationPage.jsx'));
@@ -23,6 +24,15 @@ export default function App() {
   useEffect(() => {
     dispatch(refreshSessionThunk());
   }, [dispatch]);
+
+  const token = useSelector((state) => state.auth.accessToken);
+
+  useEffect(() => {
+    if (token) {
+      console.log('Setting token header:', token);
+      setAuthHeader(token);
+    }
+  }, [token]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
