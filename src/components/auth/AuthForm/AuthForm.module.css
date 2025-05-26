@@ -5,44 +5,8 @@
   align-items: center;
   padding-top: 20px;
   height: 100vh;
-}
-
-@media screen and (min-width: 768px) {
-  main {
-    padding: 0;
-  }
-
-  .container {
-    padding: 0;
-    /* padding-top: 125px; */
-    padding-bottom: 278px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .imageBg {
-    position: absolute;
-    bottom: 38px;
-    right: 1px;
-    width: 320px;
-    height: 239px;
-    background-image: image-set(url('/img/wallet_hand_like_1x.webp') 1x, url('/img/wallet_hand_like_2x.webp') 2x);
-    /* background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    z-index: 0;
-    pointer-events: none; */
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  main {
-    padding: 0;
-  }
-
-  .container {
-    padding: 0;
-  }
+  position: relative;
+  overflow: hidden;
 }
 
 .form {
@@ -50,8 +14,9 @@
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   padding: 16px;
+  padding-bottom: 46px;
   border-radius: 8px;
   background-color: var(--modal-background);
   position: relative;
@@ -169,10 +134,6 @@
   color: var(--main-black);
 }
 
-/* .barWrap {
-  color: wheat;
-} */
-
 .inputWrapper {
   position: relative;
   display: flex;
@@ -183,12 +144,31 @@
   fill: #3b5d63;
 }
 
-/* Styles for Tablet  and Desktop devices */
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  main {
+    padding: 0;
+  }
+
+  .container {
+    padding: 0;
+    padding-bottom: 278px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .imageBg {
+    position: absolute;
+    bottom: 38px;
+    right: 1px;
+    width: 320px;
+    height: 239px;
+    background-image: image-set(url('/img/wallet_hand_up_1x.webp') 1x, url('/img/wallet_hand_up_2x.webp') 2x);
+  }
   .form {
+    gap: 24px;
     padding: 62px;
-    padding-top: 53px;
-    padding-bottom: 82px;
+    padding-top: 32px;
+    padding-bottom: 50px;
   }
   .button {
     width: 409px;

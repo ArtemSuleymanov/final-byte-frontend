@@ -15,13 +15,15 @@ const AuthForm = ({
   //   passwordValue,
   onConfirmPasswordChange,
   confirmPasswordValue,
+  formClassName,
+  imageClassName,
 }) => {
   return (
     <section className={s.container}>
-      <div className={s.imageBg}></div>
+      <div className={`${s.imageBg} ${imageClassName || ''}`}></div>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {({ handleChange, touched, errors }) => (
-          <Form className={s.form} autoComplete="off">
+          <Form className={`${s.form} ${formClassName || ''}`} autoComplete="off">
             <div className={s.logoWrapper}>
               <svg className={s.logo} role="img" aria-hidden="true">
                 <use href={`${sprite}#icon-wallet`} />

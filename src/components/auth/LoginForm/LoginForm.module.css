@@ -1,0 +1,30 @@
+.loginForm {
+  padding-bottom: 178px;
+}
+
+@media screen and (max-width: 767px) {
+  .loginImage {
+    background-image: image-set(url('/img/wallet_hand_like_1x.webp') 1x, url('/img/wallet_hand_like_2x.webp') 2x);
+    width: 159px;
+    height: 118px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    z-index: 1;
+    pointer-events: none;
+    position: absolute;
+    bottom: 43px;
+    right: 12px;
+  }
+
+  .loginForm {
+    z-index: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .loginForm {
+    padding-top: 53px;
+    padding-bottom: 82px;
+  }
+}
