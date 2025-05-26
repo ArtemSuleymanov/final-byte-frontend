@@ -1,15 +1,17 @@
-import { useState } from 'react';
 import clsx from 'clsx';
 import Switch from 'react-switch';
 
 import s from './Toggle.module.css';
 import sprite from '../../../assets/sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setChecked } from '../../../redux/toggle/toggleSlice';
 
 export default function Toggle({ style }) {
-  const [checked, setChecked] = useState(false);
+  const dispatch = useDispatch();
+  const checked = useSelector((state) => state.toggle.checked);
 
   const handleChange = (nextChecked) => {
-    setChecked(nextChecked);
+    dispatch(setChecked(nextChecked));
   };
 
   return (
