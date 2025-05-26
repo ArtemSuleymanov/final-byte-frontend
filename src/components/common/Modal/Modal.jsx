@@ -11,6 +11,7 @@ export default function CustomModal({
   type = 'text',
   text = 'Some text',
   actionBtn = 'Accept',
+  modalType,
   onConfirm = () => {},
   children,
   style,
@@ -47,13 +48,17 @@ export default function CustomModal({
         </button>
         <div className={s.modal}>
           {type !== 'transaction' && (
-            <svg className={s.icon} width="54" height="54">
+            <svg className={s.iconDelete} width="54" height="54">
               <use href={`${sprite}#icon-wallet`} />
             </svg>
           )}
           <h2 className={s.title}>{title}</h2>
           {type === 'transaction' ? children : <p className={s.text}>{text}</p>}
-          <button className={s.logoutBtn} onClick={handleConfirm}>
+          <button
+            className={s.logoutBtn}
+            style={modalType === 'delete' ? { backgroundColor: 'var(--error-red)', backgroundImage: 'none' } : {}}
+            onClick={handleConfirm}
+          >
             <p className={s.logoutBtnTxt}>{actionBtn}</p>
           </button>
           <button className={s.cancelBtn} onClick={onClose}>
