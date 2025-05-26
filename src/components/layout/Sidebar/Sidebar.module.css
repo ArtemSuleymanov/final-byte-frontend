@@ -19,15 +19,13 @@
   }
 
   .rightColumn {
-    max-height: 310px;
+    height: fit-content;
   }
 }
 
 @media (min-width: 1280px) {
   .sidebar {
-    /* width: 410px; */
-    padding: 24px;
     gap: 40px;
-    margin: 0;
+    margin: 32px 0;
   }
 }

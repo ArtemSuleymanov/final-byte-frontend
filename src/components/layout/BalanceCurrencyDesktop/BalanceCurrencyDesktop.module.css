@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 12px;
   margin-bottom: 23px;
+  padding-left: 13px;
 }
 
 .balanceText {
