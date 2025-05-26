@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import sprite from '../../../assets/sprite.svg';
 import ProgressBar from '../../common/ProgressBar/ProgressBar.jsx';
 import s from './AuthForm.module.css';
+import { useConfirmPasswordStatus } from '../../../hooks/useConfirmPasswordStatus.js';
 
 const AuthForm = ({
   fields,
@@ -12,12 +13,14 @@ const AuthForm = ({
   buttonText,
   link,
   onPasswordChange,
-  //   passwordValue,
+    passwordValue,
   onConfirmPasswordChange,
   confirmPasswordValue,
+  
   formClassName,
   imageClassName,
 }) => {
+  const confirmPasswordStatus = useConfirmPasswordStatus(passwordValue, confirmPasswordValue);
   return (
     <section className={s.container}>
       <div className={`${s.imageBg} ${imageClassName || ''}`}></div>
@@ -63,7 +66,7 @@ const AuthForm = ({
                     />
                   </div>
                   <ErrorMessage className={s.span} name={name} component="span" />
-                  {name === 'confirmPassword' && confirmPasswordValue && <ProgressBar value={confirmPasswordValue} />}
+                  {name === 'confirmPassword' && confirmPasswordValue && <ProgressBar status={confirmPasswordStatus} />}
                 </label>
               );
             })}
