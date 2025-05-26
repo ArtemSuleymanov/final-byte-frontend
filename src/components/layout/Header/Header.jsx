@@ -4,8 +4,6 @@ import s from './Header.module.css';
 
 import sprite from '../../../assets/sprite.svg';
 import LogoutModal from '../LogoutModal/LogoutModal';
-import ModalEditTransaction from '../../transactions/ModalEditTransaction/ModalEditTransaction';
-import ModalAddTransaction from '../../transactions/ModalAddTransaction/ModalAddTransaction';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
