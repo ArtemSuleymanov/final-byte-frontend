@@ -4,14 +4,24 @@ import * as Yup from 'yup';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import s from './EditTransactionForm.module.css';
+import Select from 'react-select';
 
-const EditTransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef }) => {
+const EditTransactionForm = ({
+  initialValues,
+  onSubmit,
+  categories,
+  transactionType = true,
+  onClose,
+  showToast,
+  innerRef,
+}) => {
   const validationSchema = Yup.object({
     amount: Yup.number()
       .typeError('Amount must be a number')
       .positive('Amount must be greater than zero')
       .required('Required field'),
     date: Yup.date().required('Required field'),
+    category: Yup.string().required('Please select a category'),
     comment: Yup.string().max(50, 'Maximum 50 characters allowed'),
   });
 
@@ -34,6 +44,28 @@ const EditTransactionForm = ({ initialValues, onSubmit, onClose, showToast, inne
     >
       {({ values = {}, setFieldValue, isSubmitting, touched, errors }) => (
         <Form className={s.form} autoComplete="off">
+          {transactionType && (
+            <label className={s.labelWrapper}>
+              <Select
+                name="category"
+                options={categories.map((cat) => ({
+                  value: cat.id,
+                  label: cat.name,
+                }))}
+                value={
+                  categories
+                    .map((cat) => ({ value: cat.id, label: cat.name }))
+                    .find((option) => option.value === values.category) || null
+                }
+                onChange={(selectedOption) => setFieldValue('category', selectedOption?.value || '')}
+                placeholder="Select category"
+                classNamePrefix="react-select"
+                className={touched.category && errors.category ? s.inputError : touched.category ? s.inputSuccess : ''}
+              />
+              <ErrorMessage name="category" component="span" className={s.span} />
+            </label>
+          )}
+
           <label className={s.labelWrapper}>
             <Field
               name="amount"
