@@ -10,21 +10,21 @@ const TransactionsItem = ({ date, type, category, comment, sum, isEven, _id }) =
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const formattedDate = (date) => {
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = String(d.getFullYear()).slice(-2);
-    return `${day}.${month}.${year}`;
-  };
+
+  // const formattedDate = (date) => {
+  //   const d = new Date(date);
+  //   const day = String(d.getDate()).padStart(2, '0');
+  //   const month = String(d.getMonth() + 1).padStart(2, '0');
+  //   const year = String(d.getFullYear()).slice(-2);
+  //   return `${day}.${month}.${year}`;
+  // };
 
   return (
-    <div>
-      {' '}
+    <>
       <li className={`${s.card} ${typeClass} ${evenClass}`}>
         <div className={s.div}>
           <span className={s.label}>Date</span>
-          <span className={`${s.value} ${s.data}`}>{formattedDate(date)}</span>
+          <span className={`${s.value} ${s.data}`}>{date}</span>
         </div>
 
         <div className={s.div}>
@@ -68,7 +68,7 @@ const TransactionsItem = ({ date, type, category, comment, sum, isEven, _id }) =
       </li>
       <ModalEditTransaction transactionId={_id} isOpen={isModalEditOpen} onClose={() => setIsModalEditOpen(false)} />
       <ModalDeleteTransaction transactionId={_id} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </div>
+    </>
   );
 };
 

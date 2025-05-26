@@ -37,6 +37,7 @@
   width: 100vw;
   height: 100vh;
   transition: var(--transition-base);
+  z-index: 9999;
 }
 
 .backDrop {
