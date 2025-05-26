@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { loginThunk } from '../../../redux/auth/authOperations.js';
 import AuthForm from '../AuthForm/AuthForm.jsx';
+import s from './LoginForm.module.css';
 
 const loginFields = [
   { name: 'email', type: 'email', placeholder: 'Email', icon: 'icon-email' },
@@ -50,6 +51,8 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         buttonText="Login"
         link={{ to: '/register', text: 'Register' }}
+        formClassName={s.loginForm}
+        imageClassName={s.loginImage}
       />
     </>
   );
