@@ -1,5 +1,9 @@
 .sidebar {
-  margin: 24px 0;
+  margin: 24px 16px;
+}
+.leftColumn{
+  justify-content: center;
+  display: grid;
 }
 
 @media (min-width: 768px) {
@@ -8,7 +12,7 @@
     height: fit-content;
     gap: 32px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 32px 0;
   }
 
