@@ -6,7 +6,7 @@ import css from "./UserAccountLayout.module.css"
 
 const UserAccountLayout = () => {
   return (
-    <div className={css["user-layout"]}>
+  <>
       <Header />
       <div className={css["layout-body"]}>
         <Sidebar />
@@ -14,8 +14,11 @@ const UserAccountLayout = () => {
           <Outlet />
         </main>
       </div>
-    </div>
+      </>
   )
 }
 
+
+
 export default UserAccountLayout
+

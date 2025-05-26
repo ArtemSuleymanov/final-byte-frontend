@@ -1,16 +1,33 @@
-.user-layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
 .layout-body {
     display: flex;
-    flex: 1;
+    flex-direction: column;
 }
 
-.main-content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
+@media only screen and (min-width: 768px) {
+    .layout-body {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 100%;
+        }
+    
+
+    .main-content {
+        flex: 1;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .layout-body {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 62px;
+    }
+
+    .main-content {
+        flex: 1;
+        padding: 24px;
+        overflow-y: auto;
+    }
 }
