@@ -8,7 +8,7 @@ const Loader = () => {
   return (
     isLoading && (
       <div className={styles.backdrop}>
-        <BounceLoader color="#36d7b7" size={80} />
+        <BounceLoader color="#508f8c" size={80} />
       </div>
     )
   );
