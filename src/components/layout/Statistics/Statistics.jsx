@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import css from './Statistics.module.css'
+import css from './Statistics.module.css';
 
+import Chart from './Chart';
+import Dropdown from './Dropdown';
+import Table from './Table';
+import Toggle from '../../common/Toggle/Toggle';
 
-import Chart from "./Chart"
-import Dropdown from "./Dropdown"
-import Table from "./Table";
-import Toggle from "../../common/Toggle/Toggle";
-
-const MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const MONTH = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 const YEARS = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
 const dummyData = {
   '2023-March': [
@@ -24,7 +36,7 @@ const dummyData = {
   ],
   '2023-April': [
     { category: 'Main expenses', amount: 7200, color: '#F4A900' },
-    { category: 'Products', amount: 2500.10, color: '#FCDDEC' },
+    { category: 'Products', amount: 2500.1, color: '#FCDDEC' },
     { category: 'Car', amount: 0, color: '#FF8A9F' },
   ],
 };
@@ -51,20 +63,22 @@ const Statistics = () => {
     data = dummyData[key] || [];
   }
   return (
-    <div className={css.container}>
-      <div>
-        <Toggle/>
-        <Chart data={data} total={total} />
+    <div className={css.div}>
+      <div className={css.container}>
+        <div>
+          <Toggle />
+          <Chart data={data} total={total} />
         </div>
-      <div>
-      <div className={css.dropdown}>
-        <Dropdown title="Years" items={YEARS} set={setYear} />
-        <Dropdown title="Months" items={MONTH} set={setMonth} />
-      </div>
-        <Table data={data} setTotal={setTotal} />
+        <div>
+          <div className={css.dropdown}>
+            <Dropdown title="Years" items={YEARS} set={setYear} />
+            <Dropdown title="Months" items={MONTH} set={setMonth} />
+          </div>
+          <Table data={data} setTotal={setTotal} />
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Statistics
+export default Statistics;

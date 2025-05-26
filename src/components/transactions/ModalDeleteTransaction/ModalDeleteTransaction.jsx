@@ -5,6 +5,7 @@ import { deleteTransaction, getTransactions } from '../../../redux/transactions/
 import toast from 'react-hot-toast';
 import { selectIsLoading } from '../../../redux/transactions/transactionsSelectors';
 import Loader from '../../common/Loader/Loader';
+import sprite from '../../../assets/sprite.svg';
 
 const ModalDeleteTransaction = ({ isOpen, onClose, transactionId }) => {
   const dispatch = useDispatch();
@@ -34,12 +35,12 @@ const ModalDeleteTransaction = ({ isOpen, onClose, transactionId }) => {
       <div className={s.modal} onClick={(e) => e.stopPropagation()}>
         <button className={s.closeIconBtn} onClick={onClose}>
           <svg className={s.closeSvg}>
-            <use href="/sprite.svg#icon-close" />
+            <use href={`${sprite}#icon-close`} />
           </svg>
         </button>
         <div className={s.logoWrapper}>
           <svg className={s.logoSvg}>
-            <use href="/sprite.svg#icon-logo" />
+            <use href={`${sprite}#icon-wallet`} />
           </svg>
           <p className={s.logoText}>Spendy</p>
         </div>

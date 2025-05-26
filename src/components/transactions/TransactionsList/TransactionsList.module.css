@@ -34,28 +34,58 @@
 }
 
 @media (min-width: 768px) {
+  .div {
+    background: transparent;
+    background: var(--hover-color);
+    border-radius: 16px;
+    max-height: 538px;
+    overflow: hidden;
+  }
+
   .header {
     display: grid;
     grid-template-columns: 104px 76px 117px 141px 1fr;
     color: var(--hover-text-color);
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  .ul {
+    margin: 0;
+    padding: 0;
   }
 
-  .date {
-    padding-left: 8px;
+  .wrapper {
+    padding: 32px 16px;
+    height: 48px;
+    display: flex;
+    align-items: center;
   }
 
   .list {
     background: var(--hover-color);
-    padding: 32px 16px;
-    border-radius: 16px;
+    padding: 0 16px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin: 0;
     overflow-y: auto;
     max-height: 538px;
+  }
+
+  .list > li {
+    margin-bottom: 16px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .date {
+    padding-left: 8px;
   }
 
   .list::-webkit-scrollbar {
@@ -79,9 +109,17 @@
   .header {
     grid-template-columns: 121px 95px 125px 142px 1fr;
   }
-  .list {
-    padding: 32px 32px 0px 27px;
+
+  .div {
     max-height: 585px;
-    overflow-y: auto;
+    width: 757px;
+  }
+
+  .divWrapper {
+    padding-top: 32px;
+  }
+
+  .placeholder {
+    width: 757px;
   }
 }

@@ -23,21 +23,25 @@ const TransactionsList = () => {
     return <p className={s.placeholder}>No transactions yet</p>;
   }
   return (
-    <div>
-      <ul className={s.list}>
-        <div className={s.header}>
-          <li>
-            <div className={s.date}>Date</div>
+    <div className={s.divWrapper}>
+      <div className={s.div}>
+        <ul className={s.ul}>
+          <li className={s.header}>
+            <div className={s.wrapper}>
+              <div className={s.date}>Date</div>
+            </div>
+            <div className={s.wrapper}>Type</div>
+            <div className={s.wrapper}>Category</div>
+            <div className={s.wrapper}>Comment</div>
+            <div className={s.wrapper}>Sum</div>
           </li>
-          <li>Type</li>
-          <li>Category</li>
-          <li>Comment</li>
-          <li>Sum</li>
-        </div>
-        {data?.map((item, index) => (
-          <TransactionsItem key={index} {...item} isEven={index % 2 === 1} />
-        ))}
-      </ul>
+        </ul>
+        <ul className={s.list}>
+          {data?.map((item, index) => (
+            <TransactionsItem key={index} {...item} isEven={index % 2 === 1} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

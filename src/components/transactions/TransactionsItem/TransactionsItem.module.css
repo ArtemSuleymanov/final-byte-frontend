@@ -210,6 +210,20 @@
   .value {
     font-size: 14px;
   }
+
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+  }
 }
 
 @media (min-width: 1280px) {
