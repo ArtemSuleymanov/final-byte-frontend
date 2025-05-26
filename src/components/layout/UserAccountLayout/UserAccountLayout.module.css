@@ -7,8 +7,8 @@
     .layout-body {
             display: flex;
             flex-direction: column;
-            gap: 32px;
             width: 100%;
+            margin: 0 auto;
         }
     
 
@@ -21,13 +21,15 @@
     .layout-body {
         display: flex;
         flex-direction: row;
+        width: fit-content;
         align-items: flex-start;
-        gap: 62px;
+        justify-content: center;
+        padding-left: 24px;
+
     }
 
     .main-content {
         flex: 1;
-        padding: 24px;
         overflow-y: auto;
     }
 }
