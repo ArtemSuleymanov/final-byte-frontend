@@ -18,9 +18,16 @@ export default function ModalAddTransaction({
 
   const transactionType = useSelector((state) => state.toggle.checked);
 
+  // const handleConfirm = () => {
+  //   if (formikRef.current) {
+  //     formikRef.current.handleSubmit();
+  //   }
+  // };
+
   const handleConfirm = () => {
     if (formikRef.current) {
-      formikRef.current.handleSubmit();
+      const values = formikRef.current.values;
+      onConfirm(values);
     }
   };
 

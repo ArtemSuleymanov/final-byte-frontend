@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from './components/common/Loader/Loader.jsx';
 import PrivateLayout from './components/layout/PrivateLayout/PrivateLayout.jsx';
-import { refreshSessionThunk } from './redux/auth/authOperations.js';
+import { refreshSessionThunk, setAuthHeader } from './redux/auth/authOperations.js';
 import { selectIsRefreshing } from './redux/auth/authSelectors.js';
 import PrivateRoute from './routes/PrivateRoute.jsx';
 import PublicRoute from './routes/PublicRoute.jsx';
@@ -18,33 +18,42 @@ const Stats = lazy(() => import('./pages/tabs/StatisticsTab/StatisticsTab.jsx'))
 export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const token = useSelector((state) => state.auth.accessToken);
 
   useEffect(() => {
     dispatch(refreshSessionThunk());
   }, [dispatch]);
 
-  if (isRefreshing) {
-    return <Loader />;
-  }
-  return (
-    <>
-      <Loader />
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+  useEffect(() => {
+    if (token) {
+      console.log('Setting token header:', token);
+      setAuthHeader(token);
+    }
+  }, [token]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+
+        {/* Private Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route element={<PrivateLayout />}>
+            <Route path="/home" element={<Main />} />
+            <Route path="/currency" element={<Currency />} />
+            <Route path="/stats" element={<Stats />} />
           </Route>
-          <Route element={<PrivateRoute />}>
-            <Route element={<PrivateLayout />}>
-              <Route path="/home" element={<Main />} />
-              <Route path="/currency" element={<Currency />} />
-              <Route path="/stats" element={<Stats />} />
-            </Route>
-          </Route>
-          <Route path="*" element={<Navigate to="/home" />} />
-        </Routes>
-      </Suspense>
-    </>
+        </Route>
+
+        {/* Fallback Route */}
+        <Route path="*" element={<Navigate to="/home" />} />
+      </Routes>
+    </Suspense>
   );
 }

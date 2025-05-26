@@ -29,6 +29,8 @@
 
 @media (min-width: 1280px) {
   .sidebar {
+    /* width: 410px; */
+    padding-top: 24px;
     gap: 40px;
     margin: 32px 0;
   }

@@ -19,29 +19,30 @@ const TransactionsList = () => {
   }, [dispatch]);
 
   if (isLoading) return <p className={s.placeholder}>Loading...</p>;
-  if (!data.length) {
+  // if (!data.length) {
+  //   return <p className={s.placeholder}>No transactions yet</p>;
+  // }
+  if (!Array.isArray(data) || data.length === 0) {
     return <p className={s.placeholder}>No transactions yet</p>;
   }
   return (
-    <div className={s.divWrapper}>
-      <div className={s.div}>
-        <ul className={s.ul}>
-          <li className={s.header}>
-            <div className={s.wrapper}>
-              <div className={s.date}>Date</div>
-            </div>
-            <div className={s.wrapper}>Type</div>
-            <div className={s.wrapper}>Category</div>
-            <div className={s.wrapper}>Comment</div>
-            <div className={s.wrapper}>Sum</div>
-          </li>
-        </ul>
-        <ul className={s.list}>
-          {data?.map((item, index) => (
-            <TransactionsItem key={index} {...item} isEven={index % 2 === 1} />
-          ))}
-        </ul>
-      </div>
+    <div className={s.div}>
+      <ul className={s.ul}>
+        <li className={s.header}>
+          <div className={s.wrapper}>
+            <div className={s.date}>Date</div>
+          </div>
+          <div className={s.wrapper}>Type</div>
+          <div className={s.wrapper}>Category</div>
+          <div className={s.wrapper}>Comment</div>
+          <div className={s.wrapper}>Sum</div>
+        </li>
+      </ul>
+      <ul className={s.list}>
+        {data?.map((item, index) => (
+          <TransactionsItem key={index} {...item} isEven={index % 2 === 1} />
+        ))}
+      </ul>
     </div>
   );
 };

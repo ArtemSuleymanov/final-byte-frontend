@@ -55,6 +55,7 @@ export default function CustomModal({
           <h2 className={s.title}>{title}</h2>
           {type === 'transaction' ? children : <p className={s.text}>{text}</p>}
           <button
+            type="submit"
             className={s.logoutBtn}
             style={modalType === 'delete' ? { backgroundColor: 'var(--error-red)', backgroundImage: 'none' } : {}}
             onClick={handleConfirm}

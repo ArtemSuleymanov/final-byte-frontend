@@ -25,7 +25,7 @@ const slice = createSlice({
         state.error = action.payload || 'Registration failed';
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user.user ?? {};
+        state.user = action.payload.user ?? {};
         state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
         state.error = null;

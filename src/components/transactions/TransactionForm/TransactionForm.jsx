@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import { addTransaction, getTransactions } from '../../../redux/transactions/transactionsOperations';
 import s from './TransactionForm.module.css';
 import Select from 'react-select';
 
@@ -27,6 +27,7 @@ const TransactionForm = ({
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      console.log('Submitting transaction:', values);
       await onSubmit(values);
       onClose();
     } catch (error) {
@@ -35,10 +36,18 @@ const TransactionForm = ({
     }
   };
 
+  const defaultInitialValues = {
+    amount: '',
+    comment: '',
+    category: '',
+    type: transactionType ? '+' : '-',
+    date: new Date(),
+  };
+
   return (
     <Formik
       innerRef={innerRef}
-      initialValues={initialValues}
+      initialValues={{ ...defaultInitialValues, ...initialValues }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
@@ -108,32 +117,32 @@ const TransactionForm = ({
             </label>
           )}
           <div className={s.rowWrapper}>
-          <label className={s.labelWrapper}>
-            <Field
-              name="amount"
-              type="number"
-              placeholder="0.00"
-              className={`${s.input} ${
-                touched.amount && errors.amount ? s.inputError : touched.amount ? s.inputSuccess : ''
-              }`}
-              step="0.5"
-            />
-            <ErrorMessage name="amount" component="span" className={s.span} />
-          </label>
+            <label className={s.labelWrapper}>
+              <Field
+                name="amount"
+                type="number"
+                placeholder="0.00"
+                className={`${s.input} ${
+                  touched.amount && errors.amount ? s.inputError : touched.amount ? s.inputSuccess : ''
+                }`}
+                step="0.5"
+              />
+              <ErrorMessage name="amount" component="span" className={s.span} />
+            </label>
 
-          <label className={s.labelWrapper}>
-            <DatePicker
-              selected={values.date ? new Date(values.date) : Date.now()}
-              onChange={(date) => setFieldValue('date', date)}
-              dateFormat="dd.MM.yyyy"
-              className={`${s.input} ${
-                touched.date && errors.date ? s.inputError : touched.date ? s.inputSuccess : ''
-              }`}
-              placeholderText="Select a date"
-              maxDate={new Date()}
-            />
-            <ErrorMessage name="date" component="span" className={s.span} />
-          </label>
+            <label className={s.labelWrapper}>
+              <DatePicker
+                selected={values.date ? new Date(values.date) : Date.now()}
+                onChange={(date) => setFieldValue('date', date)}
+                dateFormat="dd.MM.yyyy"
+                className={`${s.input} ${
+                  touched.date && errors.date ? s.inputError : touched.date ? s.inputSuccess : ''
+                }`}
+                placeholderText="Select a date"
+                maxDate={new Date()}
+              />
+              <ErrorMessage name="date" component="span" className={s.span} />
+            </label>
           </div>
           <label className={s.labelWrapper}>
             <Field
