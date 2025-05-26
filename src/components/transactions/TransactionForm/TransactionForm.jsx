@@ -3,10 +3,10 @@ import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import s from './EditTransactionForm.module.css';
+import s from './TransactionForm.module.css';
 import Select from 'react-select';
 
-const EditTransactionForm = ({
+const TransactionForm = ({
   initialValues,
   onSubmit,
   categories,
@@ -58,14 +58,56 @@ const EditTransactionForm = ({
                     .find((option) => option.value === values.category) || null
                 }
                 onChange={(selectedOption) => setFieldValue('category', selectedOption?.value || '')}
-                placeholder="Select category"
+                placeholder="Category"
                 classNamePrefix="react-select"
-                className={touched.category && errors.category ? s.inputError : touched.category ? s.inputSuccess : ''}
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: '8px',
+                    width: '100%',
+                    height: '44px',
+                    border: `1px solid ${
+                      touched.category && errors.category
+                        ? 'var(--error-red)'
+                        : touched.category
+                        ? 'var(--succes-green)'
+                        : 'var(--main-black)'
+                    }`,
+                    backgroundColor: 'inherit',
+                    fontSize: '18px',
+                    boxShadow: 'none',
+                    '&:hover': {
+                      borderColor: '#3b5d63',
+                    },
+                  }),
+                  valueContainer: (base) => ({
+                    ...base,
+                    justifyContent: 'flex-start',
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: 'var(--main-black)',
+                    fontSize: '18px',
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    color: 'var(--main-black)',
+                    fontSize: '18px',
+                  }),
+                  dropdownIndicator: (base) => ({
+                    ...base,
+                    color: 'var(--main-black)',
+                    paddingRight: '14px',
+                  }),
+                  indicatorSeparator: () => ({
+                    display: 'none',
+                  }),
+                }}
               />
               <ErrorMessage name="category" component="span" className={s.span} />
             </label>
           )}
-
+          <div className={s.rowWrapper}>
           <label className={s.labelWrapper}>
             <Field
               name="amount"
@@ -92,7 +134,7 @@ const EditTransactionForm = ({
             />
             <ErrorMessage name="date" component="span" className={s.span} />
           </label>
-
+          </div>
           <label className={s.labelWrapper}>
             <Field
               as="textarea"
@@ -117,4 +159,4 @@ const EditTransactionForm = ({
   );
 };
 
-export default EditTransactionForm;
+export default TransactionForm;

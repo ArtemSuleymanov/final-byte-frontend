@@ -1,13 +1,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
 }
 
 .labelWrapper {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  height: 44px;
 }
 
 .input {
@@ -72,4 +73,24 @@
 .button:hover,
 .button:focus {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.rowWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+.rowWrapper {
+width: 410px;
+height: 44px;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.form {
+    gap: 36px;
+  }
+
 }

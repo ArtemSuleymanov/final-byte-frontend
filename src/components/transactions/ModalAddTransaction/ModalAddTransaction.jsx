@@ -1,5 +1,5 @@
 import Toggle from '../../common/Toggle/Toggle';
-import AddTransactionForm from '../AddTransactionForm/AddTransactionForm';
+import TransactionForm from '../TransactionForm/TransactionForm';
 import CustomModal from '../../common/Modal/Modal';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
@@ -34,7 +34,7 @@ export default function ModalAddTransaction({
       onConfirm={handleConfirm}
     >
       <Toggle />
-      <AddTransactionForm
+      <TransactionForm
         innerRef={formikRef}
         initialValues={initialValues}
         onSubmit={onConfirm}
