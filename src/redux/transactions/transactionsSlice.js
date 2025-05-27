@@ -5,6 +5,12 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  pageInfo: {
+    page: 1,
+    perPage: 1,
+    totalPages: 0,
+    hasNextPage: false,
+  },
 };
 
 const handlePending = (state) => {
@@ -24,12 +30,33 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getTransactions.fulfilled, (state, action) => {
-        const list = Array.isArray(action.payload) ? action.payload : [];
-        state.items = list.map((t) => ({
-          ...t,
-          id: t._id,
-        }));
         state.isLoading = false;
+        const response = action.payload;
+        const transactions = response.data?.data;
+        const { page, perPage, totalItems, totalPages, hasNextPage } = response.data;
+
+        if (!Array.isArray(transactions)) {
+          state.error = 'Invalid data format received';
+          return;
+        }
+
+        const newItems = transactions.map((item) => ({ ...item }));
+
+        if (page === 1) {
+          state.items = newItems;
+        } else {
+          const existingIds = new Set(state.items.map((item) => item._id));
+          const uniqueItems = newItems.filter((item) => !existingIds.has(item._id));
+          state.items.push(...uniqueItems);
+        }
+
+        state.pageInfo = {
+          page,
+          perPage,
+          totalItems,
+          totalPages,
+          hasNextPage,
+        };
       })
 
       .addCase(getTransactions.pending, handlePending)
