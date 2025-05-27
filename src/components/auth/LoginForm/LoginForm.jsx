@@ -53,6 +53,7 @@ const LoginForm = () => {
         link={{ to: '/register', text: 'Register' }}
         formClassName={s.loginForm}
         imageClassName={s.loginImage}
+        imageMobileBg={s.imageMobileBg}
       />
     </>
   );
