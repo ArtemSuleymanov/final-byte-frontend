@@ -17,6 +17,10 @@
   text-align: center;
   color: #ccc;
   padding: 20px;
+  max-width: 288px;
+  min-height: 293px;
+  background: var(--hover-color);
+  border-radius: 10px;
 }
 
 @media (min-width: 768px) {
@@ -29,6 +33,12 @@
     justify-content: center;
     min-height: 538px;
     width: fit-content;
+  }
+
+  .placeholder {
+    max-width: 704px;
+    min-height: 538px;
+    border-radius: 16px;
   }
 
   .header {
@@ -54,6 +64,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    border-radius: 16px;
     overflow-y: auto;
     max-height: 538px;
     padding-right: 10px;
@@ -96,11 +107,14 @@
   }
 
   .placeholder {
-    width: 757px;
+    min-width: 757px;
+    /* background: var(--hover-color); */
+    min-height: 585px;
+    /* border-radius: 16px; */
   }
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(8px);
@@ -109,4 +123,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
+} */
