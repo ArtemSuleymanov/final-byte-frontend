@@ -17,6 +17,7 @@
 
     .main-content {
         flex: 1;
+        margin: 0 auto;
     }
 }
 
@@ -27,10 +28,12 @@
         align-items: flex-start;
         justify-content: center;
         gap: 24px;
+        margin: 32px 24px 24px 24px;
     }
 
     .main-content {
-        margin: 32px 24px 24px 24px;
+        max-width: 1280px;
+        margin: 0 auto;
         flex: 1;
         /* overflow-y: auto; */
     }
