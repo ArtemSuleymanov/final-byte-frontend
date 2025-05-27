@@ -3,16 +3,18 @@ import Switch from 'react-switch';
 
 import s from './Toggle.module.css';
 import sprite from '../../../assets/sprite.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { setChecked } from '../../../redux/toggle/toggleSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setChecked } from '../../../redux/toggle/toggleSlice';
 
-export default function Toggle({ style }) {
-  const dispatch = useDispatch();
-  const checked = useSelector((state) => state.toggle.checked);
+export default function Toggle({ style, checked, handleChange, disabled = false }) {
+  // const dispatch = useDispatch();
+  // const checked = useSelector((state) => state.toggle.checked);
 
-  const handleChange = (nextChecked) => {
-    dispatch(setChecked(nextChecked));
-  };
+  // const handleChange = (nextChecked) => {
+  //   if (!disabled) {
+  //     dispatch(setChecked(nextChecked));
+  //   }
+  // };
 
   return (
     <label className={clsx(s.label, style)}>
@@ -40,6 +42,7 @@ export default function Toggle({ style }) {
         onHandleColor="#B20202"
         offHandleColor="#dfad3f"
         className={s.switch}
+        disabled={disabled}
       />
       <span className={s.labelText}>Expense</span>
     </label>

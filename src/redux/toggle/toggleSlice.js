@@ -12,8 +12,11 @@ const toggleSlice = createSlice({
     setChecked: (state, action) => {
       state.checked = action.payload;
     },
+    toggleReset: (state) => {
+      state.checked = false;
+    },
   },
 });
 
-export const { toggleChecked, setChecked } = toggleSlice.actions;
+export const { toggleChecked, setChecked, toggleReset } = toggleSlice.actions;
 export default toggleSlice.reducer;

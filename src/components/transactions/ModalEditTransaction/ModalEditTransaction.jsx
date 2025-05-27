@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+// ModalEditTransaction.jsx
+import { useRef, useState, useEffect } from 'react';
 import CustomModal from '../../common/Modal/Modal';
 import Toggle from '../../common/Toggle/Toggle';
 import TransactionForm from '../TransactionForm/TransactionForm';
-import { useSelector } from 'react-redux';
+import { typeList } from '../../../utils/constants';
 
 export default function ModalEditTransaction({
   isOpen,
@@ -10,19 +11,25 @@ export default function ModalEditTransaction({
   onConfirm,
   title = 'Edit transaction',
   actionBtn = 'Save',
-  categories = [],
   initialValues,
   showToast,
 }) {
-  const formikRef = useRef();
+  // Set initial toggle based on initialValues.type (true = expense, false = income)
+  const initialType = initialValues?.type === typeList[0] ? false : true;
+  const [isToggleChecked, setIsToggleChecked] = useState(initialType);
 
-  const transactionType = useSelector((state) => state.toggle.checked);
+  const formikRef = useRef();
 
   const handleConfirm = () => {
     if (formikRef.current) {
       formikRef.current.handleSubmit();
     }
   };
+
+  useEffect(() => {
+    const newType = initialValues?.type === typeList[0] ? false : true;
+    setIsToggleChecked(newType);
+  }, [initialValues, isOpen]);
 
   return (
     <CustomModal
@@ -33,13 +40,13 @@ export default function ModalEditTransaction({
       actionBtn={actionBtn}
       onConfirm={handleConfirm}
     >
-      <Toggle />
+      <Toggle checked={isToggleChecked} handleChange={() => setIsToggleChecked((prev) => !prev)} disabled={true} />
+
       <TransactionForm
         innerRef={formikRef}
         initialValues={initialValues}
         onSubmit={onConfirm}
-        categories={categories}
-        transactionType={transactionType}
+        transactionType={isToggleChecked}
         onClose={onClose}
         showToast={showToast}
       />

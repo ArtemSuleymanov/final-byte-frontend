@@ -6,7 +6,7 @@ const Balance = () => {
   const transactions = useSelector(selectTransactions);
 
   const balance = transactions.reduce((acc, item) => {
-    return item.type === '+' ? acc + item.sum : acc - item.sum;
+    return item.type === 'income' ? acc + item.amount : acc - item.amount;
   }, 0);
 
   const formattedBalance = balance.toLocaleString('en-US', {

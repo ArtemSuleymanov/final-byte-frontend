@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import Currency from '../../../components/layout/Currency/Currency.jsx';
 import Balance from '../../../components/layout/Balance/Balance.jsx';
 import ModalAddTransaction from '../../../components/transactions/ModalAddTransaction/ModalAddTransaction.jsx';
+import { toggleReset } from '../../../redux/toggle/toggleSlice';
 
 const HomeTab = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,8 +33,20 @@ const HomeTab = () => {
     <>
       {/* <Balance /> */}
       <TransactionsList />
-      <ButtonAddTransaction onClick={() => setIsOpen(true)} />
-      <ModalAddTransaction isOpen={isOpen} onClose={() => setIsOpen(false)} onConfirm={handleAddTransaction} />
+      <ButtonAddTransaction
+        onClick={() => {
+          setIsOpen(true);
+          dispatch(toggleReset());
+        }}
+      />
+      <ModalAddTransaction
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+          dispatch(toggleReset());
+        }}
+        onConfirm={handleAddTransaction}
+      />
     </>
   );
 };
