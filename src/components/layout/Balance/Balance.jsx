@@ -1,13 +1,10 @@
 import { useSelector } from 'react-redux';
-import { selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import { selectUser } from '../../../redux/auth/authSelectors';
 import s from './Balance.module.css';
 
 const Balance = () => {
-  const transactions = useSelector(selectTransactions);
-
-  const balance = transactions.reduce((acc, item) => {
-    return item.type === 'income' ? acc + item.amount : acc - item.amount;
-  }, 0);
+  const user = useSelector(selectUser);
+  const balance = user?.balance ?? 0;
 
   const formattedBalance = balance.toLocaleString('en-US', {
     minimumFractionDigits: 2,

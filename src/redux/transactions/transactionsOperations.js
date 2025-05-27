@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setAuthHeader } from '../auth/authOperations';
+import { refreshSessionThunk } from '../auth/authOperations';
 import axiosInstance from '../../api/axios';
 
 export const getTransactions = createAsyncThunk('transactions/getAll', async (_, thunkAPI) => {
@@ -28,6 +29,7 @@ export const addTransaction = createAsyncThunk('transactions/addTransaction', as
 
     if (token) setAuthHeader(token);
     const { data } = await axiosInstance.post('/transactions', body);
+    await thunkAPI.dispatch(refreshSessionThunk());
 
     // log & return single transaction
     console.log('Result from addTransaction:', data.data);
@@ -46,6 +48,7 @@ export const updateTransaction = createAsyncThunk(
 
       if (token) setAuthHeader(token);
       const { data } = await axiosInstance.patch(`/transactions/${id}`, body);
+      await thunkAPI.dispatch(refreshSessionThunk());
 
       // await thunkAPI.dispatch(userData());
 
@@ -63,6 +66,7 @@ export const deleteTransaction = createAsyncThunk('transactions/deleteTransactio
 
     if (token) setAuthHeader(token);
     await axiosInstance.delete(`transactions/${id}`);
+    await thunkAPI.dispatch(refreshSessionThunk());
 
     // await thunkAPI.dispatch(userData());
     return { id };
