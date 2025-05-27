@@ -6,17 +6,18 @@ import css from "./UserAccountLayout.module.css"
 
 const UserAccountLayout = () => {
   return (
-  <>
+    <>
       <Header />
-      <div className={css["layout-body"]}>
-        <Sidebar />
-        <main className={css["main-content"]}>
+      <main className={css["main-content"]}>
+        <div className={css["layout-body"]}>
+          <Sidebar />
           <Outlet />
-        </main>
-      </div>
-      </>
-  )
-}
+        </div>
+      </main>
+    </>
+  );
+};
+
 
 
 
