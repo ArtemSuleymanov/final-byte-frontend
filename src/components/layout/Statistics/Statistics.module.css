@@ -40,7 +40,7 @@
     max-height: 670px;
     padding: 16px 26px 202px 32px;
     flex-direction: row;
-    margin: 55px 0;
+    /* margin: 55px 0; */
   }
 
 }
