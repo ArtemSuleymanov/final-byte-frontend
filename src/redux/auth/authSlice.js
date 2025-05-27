@@ -44,7 +44,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(refreshSessionThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user ?? {};
+        state.user = action.payload.user.user ?? {};
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
