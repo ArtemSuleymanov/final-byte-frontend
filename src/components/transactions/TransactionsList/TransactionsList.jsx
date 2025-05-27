@@ -2,12 +2,11 @@ import TransactionsItem from '../TransactionsItem/TransactionsItem';
 import { getTransactions } from '../../../redux/transactions/transactionsOperations';
 import s from './TransactionsList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIsLoading, selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import { selectTransactions } from '../../../redux/transactions/transactionsSelectors';
 import { useEffect } from 'react';
 
 const TransactionsList = () => {
   const data = useSelector(selectTransactions);
-  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +17,6 @@ const TransactionsList = () => {
     };
   }, [dispatch]);
 
-  if (isLoading) return <p className={s.placeholder}>Loading...</p>;
   // if (!data.length) {
   //   return <p className={s.placeholder}>No transactions yet</p>;
   // }
