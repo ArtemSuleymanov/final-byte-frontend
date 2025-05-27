@@ -67,10 +67,10 @@ const Statistics = () => {
   
     const categoryMap = {};
     for (const item of filtered) {
-        const cat = item.category || 'Unknown';
+        const cat = item.comment || 'Unknown';
         if (!categoryMap[cat]) {
             categoryMap[cat] = {
-                category: cat,
+              comment: cat,
                 amount: 0,
             };
         }
