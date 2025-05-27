@@ -99,7 +99,7 @@ const Statistics = () => {
 
   const processedData = getProcessedData(data, year, month, transactionType);
 
-  console.log(processedData);
+
   
   return (
     <div className={css.div}>
