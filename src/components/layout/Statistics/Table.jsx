@@ -14,6 +14,7 @@ const Table = ({ data, transactionType }) => {
         <span>Sum</span>
       </div>
 
+      
       {data.map((item) => (
         <div className={css.row} key={item.category}>
           <div className={css.cell}>
@@ -22,7 +23,7 @@ const Table = ({ data, transactionType }) => {
                 style={{ backgroundColor: item.color }}
             />
                 <div className={css.cellData}>
-                  <span>{item.comment}</span>
+                  <span>{item.category}</span>
                   <span>{item.amount.toLocaleString()}</span>
                 </div>  
           </div>

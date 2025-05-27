@@ -2,9 +2,12 @@
   padding-bottom: 178px;
 }
 
+.imageMobileBg {
+  background-image: image-set(url('/img/wallet_hand_up_1x.webp') 1x, url('/img/wallet_hand_up_2x.webp') 2x);
+}
+
 @media screen and (max-width: 767px) {
-  .loginImage {
-    background-image: image-set(url('/img/wallet_hand_like_1x.webp') 1x, url('/img/wallet_hand_like_2x.webp') 2x);
+  .imageMobileBg {
     width: 159px;
     height: 118px;
     background-size: contain;
@@ -13,12 +16,13 @@
     z-index: 1;
     pointer-events: none;
     position: absolute;
-    bottom: 43px;
+    bottom: 23px;
     right: 12px;
   }
 
   .loginForm {
     z-index: 0;
+    position: relative;
   }
 }
 
@@ -26,5 +30,9 @@
   .loginForm {
     padding-top: 53px;
     padding-bottom: 82px;
+  }
+
+  .loginImage {
+    background-image: image-set(url('/img/wallet_hand_up_1x.webp') 1x, url('/img/wallet_hand_up_2x.webp') 2x);
   }
 }
