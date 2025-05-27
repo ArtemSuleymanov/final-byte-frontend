@@ -36,7 +36,7 @@ const Statistics = () => {
 
   const getProcessedData = (data, year = null, month = null, transactionType) => {
     if (!data) return [];
-  
+    
     let filtered = data.filter(item => transactionType ? item.type === 'expense' : item.type === 'income');
   
     if (year !== null) {
@@ -99,6 +99,8 @@ const Statistics = () => {
 
   const processedData = getProcessedData(data, year, month, transactionType);
 
+  console.log(processedData);
+  
   return (
     <div className={css.div}>
       <div className={css.container}>
