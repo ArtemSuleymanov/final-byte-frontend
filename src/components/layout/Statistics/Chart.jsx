@@ -2,26 +2,29 @@ import { useEffect, useState } from "react";
 import { Cell, Pie, PieChart } from "recharts";
 import css from "./Chart.module.css";
 
+
 const Chart = ({ data, total }) => {
   const [size, setSize] = useState(264);
 
+
+
+  const formatTotal = (value) => {
+    const parts = value.toFixed(2).split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return parts.join('.');
+  };
+
   useEffect(() => {
     const updateSize = () => {
-      if (window.innerWidth === 1280) {
-        setSize(288);
-      } else {
-        setSize(264);
-      }
+      setSize(window.innerWidth === 768 ? 400 : 264);
     };
-
-    updateSize(); 
-    window.addEventListener("resize", updateSize); 
-
+    updateSize();
+    window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
   return (
-    <div>
+    <div className={css.chartWrapper}>
       <PieChart width={size} height={size}>
         <Pie
           data={data}
@@ -35,15 +38,15 @@ const Chart = ({ data, total }) => {
           ))}
         </Pie>
         <text
-          x="50%"
-          y="50%"
+          x={size / 2}
+          y={size / 2}
           textAnchor="middle"
           dominantBaseline="middle"
           fill="#FCFCFC"
           fontSize={18}
           className={css.centerLabel}
         >
-          ₴{total}
+          ₴{formatTotal(total)}
         </text>
       </PieChart>
     </div>

@@ -69,6 +69,14 @@
     text-align: right;
     color: #f23a3a;
 }
+.income
+{
+    font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: right;
+        color: #24cca7;
+}
 
 @media only screen and (min-width: 768px) {
     .header{
