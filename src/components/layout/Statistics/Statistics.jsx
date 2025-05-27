@@ -66,16 +66,19 @@ const Statistics = () => {
     }
   
     const categoryMap = {};
-    for (const item of filtered) {
-        const cat = item.comment || 'Unknown';
-        if (!categoryMap[cat]) {
-            categoryMap[cat] = {
-              comment: cat,
-                amount: 0,
-            };
-        }
-        categoryMap[cat].amount += item.amount || 0;
+for (const item of filtered) {
+    const rawComment = item.comment || 'Unknown';
+    const cat = rawComment.charAt(0).toUpperCase() + rawComment.slice(1).toLowerCase();
+    
+    if (!categoryMap[cat]) {
+        categoryMap[cat] = {
+            comment: cat,
+            amount: 0,
+        };
     }
+    categoryMap[cat].amount += item.amount || 0;
+}
+
   
     return Object.values(categoryMap)
         .sort((a, b) => b.amount - a.amount)
