@@ -4,9 +4,10 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  height: 100vh;
   position: relative;
-  overflow: hidden;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
 }
 
 .form {
@@ -152,8 +153,14 @@
   .container {
     padding: 0;
     padding-bottom: 278px;
-    position: relative;
     overflow: hidden;
+  }
+
+  .form {
+    gap: 24px;
+    padding: 62px;
+    padding-top: 32px;
+    padding-bottom: 50px;
   }
 
   .imageBg {
@@ -162,18 +169,26 @@
     right: 1px;
     width: 320px;
     height: 239px;
-    background-image: image-set(url('/img/wallet_hand_up_1x.webp') 1x, url('/img/wallet_hand_up_2x.webp') 2x);
+    background-image: image-set(url('/img/wallet_hand_like_1x.webp') 1x, url('/img/wallet_hand_like_2x.webp') 2x);
   }
-  .form {
-    gap: 24px;
-    padding: 62px;
-    padding-top: 32px;
-    padding-bottom: 50px;
-  }
+
   .button {
     width: 409px;
   }
   .linkName {
     width: 409px;
+  }
+}
+
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1280px) {
+  .container {
+    padding: 0;
+  }
+
+  .imageBg {
+    position: absolute;
+    bottom: 58px;
+    right: 1px;
   }
 }
