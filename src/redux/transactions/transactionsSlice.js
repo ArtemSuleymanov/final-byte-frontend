@@ -8,12 +8,12 @@ const initialState = {
 };
 
 const handlePending = (state) => {
-  state.loading = true;
+  state.isLoading = true;
   state.error = null;
 };
 
 const handleRejected = (state, action) => {
-  state.loading = false;
+  state.isLoading = false;
   state.error = action.payload;
 };
 
@@ -24,23 +24,41 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getTransactions.fulfilled, (state, action) => {
-        state.items = action.payload;
+        const list = Array.isArray(action.payload) ? action.payload : [];
+        state.items = list.map((t) => ({
+          ...t,
+          id: t._id,
+        }));
         state.isLoading = false;
       })
+
       .addCase(getTransactions.pending, handlePending)
       .addCase(getTransactions.rejected, handleRejected)
 
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items.unshift(action.payload);
+        if (action.payload) {
+          const transaction = {
+            ...action.payload,
+            id: action.payload._id,
+          };
+          state.items.unshift(transaction);
+        } else {
+          console.warn('No payload returned in addTransaction');
+        }
       })
+
       .addCase(addTransaction.pending, handlePending)
       .addCase(addTransaction.rejected, handleRejected)
       .addCase(updateTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
-        const index = state.items.findIndex((t) => t.id === action.payload.id);
-        state.items.splice(index, 1, action.payload);
+        const updated = { ...action.payload, id: action.payload._id };
+        const index = state.items.findIndex((t) => t.id === updated.id);
+        if (index !== -1) {
+          state.items.splice(index, 1, updated);
+        }
       })
+
       .addCase(updateTransaction.pending, handlePending)
       .addCase(updateTransaction.rejected, handleRejected)
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {

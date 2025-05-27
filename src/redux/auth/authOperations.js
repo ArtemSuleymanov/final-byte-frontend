@@ -1,10 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import axiosInstance from '../../api/axios';
-
-// const VITE_API_BASE_URL = 'https://final-byte-backend.onrender.com';
-
-// axios.defaults.baseURL = VITE_API_BASE_URL;
 
 export const setAuthHeader = (token) => {
   const cleanToken = token.replace(/^"|"$/g, '');
@@ -39,7 +34,7 @@ export const loginThunk = createAsyncThunk('auth/login', async (body, thunkAPI) 
 
     return {
       accessToken,
-      user: userRes.data,
+      user: userRes.data.user,
     };
   } catch (error) {
     const message = error.response?.data?.message || error.message;
@@ -68,6 +63,11 @@ export const refreshSessionThunk = createAsyncThunk('auth/refresh', async (_, th
     const { data } = await axiosInstance.get('/users/current');
     return { user: data };
   } catch (error) {
+    if (error.response?.status === 401 && error.response?.data?.message?.includes('Access token expired')) {
+      thunkAPI.dispatch(logoutThunk());
+      return thunkAPI.rejectWithValue('Session expired, logged out');
+    }
+
     return thunkAPI.rejectWithValue(error.message);
   }
 });

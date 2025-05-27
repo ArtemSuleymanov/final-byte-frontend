@@ -40,7 +40,7 @@ const TransactionsList = () => {
       </ul>
       <ul className={s.list}>
         {data?.map((item, index) => (
-          <TransactionsItem key={index} {...item} isEven={index % 2 === 1} />
+          <TransactionsItem key={item.id} {...item} isEven={index % 2 === 1} />
         ))}
       </ul>
     </div>

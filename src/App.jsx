@@ -32,7 +32,7 @@ export default function App() {
   }, [token]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
     <Suspense fallback={<Loader />}>
       <Routes>

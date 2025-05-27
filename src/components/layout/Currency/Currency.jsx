@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
+// components/Currency/Currency.jsx
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCurrencyIfNeeded } from '../../../redux/currency/currencySlice';
+import { fetchCurrencyIfNeeded } from '../../../redux/currency/currencyOperations';
+import {
+  selectCurrencyData,
+  selectCurrencyLoading,
+  selectCurrencyError,
+} from '../../../redux/currency/currencySelectors';
+
 import { formatValue } from '../../../utils/helpers';
 
 import Loader from '../../common/Loader/Loader';
@@ -8,7 +15,9 @@ import s from './Currency.module.css';
 
 const Currency = () => {
   const dispatch = useDispatch();
-  const { data: currency, loading, error } = useSelector((state) => state.currency);
+  const currency = useSelector(selectCurrencyData);
+  const loading = useSelector(selectCurrencyLoading);
+  const error = useSelector(selectCurrencyError);
 
   useEffect(() => {
     dispatch(fetchCurrencyIfNeeded());

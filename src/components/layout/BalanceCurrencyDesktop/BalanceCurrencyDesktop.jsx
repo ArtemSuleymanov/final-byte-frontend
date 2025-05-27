@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTransactions } from '../../../redux/transactions/transactionsSelectors';
-import { fetchCurrencyIfNeeded } from '../../../redux/currency/currencySlice';
+import { fetchCurrencyIfNeeded } from '../../../redux/currency/currencyOperations';
 import { formatValue } from '../../../utils/helpers';
 
 import Loader from '../../common/Loader/Loader';
@@ -11,7 +11,7 @@ const BalanceCurrencyDesktop = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const balance = transactions.reduce((acc, item) => {
-    return item.type === '+' ? acc + item.sum : acc - item.sum;
+    return item.type === 'income' ? acc + item.amount : acc - item.amount;
   }, 0);
   const formattedBalance = balance.toLocaleString('en-US', {
     minimumFractionDigits: 2,
