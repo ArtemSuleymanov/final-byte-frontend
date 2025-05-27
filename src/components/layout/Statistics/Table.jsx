@@ -11,6 +11,7 @@ const Table = ({ data, setTotal }) => {
         <span>Sum</span>
       </div>
 
+      
       {data.map((item) => (
         <div className={css.row} key={item.category}>
           <div className={css.cell}>
