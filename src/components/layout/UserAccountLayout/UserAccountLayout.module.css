@@ -1,16 +1,19 @@
+.main-content{
+    margin-top: 32px;
+}
 .layout-body {
     display: flex;
     flex-direction: column;
+    gap: 24px;
 }
 
 @media only screen and (min-width: 768px) {
     .layout-body {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin: 0 auto;
-        }
-    
+        flex-direction: column;
+        width: 100%;
+        gap: 32px;
+        margin-top: 32px;
+    }
 
     .main-content {
         flex: 1;
@@ -19,16 +22,15 @@
 
 @media only screen and (min-width: 1280px) {
     .layout-body {
-        display: flex;
         flex-direction: row;
         width: fit-content;
         align-items: flex-start;
         justify-content: center;
-        padding-left: 24px;
-
+        gap: 24px;
     }
 
     .main-content {
+        margin-top: 32px;
         flex: 1;
         overflow-y: auto;
     }
