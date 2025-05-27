@@ -22,7 +22,7 @@ const Table = ({ data, transactionType }) => {
                 style={{ backgroundColor: item.color }}
             />
                 <div className={css.cellData}>
-                  <span>{item.comment}</span>
+                  <span>{item.category}</span>
                   <span>{item.amount.toLocaleString()}</span>
                 </div>  
           </div>
