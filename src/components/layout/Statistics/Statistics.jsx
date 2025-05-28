@@ -5,7 +5,8 @@ import Dropdown from './Dropdown';
 import Table from './Table';
 import Toggle from '../../common/Toggle/Toggle';
 import { useSelector } from 'react-redux';
-import { selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import { selectIsLoading, selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import NoData from '../../common/NoData/NoData';
 
 const MONTHS = [
   'January',
@@ -92,7 +93,13 @@ const Statistics = () => {
   };
 
   const processedData = getProcessedData(data, year, month, transactionType);
+  console.log(processedData);
+
   const currDate = new Date();
+
+  if (Array.isArray(data) && data.length === 0) {
+    return <NoData text="No transactions found. Please add at least one to view statistics." />;
+  }
 
   return (
     <>

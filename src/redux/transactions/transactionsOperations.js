@@ -10,7 +10,7 @@ export const getTransactions = createAsyncThunk('transactions/getAll', async (pa
 
     if (token) setAuthHeader(token);
 
-    const { data } = await axiosInstance.get(`/transactions?page=${page}`);
+    const { data } = await axiosInstance.get(`/transactions?page=${page}&sortBy=date&sortOrder=desc`);
     const transactions = data?.data?.data || [];
 
     return {

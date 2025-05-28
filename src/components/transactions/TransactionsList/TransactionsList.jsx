@@ -9,10 +9,11 @@ import {
 } from '../../../redux/transactions/transactionsSelectors';
 import Loader from '../../common/Loader/Loader';
 import { useEffect } from 'react';
+import NoData from '../../common/NoData/NoData';
 
 const TransactionsList = () => {
   const data = useSelector(selectTransactions);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   const paginationInfo = useSelector(selectPagination);
   const dispatch = useDispatch();
   // const isLoading = useSelector((state) => state.loader.isLoading);
@@ -30,14 +31,15 @@ const TransactionsList = () => {
     }
   };
 
-  // if (!isLoading && (!Array.isArray(data) || data.length === 0)) {
-  //   return <p className={s.placeholder}>No transactions yet</p>;
-  // }
+  if (Array.isArray(data) && data.length === 0) {
+    return <NoData text="No transactions found" />;
+  }
+
   return (
-    <section className={s.section}>
+    <section className={!(Array.isArray(data) && data.length === 0) ? s.section : s.sectionNoData}>
       <Loader />
 
-      {Array.isArray(data) && data.length === 0 && !isLoading && <p className={s.placeholder}>No transactions yet</p>}
+      {/* {Array.isArray(data) && data.length === 0 && !isLoading && <NoData text="No transactions found" />} */}
       {Array.isArray(data) && data.length > 0 && (
         <>
           <ul className={s.ul}>

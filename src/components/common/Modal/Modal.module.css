@@ -50,6 +50,7 @@
 }
 
 .modal {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -91,13 +92,14 @@
   margin-top: 16px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 90%;
+  max-width: 196px;
 }
 
 .logoutBtn {
   border: none;
   border-radius: 8px;
   padding: 11px 79px;
+  width: calc(100% - 8px);
 
   height: 44px;
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
@@ -123,6 +125,7 @@
   border: 1px solid var(--main-black);
   border-radius: 8px;
 
+  width: calc(100% - 8px);
   height: 44px;
   cursor: pointer;
   margin-top: 16px;
@@ -157,6 +160,9 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .modal {
+    align-items: center;
+  }
   .modalContent {
     width: 540px;
     /* height: 387px; */
@@ -165,6 +171,7 @@
   .text {
     width: auto;
     margin-top: 38px;
+    max-width: 294px;
   }
 
   .logoutBtn {

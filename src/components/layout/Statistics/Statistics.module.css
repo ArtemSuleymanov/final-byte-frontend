@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   padding: 16px 12px;
-  min-height: 587px;
+  /* min-height: 587px; */
   /* max-width: 288px; */
   background-image: linear-gradient(#355359, #3b5d63);
   display: flex;
@@ -26,10 +26,14 @@
     /* max-width: 698px; */
     max-height: 680px;
     justify-content: space-between;
-    padding: 16px 16px 160px 16px;
+    padding: 16px 16px 0 16px;
     flex-direction: row;
     align-items: flex-start;
     margin-top: 0;
+  }
+
+  .toggle {
+    max-width: 288px;
   }
 }
 
@@ -37,8 +41,9 @@
   .container {
     /* max-width: 757px; */
     min-width: 757px;
-    max-height: 670px;
-    padding: 16px 26px 202px 32px;
+    min-height: 587px;
+    /* max-height: 670px; */
+    padding: 16px 26px 0 32px;
     flex-direction: row;
     /* margin: 55px 0; */
   }
