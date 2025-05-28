@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import css from './Dropdown.module.css';
+import sprite from '../../../assets/sprite.svg';
 
 const Dropdown = ({ title, items, set }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,10 @@ const Dropdown = ({ title, items, set }) => {
     <div className={css.dropdown}>
       <button onClick={toggleDropdown}>
         {selected || title}
-        <div className={`${css.arrow} ${isOpen ? css.open : ''}`}>{'>'}</div>
+        <svg className={ `${css.icon} ${isOpen ? css.open : ''}`}>
+          <use href={`${sprite}#icon-Arrow-up`} />
+        </svg>
+
       </button>
       {isOpen && (
         <div className={css.content}>

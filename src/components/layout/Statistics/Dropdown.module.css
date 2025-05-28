@@ -1,3 +1,8 @@
+.dropdown
+{
+    position: relative;
+}
+
 .dropdown button {
     background-color: transparent;
     padding: 11px 54px 11px 14px;
@@ -8,7 +13,6 @@
     font-weight: 500;
     font-size: 18px;
     color: #fcfcfc;
-    position: relative;
 }
 
 .dropdown .content {
@@ -34,16 +38,23 @@
 }
 
 .dropdown .arrow {
-    position: absolute;
-    right: 14px;
-    top: 12px;
+    
     pointer-events: none;
     transform: rotate(90deg);
     transition: transform 300ms;
 }
-
-.arrow.open {
-    transform: rotate(-90deg);
+.icon {
+    right: 10px;
+    height: 10px;
+    position: absolute;
+    stroke: white;
+    fill: transparent;
+    height: 22px;
+    width: 22px;
+    transition: transform 300ms;
+}
+.icon.open {
+    transform: rotate(-180deg);
 }
 
 .dropdown .content a {
