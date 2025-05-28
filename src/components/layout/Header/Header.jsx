@@ -10,7 +10,7 @@ export default function Header() {
   const user = useSelector((state) => state.auth.user);
 
   const userName = user?.name || 'User';
-  console.log('user from Redux:', user);
+  // console.log('user from Redux:', user);
 
   return (
     <header className={s.header}>

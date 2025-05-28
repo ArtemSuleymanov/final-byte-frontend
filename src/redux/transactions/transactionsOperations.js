@@ -11,11 +11,6 @@ export const getTransactions = createAsyncThunk('transactions/getAll', async (pa
     if (token) setAuthHeader(token);
     const { data } = await axiosInstance.get(`/transactions?page=${page}`);
 
-    console.log('Fetched page', page, 'transactions:', data);
-
-    // const transactions = data?.data?.data || [];
-
-    // return transactions;
     return {
       data: data?.data?.data || [],
       page: data?.data?.page || 1,
@@ -37,9 +32,6 @@ export const addTransaction = createAsyncThunk('transactions/addTransaction', as
     if (token) setAuthHeader(token);
     const { data } = await axiosInstance.post('/transactions', body);
     await thunkAPI.dispatch(refreshSessionThunk());
-
-    // log & return single transaction
-    console.log('Result from addTransaction:', data.data);
     return data.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -56,9 +48,6 @@ export const updateTransaction = createAsyncThunk(
       if (token) setAuthHeader(token);
       const { data } = await axiosInstance.patch(`/transactions/${id}`, body);
       await thunkAPI.dispatch(refreshSessionThunk());
-
-      // await thunkAPI.dispatch(userData());
-
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -74,8 +63,6 @@ export const deleteTransaction = createAsyncThunk('transactions/deleteTransactio
     if (token) setAuthHeader(token);
     await axiosInstance.delete(`transactions/${id}`);
     await thunkAPI.dispatch(refreshSessionThunk());
-
-    // await thunkAPI.dispatch(userData());
     return { id };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

@@ -21,7 +21,7 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log(values);
+      // console.log(values);
 
       const amountNumber = Number(values.amount);
       await onSubmit({ ...values, amount: amountNumber });

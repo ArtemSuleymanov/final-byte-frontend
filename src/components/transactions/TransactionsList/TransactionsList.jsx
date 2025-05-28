@@ -47,16 +47,18 @@ const TransactionsList = () => {
               <div className={s.wrapper}>Sum</div>
             </li>
           </ul>
-          <ul className={s.list}>
-            {(data || []).map((item, index) => (
-              <TransactionsItem key={item._id} {...item} isEven={index % 2 === 1} />
-            ))}
-            {hasNextPage && (
-              <button className={s.moreBtn} onClick={handleLoadMore}>
-                Load more
-              </button>
-            )}
-          </ul>
+          <div className={s.list}>
+            <ul className={s.item}>
+              {(data || []).map((item, index) => (
+                <TransactionsItem key={item._id} {...item} isEven={index % 2 === 1} />
+              ))}
+              {hasNextPage && (
+                <button className={s.moreBtn} onClick={handleLoadMore}>
+                  Load more
+                </button>
+              )}
+            </ul>
+          </div>
         </>
       )}
     </section>

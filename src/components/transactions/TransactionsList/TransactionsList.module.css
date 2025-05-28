@@ -2,12 +2,11 @@
   display: none;
 }
 
-.list {
-  background: var(--main-background-color);
+.item {
+  gap: 16px;
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.3s ease;
-  gap: 16px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -36,7 +35,7 @@
   }
 
   .placeholder {
-    max-width: 704px;
+    min-width: 704px;
     min-height: 538px;
     border-radius: 16px;
   }
@@ -58,16 +57,18 @@
   }
 
   .list {
-    background: var(--hover-color);
+    padding-right: 10px;
+  }
+
+  .item {
+    gap: 16px;
+    border-radius: 16px;
+    overflow-y: auto;
     margin: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    border-radius: 16px;
-    overflow-y: auto;
     max-height: 538px;
-    padding-right: 10px;
     scroll-behavior: smooth;
   }
 
@@ -75,18 +76,18 @@
     padding-left: 4px;
   }
 
-  .list::-webkit-scrollbar {
+  .item::-webkit-scrollbar {
     width: 4px;
   }
 
-  .list::-webkit-scrollbar-track {
+  .item::-webkit-scrollbar-track {
     background: var(--main-background-color);
     margin-top: 80px;
     margin-bottom: 80px;
     border-radius: 64px;
   }
 
-  .list::-webkit-scrollbar-thumb {
+  .item::-webkit-scrollbar-thumb {
     background: #508f8c;
     border-radius: 64px;
   }
@@ -102,15 +103,14 @@
     padding-right: 10px;
     padding-left: 27px;
   }
-  .list {
+  .item {
     padding-right: 18px;
+    padding-bottom: 16px;
   }
 
   .placeholder {
     min-width: 757px;
-    /* background: var(--hover-color); */
     min-height: 585px;
-    /* border-radius: 16px; */
   }
 }
 

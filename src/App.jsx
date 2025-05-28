@@ -26,7 +26,7 @@ export default function App() {
 
   useEffect(() => {
     if (token) {
-      console.log('Setting token header:', token);
+      // console.log('Setting token header:', token);
       setAuthHeader(token);
     }
   }, [token]);

@@ -32,7 +32,7 @@ const TransactionsItem = ({ date, type, category, comment, amount, isEven, _id }
         setIsModalEditOpen(false);
       })
       .catch((error) => {
-        console.error('Update failed:', error);
+        // console.error('Update failed:', error);
       });
   };
 
@@ -68,7 +68,7 @@ const TransactionsItem = ({ date, type, category, comment, amount, isEven, _id }
 
         <div className={s.div}>
           <span className={s.label}>Sum</span>
-          <span className={`${s.value} ${type === '+' ? s.positive : s.negative}`}>
+          <span className={`${s.value} ${type === 'income' ? s.positive : s.negative}`}>
             {Number(amount).toFixed(2).replace('.', ',')}
           </span>
         </div>

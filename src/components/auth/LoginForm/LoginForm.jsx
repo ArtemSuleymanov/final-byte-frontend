@@ -32,7 +32,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
-    console.log('Login form submitted:', values);
+    // console.log('Login form submitted:', values);
     try {
       await dispatch(loginThunk(values)).unwrap();
       navigate('/home');

@@ -18,15 +18,11 @@ const HomeTab = () => {
   }, [dispatch]);
 
   const handleAddTransaction = async (values) => {
-    console.log('Submitted values:', values);
     try {
       const result = await dispatch(addTransaction(values)).unwrap();
-      console.log('Result from addTransaction:', result);
       dispatch(getTransactions());
       setIsOpen(false);
-    } catch (error) {
-      console.error('Failed to add transaction:', error);
-    }
+    } catch (error) {}
   };
 
   return (
