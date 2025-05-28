@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import css from './Dropdown.module.css';
+import sprite from '../../../assets/sprite.svg';
 
-const Dropdown = ({ title, items, set }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Dropdown = ({ title, items, set, isOpen, onToggle }) => {
+  // const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  
-  const toggleDropdown = () => setIsOpen(prev => !prev);
 
-    const handleSelect = (item) => {
-    set(item);             
-    setSelected(item);     
-    setIsOpen(false);      
+  // const toggleDropdown = () => setIsOpen(prev => !prev);
+
+  const handleSelect = (item) => {
+    set(item);
+    setSelected(item);
+    onToggle(null);
   };
 
   return (
     <div className={css.dropdown}>
-      <button onClick={toggleDropdown}>
+      <button onClick={onToggle}>
         {selected || title}
-        <div className={`${css.arrow} ${isOpen ? css.open : ''}`}>{'>'}</div>
+        <svg className={`${css.icon} ${isOpen ? css.open : ''}`}>
+          <use href={`${sprite}#icon-Arrow-up`} />
+        </svg>
       </button>
       {isOpen && (
         <div className={css.content}>
-          {items.map(item => (
+          {items.map((item) => (
             <a key={item} href="#" onClick={() => handleSelect(item)}>
               {item}
             </a>

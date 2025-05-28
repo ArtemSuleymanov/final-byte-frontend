@@ -1,0 +1,27 @@
+.placeholder {
+  text-align: center;
+  align-content: center;
+  color: #ccc;
+  padding: 20px;
+  max-width: 288px;
+  min-height: 293px;
+  background: var(--hover-color);
+  border-radius: 16px;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .placeholder {
+    max-width: 704px;
+    min-height: 200px;
+    border-radius: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .placeholder {
+    min-width: 757px;
+    min-height: auto;
+    min-height: 585px;
+  }
+}

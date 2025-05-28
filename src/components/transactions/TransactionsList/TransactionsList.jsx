@@ -9,31 +9,37 @@ import {
 } from '../../../redux/transactions/transactionsSelectors';
 import Loader from '../../common/Loader/Loader';
 import { useEffect } from 'react';
+import NoData from '../../common/NoData/NoData';
 
 const TransactionsList = () => {
   const data = useSelector(selectTransactions);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   const paginationInfo = useSelector(selectPagination);
   const dispatch = useDispatch();
   // const isLoading = useSelector((state) => state.loader.isLoading);
   const { page, hasNextPage } = paginationInfo || {};
 
   useEffect(() => {
-    dispatch(getTransactions());
-  }, [dispatch]);
+    if (data.length === 0) {
+      dispatch(getTransactions(1));
+    }
+  }, [dispatch, data.length]);
 
   const handleLoadMore = () => {
-    dispatch(getTransactions(page + 1));
+    if (hasNextPage) {
+      dispatch(getTransactions(page + 1));
+    }
   };
 
-  // if (!isLoading && (!Array.isArray(data) || data.length === 0)) {
-  //   return <p className={s.placeholder}>No transactions yet</p>;
-  // }
+  if (Array.isArray(data) && data.length === 0) {
+    return <NoData text="No transactions found" />;
+  }
+
   return (
-    <section className={s.section}>
+    <section className={!(Array.isArray(data) && data.length === 0) ? s.section : s.sectionNoData}>
       <Loader />
 
-      {Array.isArray(data) && data.length === 0 && !isLoading && <p className={s.placeholder}>No transactions yet</p>}
+      {/* {Array.isArray(data) && data.length === 0 && !isLoading && <NoData text="No transactions found" />} */}
       {Array.isArray(data) && data.length > 0 && (
         <>
           <ul className={s.ul}>
@@ -47,18 +53,16 @@ const TransactionsList = () => {
               <div className={s.wrapper}>Sum</div>
             </li>
           </ul>
-          <div className={s.list}>
-            <ul className={s.item}>
-              {(data || []).map((item, index) => (
-                <TransactionsItem key={item._id} {...item} isEven={index % 2 === 1} />
-              ))}
-              {hasNextPage && (
-                <button className={s.moreBtn} onClick={handleLoadMore}>
-                  Load more
-                </button>
-              )}
-            </ul>
-          </div>
+          <ul className={s.list}>
+            {(data || []).map((item, index) => (
+              <TransactionsItem key={item._id} {...item} isEven={index % 2 === 1} />
+            ))}
+            {hasNextPage && (
+              <button className={s.moreBtn} onClick={handleLoadMore}>
+                Show more
+              </button>
+            )}
+          </ul>
         </>
       )}
     </section>

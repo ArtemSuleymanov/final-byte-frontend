@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import s from './TransactionForm.module.css';
 import Select from 'react-select';
 import { categoriesList, typeList } from '../../../utils/constants';
+import sprite from '../../../assets/sprite.svg';
 
 const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef, transactionType }) => {
   const expenseCategories = categoriesList.slice(1); // all except first
@@ -21,8 +22,6 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      // console.log(values);
-
       const amountNumber = Number(values.amount);
       await onSubmit({ ...values, amount: amountNumber });
       onClose();
@@ -34,7 +33,6 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const defaultInitialValues = {
     amount: '',
-    comment: 'by Spendy',
     category: transactionType ? expenseCategories[0] : categoriesList[0],
     type: transactionType ? typeList[1] : typeList[0],
     date: new Date(),
@@ -85,6 +83,33 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
                   singleValue: (base) => ({ ...base, color: 'var(--main-black)', fontSize: 18 }),
                   dropdownIndicator: (base) => ({ ...base, color: 'var(--main-black)', paddingRight: 14 }),
                   indicatorSeparator: () => ({ display: 'none' }),
+                  menu: (base) => ({
+                    ...base,
+                    borderRadius: 8,
+                    background: 'linear-gradient(180deg, #294045 0%, #1e2f33 100%)',
+                    overflow: 'hidden',
+                    marginTop: 4,
+                    right: 0,
+                    position: 'absolute',
+                  }),
+
+                  option: (base, { isFocused, isSelected }) => ({
+                    ...base,
+                    background:
+                      isFocused || isSelected ? 'linear-gradient(180deg, #355359 0%, #3b5d63 100%)' : 'transparent',
+                    color: 'var(--main-white)',
+                    fontFamily: 'var(--font-family)',
+                    fontWeight: 500,
+                    fontSize: 16,
+                    cursor: 'pointer',
+                    padding: '10px 12px',
+                    textAlign: 'left',
+                  }),
+
+                  menuList: (base) => ({
+                    ...base,
+                    padding: 0,
+                  }),
                 }}
               />
               <ErrorMessage name="category" component="span" className={s.span} />
@@ -111,14 +136,19 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
             </label>
 
             <label className={s.labelWrapper}>
-              <DatePicker
-                selected={values.date ? new Date(values.date) : new Date()}
-                onChange={(date) => setFieldValue('date', date)}
-                dateFormat="dd.MM.yyyy"
-                className={inputClass('date', touched, errors)}
-                placeholderText="Select a date"
-                maxDate={new Date()}
-              />
+              <div className={s.inputWithIcon}>
+                <DatePicker
+                  selected={values.date ? new Date(values.date) : new Date()}
+                  onChange={(date) => setFieldValue('date', date)}
+                  dateFormat="dd.MM.yyyy"
+                  className={inputClass('date', touched, errors)}
+                  placeholderText="Select a date"
+                  maxDate={new Date()}
+                />
+                <svg className={s.icon} width="24" height="24">
+                  <use href={`${sprite}#icon-date-range`} />
+                </svg>
+              </div>
               <ErrorMessage name="date" component="span" className={s.span} />
             </label>
           </div>

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addTransaction, deleteTransaction, getTransactions, updateTransaction } from './transactionsOperations';
+import { logoutThunk } from '../auth/authOperations';
 
 const initialState = {
   items: [],
@@ -29,24 +30,26 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(logoutThunk.fulfilled, (state) => {
+        Object.assign(state, initialState);
+      })
+
       .addCase(getTransactions.fulfilled, (state, action) => {
         state.isLoading = false;
-        const response = action.payload;
-        const transactions = response.data?.data;
-        const { page, perPage, totalItems, totalPages, hasNextPage } = response.data;
+        const { transactions, page, perPage, totalItems, totalPages, hasNextPage } = action.payload;
 
         if (!Array.isArray(transactions)) {
           state.error = 'Invalid data format received';
           return;
         }
 
-        const newItems = transactions.map((item) => ({ ...item }));
+        const newItems = transactions.map((item) => ({ ...item, id: item._id }));
 
         if (page === 1) {
           state.items = newItems;
         } else {
-          const existingIds = new Set(state.items.map((item) => item._id));
-          const uniqueItems = newItems.filter((item) => !existingIds.has(item._id));
+          const existingIds = new Set(state.items.map((item) => item.id));
+          const uniqueItems = newItems.filter((item) => !existingIds.has(item.id));
           state.items.push(...uniqueItems);
         }
 
@@ -71,7 +74,7 @@ const slice = createSlice({
           };
           state.items.unshift(transaction);
         } else {
-          console.warn('No payload returned in addTransaction');
+          // console.warn('No payload returned in addTransaction');
         }
       })
 

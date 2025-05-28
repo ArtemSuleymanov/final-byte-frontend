@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-import { Cell, Pie, PieChart } from "recharts";
-import css from "./Chart.module.css";
+import { useEffect, useState } from 'react';
+import { Cell, Pie, PieChart } from 'recharts';
+import css from './Chart.module.css';
 
-
-const Chart = ({ data, total }) => {
+const Chart = ({ data }) => {
   const [size, setSize] = useState(264);
-
-
+  const total = data.reduce((sum, item) => sum + item.amount, 0);
 
   const formatTotal = (value) => {
     const parts = value.toFixed(2).split('.');
@@ -16,23 +14,17 @@ const Chart = ({ data, total }) => {
 
   useEffect(() => {
     const updateSize = () => {
-      setSize(window.innerWidth === 768 ? 400 : 264);
+      setSize(window.innerWidth >= 768 ? 288 : 264);
     };
     updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
   }, []);
 
   return (
     <div className={css.chartWrapper}>
       <PieChart width={size} height={size}>
-        <Pie
-          data={data}
-          outerRadius={100}
-          innerRadius={70}
-          dataKey="amount"
-          stroke="none"
-        >
+        <Pie data={data} outerRadius={100} innerRadius={70} dataKey="amount" stroke="none">
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={entry.color} />
           ))}

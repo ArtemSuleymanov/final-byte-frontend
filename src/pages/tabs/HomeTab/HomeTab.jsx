@@ -3,10 +3,9 @@ import ButtonAddTransaction from '../../../components/transactions/ButtonAddTran
 import { getTransactions, addTransaction } from '../../../redux/transactions/transactionsOperations.js';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Currency from '../../../components/layout/Currency/Currency.jsx';
-import Balance from '../../../components/layout/Balance/Balance.jsx';
 import ModalAddTransaction from '../../../components/transactions/ModalAddTransaction/ModalAddTransaction.jsx';
 import { toggleReset } from '../../../redux/toggle/toggleSlice';
+import { toast } from 'react-hot-toast';
 
 const HomeTab = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +18,17 @@ const HomeTab = () => {
 
   const handleAddTransaction = async (values) => {
     try {
-      const result = await dispatch(addTransaction(values)).unwrap();
+      await dispatch(addTransaction(values)).unwrap();
+      toast.success('Transaction added successfully');
       dispatch(getTransactions());
       setIsOpen(false);
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message || 'Failed to add transaction');
+    }
   };
 
   return (
     <>
-      {/* <Balance /> */}
       <TransactionsList />
       <ButtonAddTransaction
         onClick={() => {

@@ -23,7 +23,6 @@ export const registerThunk = createAsyncThunk('auth/register', async (body, thun
 export const loginThunk = createAsyncThunk('auth/login', async (body, thunkAPI) => {
   try {
     const res = await axiosInstance.post('/auth/login', body);
-    // console.log('Login response:', res.data);
     const accessToken = res.data?.data?.accessToken.replace(/"/g, '');
 
     if (!accessToken) throw new Error('No access token returned from login');
