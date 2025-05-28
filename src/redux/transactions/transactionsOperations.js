@@ -3,20 +3,27 @@ import { setAuthHeader } from '../auth/authOperations';
 import { refreshSessionThunk } from '../auth/authOperations';
 import axiosInstance from '../../api/axios';
 
-export const getTransactions = createAsyncThunk('transactions/getAll', async (_, thunkAPI) => {
+export const getTransactions = createAsyncThunk('transactions/getAll', async (page = 1, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
     const token = state.auth.accessToken;
 
     if (token) setAuthHeader(token);
-    const { data } = await axiosInstance.get('/transactions');
+    const { data } = await axiosInstance.get(`/transactions?page=${page}`);
 
-    console.log('Fetched transactions:', data);
+    console.log('Fetched page', page, 'transactions:', data);
 
-    // ✔️ Extract the actual array of transactions
-    const transactions = data?.data?.data || [];
+    // const transactions = data?.data?.data || [];
 
-    return transactions;
+    // return transactions;
+    return {
+      data: data?.data?.data || [],
+      page: data?.data?.page || 1,
+      perPage: data?.data?.perPage || 10,
+      totalItems: data?.data?.totalItems || 0,
+      totalPages: data?.data?.totalPages || 1,
+      hasNextPage: data?.data?.hasNextPage || false,
+    };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
