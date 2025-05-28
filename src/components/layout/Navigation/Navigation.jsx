@@ -10,9 +10,12 @@ const navItems = [
 ];
 
 const Icon = ({ id, isActive }) => (
-  <svg className={`${s.icon} ${isActive ? s.iconActive : ''}`} aria-hidden="true">
-    <use href={`${sprite}#${id}`} />
-  </svg>
+  <div className={isActive ? s.iconWrapperActive : s.iconWrapper}>
+    <span className={isActive ? s.backColorActive : s.backColor} />
+    <svg className={`${s.icon} ${isActive ? s.iconActive : ''}`} aria-hidden="true" width="20" height="20">
+      <use href={`${sprite}#${id}`} />
+    </svg>
+  </div>
 );
 
 const Navigation = () => {

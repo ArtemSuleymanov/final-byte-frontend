@@ -5,7 +5,8 @@ import Dropdown from './Dropdown';
 import Table from './Table';
 import Toggle from '../../common/Toggle/Toggle';
 import { useSelector } from 'react-redux';
-import { selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import { selectIsLoading, selectTransactions } from '../../../redux/transactions/transactionsSelectors';
+import NoData from '../../common/NoData/NoData';
 
 const MONTHS = [
   'January',
@@ -21,97 +22,117 @@ const MONTHS = [
   'November',
   'December',
 ];
-const YEARS = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
-const COLORS = [
-  '#dfad3f', '#ffd8d0', '#fd9498',
-  '#c5baff', '#6e78e8', '#4a56e2',
-  '#81e1ff', '#24cca7', '#00ad84',
-];
+const currentYear = new Date().getFullYear();
+const YEARS = Array.from({ length: 11 }, (_, i) => currentYear - 5 + i);
+const COLORS = ['#dfad3f', '#ffd8d0', '#fd9498', '#c5baff', '#6e78e8', '#4a56e2', '#81e1ff', '#24cca7', '#00ad84'];
 
 const Statistics = () => {
-  const [transactionType, setTransactionType] = useState(true); 
+  const [transactionType, setTransactionType] = useState(true);
   const [year, setYear] = useState(null);
   const [month, setMonth] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
   const data = useSelector(selectTransactions);
 
   const getProcessedData = (data, year = null, month = null, transactionType) => {
     if (!data) return [];
-    
-    let filtered = data.filter(item => transactionType ? item.type === 'expense' : item.type === 'income');
-  
+
+    let filtered = data.filter((item) => (transactionType ? item.type === 'expense' : item.type === 'income'));
+
     if (year !== null) {
-      filtered = filtered.filter(item => {
+      filtered = filtered.filter((item) => {
         const itemYear = new Date(item.date).getFullYear();
         return itemYear === year;
       });
     }
-  
+
     if (month !== null) {
       let monthNumber;
-      
+
       if (typeof month === 'string') {
-          monthNumber = MONTHS.findIndex(m => 
-              m.toLowerCase() === month.toLowerCase()) + 1;
-          if (monthNumber === 0) monthNumber = null; 
+        monthNumber = MONTHS.findIndex((m) => m.toLowerCase() === month.toLowerCase()) + 1;
+        if (monthNumber === 0) monthNumber = null;
       } else {
-          monthNumber = month >= 1 && month <= 12 ? month : null;
+        monthNumber = month >= 1 && month <= 12 ? month : null;
       }
-      
+
       if (monthNumber) {
-          filtered = filtered.filter(item => {
-              const itemMonth = new Date(item.date).getMonth() + 1;
-              return itemMonth === monthNumber;
-          });
+        filtered = filtered.filter((item) => {
+          const itemMonth = new Date(item.date).getMonth() + 1;
+          return itemMonth === monthNumber;
+        });
       }
     }
-  
+
     const categoryMap = {};
     for (const item of filtered) {
-        const cat = item.category || 'Unknown';
-        if (!categoryMap[cat]) {
-            categoryMap[cat] = {
-                category: cat,
-                amount: 0,
-            };
-        }
-    categoryMap[cat].amount += item.amount || 0;
-}
+      const cat = item.category || 'Unknown';
+      if (!categoryMap[cat]) {
+        categoryMap[cat] = {
+          category: cat,
+          amount: 0,
+        };
+      }
+      categoryMap[cat].amount += item.amount || 0;
+    }
 
-  
     return Object.values(categoryMap)
-        .sort((a, b) => b.amount - a.amount)
-        .map((item, index) => ({
-            ...item,
-            color: COLORS[index % COLORS.length],
-        }));
+      .sort((a, b) => b.amount - a.amount)
+      .map((item, index) => ({
+        ...item,
+        color: COLORS[index % COLORS.length],
+      }));
   };
 
   const handleToggleChange = (value) => {
     setTransactionType(value);
   };
 
+  const handleDropdownToggle = (name) => {
+    setOpenDropdown((prev) => (prev === name ? null : name));
+  };
 
   const processedData = getProcessedData(data, year, month, transactionType);
+  console.log(processedData);
+
   const currDate = new Date();
-  
-  
-  
+
+  if (Array.isArray(data) && data.length === 0) {
+    return <NoData text="No transactions found. Please add at least one to view statistics." />;
+  }
+
   return (
-    <div className={css.div}>
+    <>
       <div className={css.container}>
         <div className={css.toggle}>
-          <Toggle style={{ marginTop: 0 }} checked={transactionType} handleChange={handleToggleChange}/>
+          <Toggle
+            style={{ marginTop: 0, marginBottom: 0 }}
+            checked={transactionType}
+            handleChange={handleToggleChange}
+          />
           <Chart data={processedData} />
         </div>
-        <div>
+        <div style={{ width: '100%' }}>
           <div className={css.dropdown}>
-            <Dropdown title={currDate.getFullYear()} items={YEARS} set={setYear} />
-            <Dropdown title={MONTHS[currDate.getMonth()]} items={MONTHS} set={setMonth} />
+            <Dropdown
+              title={currDate.getFullYear()}
+              items={YEARS}
+              set={setYear}
+              isOpen={openDropdown === 'year'}
+              onToggle={() => handleDropdownToggle('year')}
+            />
+            <Dropdown
+              title={MONTHS[currDate.getMonth()]}
+              items={MONTHS}
+              set={setMonth}
+              isOpen={openDropdown === 'month'}
+              onToggle={() => handleDropdownToggle('month')}
+            />
           </div>
-          <Table data={processedData} transactionType={ transactionType} />
+          <Table data={processedData} transactionType={transactionType} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
