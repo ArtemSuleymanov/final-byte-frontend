@@ -53,7 +53,6 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (values) => {
     const { name, email, password } = values;
-    console.log('Register values:', { name, email, password });
 
     try {
       const result = await dispatch(registerThunk({ name, email, password })).unwrap();

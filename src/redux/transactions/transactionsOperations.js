@@ -11,7 +11,6 @@ export const getTransactions = createAsyncThunk('transactions/getAll', async (pa
     if (token) setAuthHeader(token);
     const { data } = await axiosInstance.get(`/transactions?page=${page}`);
 
-    console.log('Fetched page', page, 'transactions:', data);
 
     // const transactions = data?.data?.data || [];
 
@@ -39,7 +38,6 @@ export const addTransaction = createAsyncThunk('transactions/addTransaction', as
     await thunkAPI.dispatch(refreshSessionThunk());
 
     // log & return single transaction
-    console.log('Result from addTransaction:', data.data);
     return data.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

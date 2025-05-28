@@ -7,6 +7,7 @@ import Currency from '../../../components/layout/Currency/Currency.jsx';
 import Balance from '../../../components/layout/Balance/Balance.jsx';
 import ModalAddTransaction from '../../../components/transactions/ModalAddTransaction/ModalAddTransaction.jsx';
 import { toggleReset } from '../../../redux/toggle/toggleSlice';
+import { toast } from 'react-hot-toast';
 
 const HomeTab = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,14 +19,13 @@ const HomeTab = () => {
   }, [dispatch]);
 
   const handleAddTransaction = async (values) => {
-    console.log('Submitted values:', values);
     try {
-      const result = await dispatch(addTransaction(values)).unwrap();
-      console.log('Result from addTransaction:', result);
+      await dispatch(addTransaction(values)).unwrap();
+      toast.success('Transaction added successfully');
       dispatch(getTransactions());
       setIsOpen(false);
     } catch (error) {
-      console.error('Failed to add transaction:', error);
+      toast.error(error.message || 'Failed to add transaction');
     }
   };
 

@@ -22,7 +22,6 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log(values);
 
       const amountNumber = Number(values.amount);
       await onSubmit({ ...values, amount: amountNumber });
@@ -35,7 +34,6 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const defaultInitialValues = {
     amount: '',
-    comment: 'by Spendy',
     category: transactionType ? expenseCategories[0] : categoriesList[0],
     type: transactionType ? typeList[1] : typeList[0],
     date: new Date(),

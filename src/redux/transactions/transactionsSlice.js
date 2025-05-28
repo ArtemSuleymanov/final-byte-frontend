@@ -71,7 +71,7 @@ const slice = createSlice({
           };
           state.items.unshift(transaction);
         } else {
-          console.warn('No payload returned in addTransaction');
+          // console.warn('No payload returned in addTransaction');
         }
       })
 
