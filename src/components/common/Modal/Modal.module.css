@@ -42,6 +42,7 @@
 
 .backDrop {
   position: absolute;
+  z-index: 99;
   backdrop-filter: blur(7px);
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   opacity: 0.4;

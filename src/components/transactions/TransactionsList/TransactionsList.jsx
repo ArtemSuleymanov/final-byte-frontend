@@ -19,11 +19,15 @@ const TransactionsList = () => {
   const { page, hasNextPage } = paginationInfo || {};
 
   useEffect(() => {
-    dispatch(getTransactions());
-  }, [dispatch]);
+    if (data.length === 0) {
+      dispatch(getTransactions(1));
+    }
+  }, [dispatch, data.length]);
 
   const handleLoadMore = () => {
-    dispatch(getTransactions(page + 1));
+    if (hasNextPage) {
+      dispatch(getTransactions(page + 1));
+    }
   };
 
   // if (!isLoading && (!Array.isArray(data) || data.length === 0)) {
@@ -53,7 +57,7 @@ const TransactionsList = () => {
             ))}
             {hasNextPage && (
               <button className={s.moreBtn} onClick={handleLoadMore}>
-                Load more
+                Show more
               </button>
             )}
           </ul>
