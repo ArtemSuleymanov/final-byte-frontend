@@ -90,28 +90,23 @@ const Statistics = () => {
     setTransactionType(value);
   };
 
-  const income = data ? data.filter(item => item.type === "income") : [];
-  const expense = data ? data.filter(item => item.type === "expense") : [];
-
-  const totalSum = income.reduce((acc, item) => acc + (item.amount || 0), 0);
-  const totalMinus = expense.reduce((acc, item) => acc + (item.amount || 0), 0);
-  const total = totalSum - totalMinus;
 
   const processedData = getProcessedData(data, year, month, transactionType);
-
-
+  const currDate = new Date();
+  
+  
   
   return (
     <div className={css.div}>
       <div className={css.container}>
         <div className={css.toggle}>
           <Toggle style={{ marginTop: 0 }} checked={transactionType} handleChange={handleToggleChange}/>
-          <Chart data={processedData} total={total} />
+          <Chart data={processedData} />
         </div>
         <div>
           <div className={css.dropdown}>
-            <Dropdown title="Years" items={YEARS} set={setYear} />
-            <Dropdown title="Months" items={MONTHS} set={setMonth} />
+            <Dropdown title={currDate.getFullYear()} items={YEARS} set={setYear} />
+            <Dropdown title={MONTHS[currDate.getMonth()]} items={MONTHS} set={setMonth} />
           </div>
           <Table data={processedData} transactionType={ transactionType} />
         </div>

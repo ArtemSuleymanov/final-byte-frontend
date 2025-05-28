@@ -81,6 +81,18 @@
   gap: 8px;
 }
 
+.inputWithIcon {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 14px;
+  top: 8px;
+  pointer-events: none;
+  fill: var(--main-black);
+}
+
 @media only screen and (min-width: 768px) {
 .rowWrapper {
 width: 410px;

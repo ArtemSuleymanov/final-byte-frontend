@@ -3,9 +3,9 @@ import { Cell, Pie, PieChart } from "recharts";
 import css from "./Chart.module.css";
 
 
-const Chart = ({ data, total }) => {
+const Chart = ({ data }) => {
   const [size, setSize] = useState(264);
-
+  const total = data.reduce((sum, item) => sum + item.amount, 0);
 
 
   const formatTotal = (value) => {
