@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import css from './Dropdown.module.css';
-import sprite from '../../../assets/sprite.svg';
+import sprite from '../../../../assets/sprite.svg';
 
 const Dropdown = ({ title, items, set }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  
   const toggleDropdown = () => setIsOpen(prev => !prev);
 
     const handleSelect = (item) => {

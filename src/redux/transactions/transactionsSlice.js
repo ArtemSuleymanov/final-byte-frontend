@@ -69,6 +69,7 @@ const slice = createSlice({
       })
       .addCase(deleteTransaction.pending, handlePending)
       .addCase(deleteTransaction.rejected, handleRejected);
+      
   },
 });
 
