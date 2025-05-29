@@ -6,7 +6,7 @@ import Table from './Table/Table';
 import Toggle from '../../common/Toggle/Toggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionsStatistic } from '../../../redux/stats/statisticsOperations';
-import { selectError, selectIsLoading, selectStatistics } from '../../../redux/stats/statisticsSelector';
+import {  selectIsLoading, selectStatistics } from '../../../redux/stats/statisticsSelector';
 import Loader from '../../common/Loader/Loader';
 import NoData from '../../common/NoData/NoData';
 
@@ -33,7 +33,6 @@ const Statistics = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
   const data = useSelector(selectStatistics);
-  const error = useSelector(selectError);
   const [year, setYear] = useState(currDate.getFullYear());
   const [month, setMonth] = useState(currDate.getMonth());
 
@@ -50,11 +49,11 @@ const Statistics = () => {
     setMonth(monthIndex);
   };
 
-  if (loading) return <Loader />;
+  
   if (Object.keys(data).length === 0) {
     return <NoData text="No transactions found. Please add at least one to view statistics." />;
   }
-  
+  if (loading) return <Loader />;
   return (
     <div className={css.div}>
       <div className={css.container}>
