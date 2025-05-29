@@ -5,8 +5,8 @@ import loadingMiddleware from './loader/loadingMiddleware';
 import currencyReducer from './currency/currencySlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { transactionsReducer } from './transactions/transactionsSlice';
-import toggleReducer from './toggle/toggleSlice';
 import storage from 'redux-persist/lib/storage';
+import { statisticReducer } from './stats/statisticsSlice';
 
 const persistConfig = {
   authConfig: {
@@ -19,11 +19,17 @@ const persistConfig = {
     storage,
     whitelist: ['data', 'lastFetched'],
   },
+  statsPersistConfig: {
+    key: 'stats',
+    storage,
+    whitelist: ['categorySummary', 'totals'] 
+  },
+
 };
 
 const persistedAuthReducer = persistReducer(persistConfig.authConfig, authReducer);
 const persistedCurrencyReducer = persistReducer(persistConfig.currencyConfig, currencyReducer);
-
+const persistedStatsReducer = persistReducer(persistConfig.statsPersistConfig,statisticReducer )
 const dummyReducer = (state = {}, action) => state;
 
 const transactionsPersistConfig = {
@@ -38,7 +44,7 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     transactions: persistReducer(transactionsPersistConfig, transactionsReducer),
     currency: persistedCurrencyReducer,
-    toggle: toggleReducer,
+    stats: persistedStatsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

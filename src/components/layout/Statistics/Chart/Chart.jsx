@@ -1,10 +1,35 @@
 import { useEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import css from './Chart.module.css';
+import { useSelector } from 'react-redux';
+import { selectStatistics, selectTotals } from './../../../../redux/stats/statisticsSelector';
 
-const Chart = ({ data }) => {
+const COLORS = ['#dfad3f', '#ffd8d0', '#fd9498', '#c5baff', '#6e78e8', '#4a56e2', '#81e1ff', '#24cca7', '#00ad84'];
+
+const Chart = ({ transactionType }) => {
   const [size, setSize] = useState(264);
-  const total = data.reduce((sum, item) => sum + item.amount, 0);
+  const statistics = useSelector(selectStatistics);
+  const total = useSelector(selectTotals);
+  const getProcessedData = (categoryData) => {
+    if (!categoryData || typeof categoryData !== 'object') {
+      return [];
+    }
+
+    const categoriesArray = Object.entries(categoryData).map(([name, amount]) => ({
+      name,
+      amount,
+    }));
+
+    return categoriesArray
+      .sort((a, b) => b.amount - a.amount)
+      .map((item, index) => ({
+        ...item,
+        color: COLORS[index % COLORS.length],
+      }));
+  };
+
+  const categoryData = transactionType ? statistics?.categorySummary?.expense : statistics?.categorySummary?.income;
+  const data = getProcessedData(categoryData);
 
   const formatTotal = (value) => {
     const parts = value.toFixed(2).split('.');
@@ -14,7 +39,7 @@ const Chart = ({ data }) => {
 
   useEffect(() => {
     const updateSize = () => {
-      setSize(window.innerWidth >= 768 ? 288 : 264);
+      setSize(window.innerWidth === 768 ? 400 : 264);
     };
     updateSize();
     window.addEventListener('resize', updateSize);
@@ -38,7 +63,7 @@ const Chart = ({ data }) => {
           fontSize={18}
           className={css.centerLabel}
         >
-          ₴{formatTotal(total)}
+          ₴{formatTotal(transactionType ? total.expense : total.income)}
         </text>
       </PieChart>
     </div>

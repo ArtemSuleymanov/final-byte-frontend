@@ -30,6 +30,7 @@ export const getTransactions = createAsyncThunk('transactions/getAll', async (pa
   }
 });
 
+
 export const addTransaction = createAsyncThunk('transactions/addTransaction', async (body, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
