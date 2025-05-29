@@ -43,9 +43,9 @@ const BalanceCurrencyDesktop = () => {
             <tbody>
               {currency.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.currencyCodeA}</td>
-                  <td>{formatValue(item.rateBuy)}</td>
-                  <td>{formatValue(item.rateSell)}</td>
+                  <td>{!error ? item.currencyCodeA : '-'}</td>
+                  <td>{!error ? formatValue(item.rateBuy) : '-'}</td>
+                  <td>{!error ? formatValue(item.rateSell) : '-'}</td>
                 </tr>
               ))}
             </tbody>
