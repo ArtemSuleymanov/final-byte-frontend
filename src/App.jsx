@@ -29,8 +29,9 @@ export default function App() {
   useEffect(() => {
     if (token) {
       setAuthHeader(token);
+      dispatch(refreshSessionThunk());
     }
-  }, [token]);
+  }, [token, dispatch]);
 
   return isRefreshing ? (
     <Loader />

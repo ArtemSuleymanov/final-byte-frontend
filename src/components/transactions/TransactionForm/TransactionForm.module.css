@@ -25,6 +25,13 @@
 .input::placeholder {
   font-size: 18px;
   color: inherit;
+    font-family: var(--font-family);
+font-weight: 500;
+font-size: 18px;
+background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .input:focus::placeholder {
