@@ -32,7 +32,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
-    console.log('Login form submitted:', values);
     try {
       await dispatch(loginThunk(values)).unwrap();
       navigate('/home');
@@ -53,6 +52,7 @@ const LoginForm = () => {
         link={{ to: '/register', text: 'Register' }}
         formClassName={s.loginForm}
         imageClassName={s.loginImage}
+        imageMobileBg={s.imageMobileBg}
       />
     </>
   );

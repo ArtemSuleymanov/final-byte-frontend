@@ -1,22 +1,31 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setAuthHeader } from '../auth/authOperations';
+import { logoutThunk, setAuthHeader } from '../auth/authOperations';
+import { refreshSessionThunk } from '../auth/authOperations';
 import axiosInstance from '../../api/axios';
 
-export const getTransactions = createAsyncThunk('transactions/getAll', async (_, thunkAPI) => {
+export const getTransactions = createAsyncThunk('transactions/getAll', async (page = 1, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
     const token = state.auth.accessToken;
 
     if (token) setAuthHeader(token);
-    const { data } = await axiosInstance.get('/transactions');
 
-    console.log('Fetched transactions:', data);
-
-    // ✔️ Extract the actual array of transactions
+    const { data } = await axiosInstance.get(`/transactions?page=${page}&sortBy=date&sortOrder=desc`);
     const transactions = data?.data?.data || [];
 
-    return transactions;
+    return {
+      transactions,
+      page: data?.data?.page || 1,
+      perPage: data?.data?.perPage || 10,
+      totalItems: data?.data?.totalItems || 0,
+      totalPages: data?.data?.totalPages || 1,
+      hasNextPage: data?.data?.hasNextPage || false,
+    };
   } catch (error) {
+    if (error.response?.status === 401 || error.response?.data?.message?.includes('Access token expired')) {
+      thunkAPI.dispatch(logoutThunk());
+      return thunkAPI.rejectWithValue('Session expired, logged out');
+    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -29,11 +38,15 @@ export const addTransaction = createAsyncThunk('transactions/addTransaction', as
 
     if (token) setAuthHeader(token);
     const { data } = await axiosInstance.post('/transactions', body);
+    await thunkAPI.dispatch(refreshSessionThunk());
 
     // log & return single transaction
-    console.log('Result from addTransaction:', data.data);
     return data.data;
   } catch (error) {
+    if (error.response?.status === 401 || error.response?.data?.message?.includes('Access token expired')) {
+      thunkAPI.dispatch(logoutThunk());
+      return thunkAPI.rejectWithValue('Session expired, logged out');
+    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -47,11 +60,16 @@ export const updateTransaction = createAsyncThunk(
 
       if (token) setAuthHeader(token);
       const { data } = await axiosInstance.patch(`/transactions/${id}`, body);
+      await thunkAPI.dispatch(refreshSessionThunk());
 
       // await thunkAPI.dispatch(userData());
 
       return data.data;
     } catch (error) {
+      if (error.response?.status === 401 || error.response?.data?.message?.includes('Access token expired')) {
+        thunkAPI.dispatch(logoutThunk());
+        return thunkAPI.rejectWithValue('Session expired, logged out');
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -64,10 +82,15 @@ export const deleteTransaction = createAsyncThunk('transactions/deleteTransactio
 
     if (token) setAuthHeader(token);
     await axiosInstance.delete(`transactions/${id}`);
+    await thunkAPI.dispatch(refreshSessionThunk());
 
     // await thunkAPI.dispatch(userData());
     return { id };
   } catch (error) {
+    if (error.response?.status === 401 || error.response?.data?.message?.includes('Access token expired')) {
+      thunkAPI.dispatch(logoutThunk());
+      return thunkAPI.rejectWithValue('Session expired, logged out');
+    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });

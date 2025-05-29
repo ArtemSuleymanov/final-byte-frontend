@@ -7,6 +7,7 @@ import { typeList } from '../../../utils/constants';
 import { useDispatch } from 'react-redux';
 import { updateTransaction } from '../../../redux/transactions/transactionsOperations';
 import { toggleReset } from '../../../redux/toggle/toggleSlice';
+import { toast } from 'react-hot-toast';
 
 const TransactionsItem = ({ date, type, category, comment, amount, isEven, _id }) => {
   const typeClass = type === 'income' ? s.income : s.expense;
@@ -32,7 +33,7 @@ const TransactionsItem = ({ date, type, category, comment, amount, isEven, _id }
         setIsModalEditOpen(false);
       })
       .catch((error) => {
-        console.error('Update failed:', error);
+        toast.error(`Update failed: ${error.message || 'Something went wrong'}`);
       });
   };
 

@@ -1,10 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addTransaction, deleteTransaction, getTransactions, updateTransaction } from './transactionsOperations';
+import { logoutThunk } from '../auth/authOperations';
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  pageInfo: {
+    page: 1,
+    perPage: 1,
+    totalPages: 0,
+    hasNextPage: false,
+  },
 };
 
 const handlePending = (state) => {
@@ -23,13 +30,36 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(logoutThunk.fulfilled, (state) => {
+        Object.assign(state, initialState);
+      })
+
       .addCase(getTransactions.fulfilled, (state, action) => {
-        const list = Array.isArray(action.payload) ? action.payload : [];
-        state.items = list.map((t) => ({
-          ...t,
-          id: t._id,
-        }));
         state.isLoading = false;
+        const { transactions, page, perPage, totalItems, totalPages, hasNextPage } = action.payload;
+
+        if (!Array.isArray(transactions)) {
+          state.error = 'Invalid data format received';
+          return;
+        }
+
+        const newItems = transactions.map((item) => ({ ...item, id: item._id }));
+
+        if (page === 1) {
+          state.items = newItems;
+        } else {
+          const existingIds = new Set(state.items.map((item) => item.id));
+          const uniqueItems = newItems.filter((item) => !existingIds.has(item.id));
+          state.items.push(...uniqueItems);
+        }
+
+        state.pageInfo = {
+          page,
+          perPage,
+          totalItems,
+          totalPages,
+          hasNextPage,
+        };
       })
 
       .addCase(getTransactions.pending, handlePending)
@@ -44,7 +74,7 @@ const slice = createSlice({
           };
           state.items.unshift(transaction);
         } else {
-          console.warn('No payload returned in addTransaction');
+          // console.warn('No payload returned in addTransaction');
         }
       })
 

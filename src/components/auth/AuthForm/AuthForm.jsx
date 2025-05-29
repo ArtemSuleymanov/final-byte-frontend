@@ -1,9 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import sprite from '../../../assets/sprite.svg';
+import { useConfirmPasswordStatus } from '../../../hooks/useConfirmPasswordStatus.js';
 import ProgressBar from '../../common/ProgressBar/ProgressBar.jsx';
 import s from './AuthForm.module.css';
-import { useConfirmPasswordStatus } from '../../../hooks/useConfirmPasswordStatus.js';
 
 const AuthForm = ({
   fields,
@@ -13,12 +13,13 @@ const AuthForm = ({
   buttonText,
   link,
   onPasswordChange,
-    passwordValue,
+  passwordValue,
   onConfirmPasswordChange,
   confirmPasswordValue,
-  
+
   formClassName,
   imageClassName,
+  imageMobileBg,
 }) => {
   const confirmPasswordStatus = useConfirmPasswordStatus(passwordValue, confirmPasswordValue);
   return (
@@ -27,6 +28,7 @@ const AuthForm = ({
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {({ handleChange, touched, errors }) => (
           <Form className={`${s.form} ${formClassName || ''}`} autoComplete="off">
+            <div className={`${s.imageMobileBg} ${imageMobileBg || ''}`}></div>
             <div className={s.logoWrapper}>
               <svg className={s.logo} role="img" aria-hidden="true">
                 <use href={`${sprite}#icon-wallet`} />

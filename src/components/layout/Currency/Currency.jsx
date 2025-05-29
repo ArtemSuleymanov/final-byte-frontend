@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// components/Currency/Currency.jsx
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrencyIfNeeded } from '../../../redux/currency/currencyOperations';
 import {
@@ -24,7 +23,7 @@ const Currency = () => {
   }, [dispatch]);
 
   if (loading) return <Loader />;
-  if (error) return <p>Error: {error}</p>;
+  // if (error) return <p>Error: {error}</p>;
 
   return (
     <section className={s.container}>
@@ -39,9 +38,9 @@ const Currency = () => {
         <tbody>
           {currency.map((item, index) => (
             <tr key={index}>
-              <td>{item.currencyCodeA}</td>
-              <td>{formatValue(item.rateBuy)}</td>
-              <td>{formatValue(item.rateSell)}</td>
+              <td>{!error ? item.currencyCodeA : '-'}</td>
+              <td>{!error ? formatValue(item.rateBuy) : '-'}</td>
+              <td>{!error ? formatValue(item.rateSell) : '-'}</td>
             </tr>
           ))}
         </tbody>

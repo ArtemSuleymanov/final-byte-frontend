@@ -1,8 +1,8 @@
 .container {
-  
+  width: 100%;
   padding: 16px 12px;
-  min-height: 587px;
-  max-width: 288px;
+  /* min-height: 587px; */
+  /* max-width: 288px; */
   background-image: linear-gradient(#355359, #3b5d63);
   display: flex;
   gap: 16px;
@@ -11,11 +11,9 @@
   flex-direction: column;
   border-radius: 16px;
 }
-.toggle
-{
+.toggle {
   color: white;
   display: flex;
-  gap: 32;
   flex-direction: column;
 }
 .dropdown {
@@ -23,25 +21,30 @@
   gap: 20px;
   margin-bottom: 20px;
 }
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .container {
-    max-width: 698px;
+    /* max-width: 698px; */
     max-height: 680px;
     justify-content: space-between;
-    padding: 16px 16px 160px 16px;
+    padding: 16px 16px 0 16px;
     flex-direction: row;
     align-items: flex-start;
     margin-top: 0;
   }
+
+  .toggle {
+    max-width: 288px;
+  }
 }
 
-@media only screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .container {
-    max-width: 757px;
-    max-height: 670px;
-    padding: 16px 26px 202px 32px;
+    /* max-width: 757px; */
+    min-width: 757px;
+    min-height: 587px;
+    /* max-height: 670px; */
+    padding: 16px 26px 0 32px;
     flex-direction: row;
-    margin: 55px 0;
+    /* margin: 55px 0; */
   }
-
 }

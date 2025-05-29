@@ -1,24 +1,25 @@
-import { Outlet } from "react-router-dom"
-import Header from "../Header/Header"
-import Sidebar from "../Sidebar/Sidebar"
+import { Outlet } from 'react-router-dom';
+import Header from '../Header/Header';
+import Sidebar from '../Sidebar/Sidebar';
 
-import css from "./UserAccountLayout.module.css"
+import css from './UserAccountLayout.module.css';
+import { useState } from 'react';
+import LogoutModal from '../LogoutModal/LogoutModal';
 
 const UserAccountLayout = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-  <>
-      <Header />
-      <div className={css["layout-body"]}>
-        <Sidebar />
-        <main className={css["main-content"]}>
+    <>
+      <Header logoutClick={() => setIsModalOpen(true)} />
+      <main className={css['main-content']}>
+        <div className={css['layout-body']}>
+          <Sidebar />
           <Outlet />
-        </main>
-      </div>
-      </>
-  )
-}
+        </div>
+        <LogoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      </main>
+    </>
+  );
+};
 
-
-
-export default UserAccountLayout
-
+export default UserAccountLayout;

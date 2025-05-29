@@ -6,14 +6,16 @@
   list-style: none;
   align-items: center;
   justify-content: center;
-  margin-bottom: 9px;
 }
 
 .icon {
   width: 44px;
   height: 44px;
-  fill: currentColor;
+  fill: var(--main-white);
   transition: fill 0.3s ease;
+  opacity: 0.5;
+  border: 0;
+  position: absolute;
 }
 
 .icon:active {
@@ -29,7 +31,7 @@
   font-weight: 400;
   font-size: 18px;
   opacity: 0.6;
-  transition: opacity 0.3s, color 0.3s;
+  transition: all 0.3s, color 0.3s;
 }
 
 .link:hover,
@@ -39,8 +41,42 @@
   color: white;
 }
 
+.iconWrapper {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backColor {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+}
+
 .iconActive {
-  fill: #ffffff;
+  fill: #355359;
+  opacity: 1;
+  border: 0;
+}
+
+.iconWrapperActive {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backColorActive {
+  position: absolute;
+  inset: 5px;
+  background-color: var(--main-white);
 }
 
 .label {
@@ -69,6 +105,16 @@
   .icon {
     width: 24px;
     height: 24px;
+  }
+
+  .iconWrapper,
+  .iconWrapperActive {
+    width: 24px;
+    height: 24px;
+  }
+
+  .backColorActive {
+    inset: 2px;
   }
 
   .label {

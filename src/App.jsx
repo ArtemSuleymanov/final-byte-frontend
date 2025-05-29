@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import useIsMobile from './hooks/useIsMobile';
 
 import Loader from './components/common/Loader/Loader.jsx';
 import PrivateLayout from './components/layout/PrivateLayout/PrivateLayout.jsx';
@@ -19,6 +20,7 @@ export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const token = useSelector((state) => state.auth.accessToken);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     dispatch(refreshSessionThunk());
@@ -26,7 +28,6 @@ export default function App() {
 
   useEffect(() => {
     if (token) {
-      console.log('Setting token header:', token);
       setAuthHeader(token);
     }
   }, [token]);
@@ -46,7 +47,7 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route element={<PrivateLayout />}>
             <Route path="/home" element={<Main />} />
-            <Route path="/currency" element={<Currency />} />
+            <Route path="/currency" element={isMobile ? <Currency /> : <Navigate to="/home" replace />} />
             <Route path="/stats" element={<Stats />} />
           </Route>
         </Route>

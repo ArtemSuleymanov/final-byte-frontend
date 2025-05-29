@@ -52,13 +52,13 @@ const Statistics = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className={css.div}>
+    <>
       <div className={css.container}>
         <div className={css.toggle}>
           <Toggle style={{ marginTop: 0 }} checked={transactionType} handleChange={handleToggleChange}/>
           <Chart transactionType= {transactionType}/>
         </div>
-        <div>
+        <div style={{ width: '100%' }}>
           <div className={css.dropdown}>
             <Dropdown title={year} items={YEARS} set={setYear} />
             <Dropdown title={MONTHS[month]} items={MONTHS} set={handleSelectMonth} />
@@ -66,7 +66,7 @@ const Statistics = () => {
           <Table transactionType={ transactionType} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

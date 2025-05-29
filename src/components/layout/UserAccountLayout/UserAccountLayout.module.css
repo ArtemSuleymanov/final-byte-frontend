@@ -1,35 +1,49 @@
+.main-content {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
 .layout-body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
-    .layout-body {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin: 0 auto;
-        }
-    
+  .layout-body {
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
 
-    .main-content {
-        flex: 1;
-    }
+  .main-content {
+    flex: 1;
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
-    .layout-body {
-        display: flex;
-        flex-direction: row;
-        width: fit-content;
-        align-items: flex-start;
-        justify-content: center;
-        padding-left: 24px;
+  .layout-body {
+    flex-direction: row;
+    width: fit-content;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    /* margin: 32px 24px 24px 24px; */
+  }
 
-    }
-
-    .main-content {
-        flex: 1;
-        overflow-y: auto;
-    }
+  .main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    flex: 1;
+    /* overflow-y: auto; */
+  }
 }
+
+/* @media only screen and (min-width: 1300px) {
+    .layout-body {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    } } */

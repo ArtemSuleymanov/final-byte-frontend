@@ -1,6 +1,6 @@
-.sidebar {
+/* .sidebar {
   margin: 24px 16px;
-}
+} */
 .leftColumn{
   justify-content: center;
   display: grid;
@@ -13,13 +13,13 @@
     gap: 32px;
     display: flex;
     justify-content: center;
-    margin: 32px 0;
+    /* margin: 32px 0; */
   }
 
   .leftColumn {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    /* gap: 24px; */
   }
 
   .rightColumn {
@@ -30,8 +30,11 @@
 @media (min-width: 1280px) {
   .sidebar {
     /* width: 410px; */
-    padding-top: 24px;
+    /* padding-top: 24px; */
     gap: 40px;
-    margin: 32px 0;
+    /* margin: 32px 0; */
+  }
+  .leftColumn{
+    gap: 24px;
   }
 }
