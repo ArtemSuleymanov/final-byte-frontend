@@ -1,0 +1,31 @@
+[33mc010695[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mstatistic[m[33m, [m[1;31morigin/statistic[m[33m)[m HEAD@{0}: commit: stats
+[33m0614fda[m HEAD@{1}: commit: fix/containerAndArrow
+[33m96f4f4b[m HEAD@{2}: commit: fix/rechartAndDropdown
+[33m34bc2e2[m HEAD@{3}: commit: categories
+[33mc9de5d6[m HEAD@{4}: commit: categories
+[33m0ce0793[m HEAD@{5}: commit: category
+[33m212ad09[m HEAD@{6}: commit: toDiffCase
+[33m7e29726[m HEAD@{7}: commit: stats
+[33mdafce14[m[33m ([m[1;32mmain[m[33m)[m HEAD@{8}: checkout: moving from main to statistic
+[33mdafce14[m[33m ([m[1;32mmain[m[33m)[m HEAD@{9}: checkout: moving from stats to main
+[33m93df9bd[m[33m ([m[1;31morigin/stats[m[33m, [m[1;32mstats[m[33m)[m HEAD@{10}: commit: stats
+[33m58408bd[m HEAD@{11}: checkout: moving from main to stats
+[33mdafce14[m[33m ([m[1;32mmain[m[33m)[m HEAD@{12}: commit: statistics
+[33m58408bd[m HEAD@{13}: checkout: moving from stats to main
+[33m58408bd[m HEAD@{14}: pull origin main: Fast-forward
+[33mb67631f[m HEAD@{15}: checkout: moving from main to stats
+[33m58408bd[m HEAD@{16}: pull: Fast-forward
+[33mb67631f[m HEAD@{17}: checkout: moving from stats to main
+[33mb67631f[m HEAD@{18}: checkout: moving from main to stats
+[33mb67631f[m HEAD@{19}: checkout: moving from statistics to main
+[33mdfac4fb[m[33m ([m[1;32mStatistics[m[33m)[m HEAD@{20}: checkout: moving from main to statistics
+[33mb67631f[m HEAD@{21}: pull: Fast-forward
+[33m10d9ae9[m HEAD@{22}: checkout: moving from Statistics to main
+[33mdfac4fb[m[33m ([m[1;32mStatistics[m[33m)[m HEAD@{23}: commit: statistics
+[33m1bd1111[m[33m ([m[1;31morigin/Statistics[m[33m)[m HEAD@{24}: commit: sprite and dropdown issue fix
+[33mcd63e66[m HEAD@{25}: commit: sprite and dropdown issue fix
+[33m9f4a0a0[m HEAD@{26}: commit: sprite fix
+[33m7b15393[m HEAD@{27}: pull: Fast-forward
+[33m250885f[m HEAD@{28}: commit: statistics
+[33m10d9ae9[m HEAD@{29}: checkout: moving from main to Statistics
+[33m10d9ae9[m HEAD@{30}: clone: from https://github.com/ArtemSuleymanov/final-byte-frontend.git

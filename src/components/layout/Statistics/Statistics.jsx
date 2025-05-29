@@ -6,8 +6,9 @@ import Table from './Table/Table';
 import Toggle from '../../common/Toggle/Toggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionsStatistic } from '../../../redux/stats/statisticsOperations';
-import { selectError, selectIsLoading } from '../../../redux/stats/statisticsSelector';
+import { selectError, selectIsLoading, selectStatistics } from '../../../redux/stats/statisticsSelector';
 import Loader from '../../common/Loader/Loader';
+import NoData from '../../common/NoData/NoData';
 
 const MONTHS = [
   'January',
@@ -31,6 +32,7 @@ const Statistics = () => {
   const currDate = new Date();
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
+  const data = useSelector(selectStatistics);
   const error = useSelector(selectError);
   const [year, setYear] = useState(currDate.getFullYear());
   const [month, setMonth] = useState(currDate.getMonth());
@@ -49,16 +51,18 @@ const Statistics = () => {
   };
 
   if (loading) return <Loader />;
-  if (error) return <p>Error: {error}</p>;
-
+  if (Object.keys(data).length === 0) {
+    return <NoData text="No transactions found. Please add at least one to view statistics." />;
+  }
+  
   return (
-    <>
+    <div className={css.div}>
       <div className={css.container}>
         <div className={css.toggle}>
           <Toggle style={{ marginTop: 0 }} checked={transactionType} handleChange={handleToggleChange}/>
           <Chart transactionType= {transactionType}/>
         </div>
-        <div style={{ width: '100%' }}>
+        <div>
           <div className={css.dropdown}>
             <Dropdown title={year} items={YEARS} set={setYear} />
             <Dropdown title={MONTHS[month]} items={MONTHS} set={handleSelectMonth} />
@@ -66,7 +70,7 @@ const Statistics = () => {
           <Table transactionType={ transactionType} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
