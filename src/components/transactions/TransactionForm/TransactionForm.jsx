@@ -34,7 +34,7 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const defaultInitialValues = {
     amount: '',
-    category: transactionType ? expenseCategories[0] : categoriesList[0],
+    category: '',
     type: transactionType ? typeList[1] : typeList[0],
     date: new Date(),
   };
