@@ -39,7 +39,7 @@ const Chart = ({ transactionType }) => {
 
   useEffect(() => {
     const updateSize = () => {
-      setSize(window.innerWidth === 768 ? 400 : 264);
+      setSize(window.innerWidth >= 768 ? 288 : 264);
     };
     updateSize();
     window.addEventListener('resize', updateSize);
