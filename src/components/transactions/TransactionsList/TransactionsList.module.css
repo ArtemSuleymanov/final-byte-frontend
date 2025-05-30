@@ -112,7 +112,7 @@
   }
 
   .section {
-    max-height: 585px;
+    min-height: 585px;
     padding-right: 10px;
     padding-left: 27px;
     padding-bottom: 36px;
