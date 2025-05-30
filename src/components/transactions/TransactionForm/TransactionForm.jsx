@@ -22,7 +22,6 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-
       const amountNumber = Number(values.amount);
       await onSubmit({ ...values, amount: amountNumber });
       onClose();
@@ -34,7 +33,7 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
 
   const defaultInitialValues = {
     amount: '',
-    category: '',
+    category: transactionType ? '' : categoriesList[0],
     type: transactionType ? typeList[1] : typeList[0],
     date: new Date(),
   };
