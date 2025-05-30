@@ -20,6 +20,14 @@
   padding: 12px;
   color: var(--hover-text-color);
   font-weight: 500;
+
+  transition: all 0.3s ease;
+}
+
+.moreBtn:hover {
+  background-color: none;
+  background: var(--main-background-color);
+  color: var(--hover-text-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -95,13 +103,6 @@
     background: none;
     background-color: var(--modal-background);
     color: var(--text-color);
-    transition: all 0.3s ease;
-  }
-
-  .moreBtn:hover {
-    background-color: none;
-    background: var(--main-background-color);
-    color: var(--hover-text-color);
   }
 }
 
@@ -111,7 +112,7 @@
   }
 
   .section {
-    min-height: 585px;
+    max-height: 585px;
     padding-right: 10px;
     padding-left: 27px;
     padding-bottom: 36px;

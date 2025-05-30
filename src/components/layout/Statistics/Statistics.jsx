@@ -35,6 +35,7 @@ const Statistics = () => {
   const data = useSelector(selectStatistics);
   const [year, setYear] = useState(currDate.getFullYear());
   const [month, setMonth] = useState(currDate.getMonth());
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     const paddedMonth = String(month + 1).padStart(2, '0');
@@ -47,6 +48,10 @@ const Statistics = () => {
   const handleSelectMonth = (monthName) => {
     const monthIndex = MONTHS.indexOf(monthName);
     setMonth(monthIndex);
+  };
+
+  const handleDropdownToggle = (name) => {
+    setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
   if (Object.keys(data).length === 0 || (data.totals.income === 0 && data.totals.expense === 0)) {
@@ -64,10 +69,22 @@ const Statistics = () => {
           <Toggle style={{ marginTop: 0 }} checked={transactionType} handleChange={handleToggleChange} />
           <Chart transactionType={transactionType} />
         </div>
-        <div>
+        <div style={{ width: '100%' }}>
           <div className={css.dropdown}>
-            <Dropdown title={year} items={YEARS} set={setYear} />
-            <Dropdown title={MONTHS[month]} items={MONTHS} set={handleSelectMonth} />
+            <Dropdown
+              title={year}
+              items={YEARS}
+              set={setYear}
+              isOpen={openDropdown === 'year'}
+              onToggle={() => handleDropdownToggle('year')}
+            />
+            <Dropdown
+              title={MONTHS[month]}
+              items={MONTHS}
+              set={handleSelectMonth}
+              isOpen={openDropdown === 'month'}
+              onToggle={() => handleDropdownToggle('month')}
+            />
           </div>
           <Table transactionType={transactionType} />
         </div>
