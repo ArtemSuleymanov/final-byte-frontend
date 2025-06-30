@@ -42,9 +42,11 @@ const Statistics = () => {
     const yearMonth = `${year}-${paddedMonth}`;
     dispatch(getTransactionsStatistic(yearMonth));
   }, [dispatch, year, month]);
+
   const handleToggleChange = (value) => {
     setTransactionType(value);
   };
+
   const handleSelectMonth = (monthName) => {
     const monthIndex = MONTHS.indexOf(monthName);
     setMonth(monthIndex);
@@ -54,20 +56,16 @@ const Statistics = () => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-  if (Object.keys(data).length === 0 || (data.totals.income === 0 && data.totals.expense === 0)) {
-    console.log(data);
-
-    return <NoData text="No transactions found. Please add at least one to view statistics." />;
-  }
-
   if (loading) return <Loader />;
+
+  const hasData = Object.keys(data).length > 0 && !(data.totals.income === 0 && data.totals.expense === 0);
 
   return (
     <div className={css.div}>
       <div className={css.container}>
         <div className={css.toggle}>
           <Toggle style={{ marginTop: 0 }} checked={transactionType} handleChange={handleToggleChange} />
-          <Chart transactionType={transactionType} />
+          {hasData ? <Chart transactionType={transactionType} /> : null}
         </div>
         <div style={{ width: '100%' }}>
           <div className={css.dropdown}>
@@ -86,7 +84,12 @@ const Statistics = () => {
               onToggle={() => handleDropdownToggle('month')}
             />
           </div>
-          <Table transactionType={transactionType} />
+
+          {hasData ? (
+            <Table transactionType={transactionType} />
+          ) : (
+            <NoData className={css.noData} text="No transactions found. Please add at least one to view statistics." />
+          )}
         </div>
       </div>
     </div>
