@@ -166,8 +166,8 @@ const TransactionForm = ({ initialValues, onSubmit, onClose, showToast, innerRef
             <ErrorMessage name="comment" component="span" className={s.span} />
           </label>
 
-          <button type="submit" disabled={isSubmitting} className={s.button} style={{ display: 'none' }}>
-            Save
+          <button type="submit" disabled={isSubmitting} className={s.button}>
+            Add
           </button>
         </Form>
       )}

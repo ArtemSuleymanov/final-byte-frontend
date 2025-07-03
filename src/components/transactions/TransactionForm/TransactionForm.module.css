@@ -67,7 +67,7 @@ background-clip: text;
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   margin: 0 auto;
   margin-top: 10px;
-  width: 248px;
+  /* width: 248px; */
   padding: 11px 79px;
   border-radius: 8px;
   color: var(--main-white);
@@ -75,6 +75,7 @@ background-clip: text;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 18px;
+  width: 410px;
 }
 
 .button:hover,
